@@ -1,37 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Web Dev Course Home Page</title>
+    <title>WebDev Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
-<body background="images/Cat-party.gif">
 
-    <h1  style="text-align:center;">Web Dev Course Home Page</h1>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_(large).gif"  alt="rotating earth" style="width:50px;">
-    <p>
-        Customize this home page to your linking.
-    </p>
+<body>
+    <!-- Title Heading -->
+    <div class="container-fluid">
+        <h1  style="text-align:center;">Web Dev Course Home Page</h1>
+    </div>
 
-    <h2  style="text-align:center;">Required links</h2>
-    <ul>
-        <li>
-            <a href="project/index.html">Project</a>
-        </li>
-        <li>
-            <a href="assignment/index.html">Assignment</a>
-        </li>
-        <li>
-            <a href="test/index.html">Test MongoDB</a>
-        </li>
-        <li>
-            <a href="https://github.com/seshasaisrivatsav/kuchibhotla-sesha_sai_srivatsav-web-dev">Your public repository at GitHub.com</a>
-        </li>
-    </ul>
-    <h2  style="text-align:center;">About Myself</h2>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
 
-    <a href="https://www.linkedin.com/in/seshasaisrivatsav">
-        <img src = "https://lh3.googleusercontent.com/kvUGYKr_JBilPfmo4EdzJDXJ8H-qoNsQmDJiGWr_CkirNPoRQK-2BMJQJVzHA_f5JlqqBJp7q7y9Q-n8GdMfeqKVXU81OKzV8IZVVpuGMPFfzhx33ZZwbKV1dQ6oXa_jyfYqGcb3iOk7Q-aEs6dV1IgAwk_-o1d7noCG5a5DioaWP0hR69_aU-ef19V-pvSbKRIHyugU5Oaa1_MhojXW1ZxV5NK3PZljCvoQbhnAR_9xU9b5s_QWr4s0iZ_lZ6LhqvYiVJ6ywc6pJbgLwxNKVkvRspV4RKqtgdD0wWNSkLXr1BENGYraFVZKlL9BsgT8zFzT8fEHTJxBdV4jDSTlusO3o-6GUUluL-2FyKLhIKHN-6vwLhXHWPgZBGJlBk6r0TkA1tYHga1ur-sUeqzVDl_L0TF0qwp72Z3KzEMDCgoXg9QPHiAuRZQMeggTrOLCJmVFdzdiCXUbploDg5PytMnQLXMgCbhyUlSrgfnAGMsQHwT5MIjO7XK-fFk1n5qIbpYSHQo8RWJUcVoLN-R_8eyKP0FoJKaBFNVZe3ye1IAU12xShf5di6Y5V0Y0QVle_o1WkuudpdGIMqAA7EWTkb_1b5rGnlYK=s400-no" alt = "sesha sai srivatsav" width = "125" border = "3">
-    </a>
+            <!-- Logo -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavBar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand">Web Dev Course Home Page</a>
+            </div>
+
+            <!-- Menu Items -->
+            <div class="collapse navbar-collapse" id="mainNavBar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="index.html">Home</a></li>
+                    <li><a href="#">Project</a></li>
+                    <li><a href="#">Assignment</a></li>
+                    <li><a href="test/index.html">Test Mongo DB</a></li>
+                    <li><a href="https://github.com/seshasaisrivatsav/kuchibhotla-sesha_sai_srivatsav-web-dev">My Public Repository at Github.com</a></li>
+                    <li><a href="#">About Myself</a></li>
+                    <li><a href="#">Contact me</a></li>
+
+                    <!-- drop down menu -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Useful Links <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="https://openshift.redhat.com/app/console/applications">OpenShift Console</a></li>
+                            <li><a href="https://neuidmsso.neu.edu/cas-server/login">Blackboard</a></li>
+                            <li><a href="https://github.com/">GitHub</a></li>
+                            <li><a href="http://myneu.neu.edu/cp/home/displaylogin">MyNeu</a></li>
+                            <li><a href="https://studentemployment.neu.edu/">Student Employement</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <!--Project-->
+    <div class="container-fluid">
+        <h1>Project</h1>
+        <h3>Project Link</h3>
+        <a href="project/index.html">Project</a>
+        <h3>Project Title Here</h3>
+        <p>Project Description Here</p>
+
+            <h3>Important Deadlines</h3>
+
+                <table class="table table-condensed">
+                    <thead>
+                    <tr>
+                        <th>Project</th>
+                        <th>Deadlines</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Submission</td>
+                        <td>Sunday, June 26</td>
+                    </tr>
+                    <tr>
+                        <td>Evaluation</td>
+                        <td>Monday, June 27 -Thursday, June 30</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+    </div>
+
+    <!--Assignments-->
+    <div class="container-fluid">
+        <h1>Assignment</h1>
+        <h3>Assignment Link</h3>
+        <a href="assignment/index.html">Assignments</a>
+
+        <h3>Important Deadlines</h3>
+        <table class="table table-condensed">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Assignment</th>
+                <th>Deadline</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>Development Environment</td>
+                <td>Sun, May 15</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>User Interface Development</td>
+                <td>Sun, May 22</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Client Side Development</td>
+                <td>Sun, May 29</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Server Side Development</td>
+                <td>Sun, Jun 5</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Database Development</td>
+                <td>Sun, Jun 12</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Security & User Management</td>
+                <td>Sun, Jun 19</td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+    <!--About Myself-->
+    <div class="container-fluid">
+        <h1>About Myself</h1>
+        <p>I am excited to learn WebDev. I hope to design fabulous web pages.
+        I like watching a lot of movies, travelling and cooking.
+        </p>
+
+        <div class="row">
+            <div class="col-md-4">
+                <a href="images/le_me.jpg"   class="thumbnail" >
+                    <br>
+                    <img src="images/le_me.jpg" alt="Pulpit Rock"  style="width:150px;height:150px">
+                    <p>Posing at Starbucks, Northeastern University</p>
+                    </a>
+                </div>
+        </div>
+        <p>Follow me at</p>
+        <p>
+            <a href="https://plus.google.com/+seshasaisrivatsav">
+            <img src="images/google_logo.png" alt="Google Plus link"  height="42" border="0">
+            </a>
+            <a href="https://www.facebook.com/seshasai.srivatsav">
+                <img src="images/facebook_logo.jpg" alt="Facebook"  height="42" border="0">
+            </a>
+            <a href="https://www.instagram.com/seshasai_tris/">
+                <img src="images/instagram_logo.jpg" alt="Instagram"   height="42" border="0">
+            </a>
+            <a href="https://www.linkedin.com/in/seshasaisrivatsav">
+                <img src="images/linkedin_logo.png" alt="Linkedin"   height="42" border="0">
+            </a>
+            <a href="https://www.youtube.com/channel/UC_el31k7V2770-QH0T_xzcQ">
+                <img src="images/youtube_logo.png" alt="youtube" height="42" border="0">
+            </a>
+            <a href="https://twitter.com/seshasai_tris">
+                <img src="images/twitter_logo.png" alt="Twitter" height="42" border="0">
+            </a>
+
+        </p>
+    </div>
+
+    <!--Contact Me-->
+
 
 </body>
 </html>
