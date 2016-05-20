@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta tags for making website for mobile-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="initial-scale=1.25, user-scalable=no">
+
+
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
@@ -8,12 +14,11 @@
 
     <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
 
-    <link href="css/style.css" rel="stylesheet"/>
+    <link href="../css/style.css" rel="stylesheet"/>
 </head>
 
 
 <body>
-
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
@@ -23,13 +28,14 @@
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </p>
+        <span>
         <!--heading on the nav bar-->
-            <p class="navbar-header pull-left">
-                <a class="navbar-brand thick">
+        <p class="navbar-header pull-left">
+            <a class="navbar-brand thick">
                 Widget Edit
-                </a>
-            </p>
-
+            </a>
+        </p>
+        </span>
         <!--tick mark-->
         <p class="navbar-text pull-right">
             <a href="widget-list.html" class="navbar-link">
@@ -56,48 +62,29 @@
         </div>
     </form>
 
-
     <form>
         <div class="form-group">
-            <label for="URL">URL</label>
-            <input type="text" class="form-control" id="URL">
+            <label for="Size">Size</label>
+            <input type="number" class="form-control" id="Size">
         </div>
     </form>
-
-
-    <form>
-        <div class="form-group">
-            <label for="width">Width</label>
-            <input type="text" class="form-control" id="width">
-        </div>
-    </form>
-
-
-    <form>
-         <div class="form-group">
-             <label for="exampleInputFile">Upload</label>
-            <input type="file" id="exampleInputFile" class="form-control"/>
-        </div>
-    </form>
-
-    <a class="btn btn-primary btn-block"
-       href="#" >Upload Image</a>
 
     <a class="btn btn-danger btn-block "
-       href="widget-list.html">Delete</a>
+       href="../page/page-list.html">Delete</a>
 
 
 </div>
 
 <!-- Footer -->
 
+
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
-            <p class="navbar-text pull-right">
-                <a href="profile.html">
-                    <span class="glyphicon glyphicon-user"></span>
-                </a>
-            </p>
+        <p class="navbar-text pull-right">
+            <a href="../user/profile.html">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </p>
 
     </div>
 </nav>

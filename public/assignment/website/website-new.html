@@ -4,14 +4,9 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-
-
     <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
-
-    <link href="css/style.css" rel="stylesheet"/>
+    <link href="../css/style.css" rel="stylesheet"/>
 </head>
-
-
 <body>
 
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -19,7 +14,7 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="website-list.html">
                 <span class="glyphicon glyphicon-chevron-left"></span>
-                Edit Website
+                New Website
             </a>
             <p class="navbar-text pull-right">
                 <a href="website-list.html" class="navbar-link">
@@ -31,26 +26,21 @@
     </div>
 </nav>
 
-
 <div class="container">
     <form>
         <div class="form-group">
-            <label for="ApplicationName">Application Name</label>
-            <input type="text" class="form-control" id="ApplicationName" placeholder="Blogger">
+            <label for="Name">Name</label>
+            <input type="text" class="form-control" id="Name" placeholder="Name">
         </div>
     </form>
 
     <form>
         <div class="form-group">
-            <label for="ApplicationDescription">Application Description</label>
-            <textarea type="text" class="form-control" id="ApplicationDescription"
-                      placeholder="Blogger is a blog-publishing service that allows multi user blogs with time stamped enteries
-                      . It was developed by Pyra Labs, which was built by google in 2003.
-                      Generally the blogs are hosted by Google. But mainly the text here is not coherent."></textarea>
+            <label for="Description">Description</label>
+            <textarea type="text" class="form-control" id="Description" placeholder="Description"></textarea>
         </div>
     </form>
-    <a class="btn btn-danger btn-block "
-       href="website-list.html" >Delete</a>
+
 
 
 </div>
@@ -61,7 +51,7 @@
     <div class="container">
         <div class="row navbar-text">
             <div class="col-xs-3 text-center">
-                <a href="profile.html">
+                <a href="../user/profile.html">
                     <span class="glyphicon glyphicon-user pull-right"></span>
                 </a>
             </div>
