@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta tags for making website for mobile-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="initial-scale=1.25, user-scalable=no">
+
+
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Website Edit</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
 
 
@@ -14,22 +20,34 @@
 
 <body>
 
+
+<!--Header-->
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="website-list.html">
+        <!--Left arrow-->
+        <p class="navbar-text pull-left">
+            <a href="website-list.html" class="navbar-link">
                 <span class="glyphicon glyphicon-chevron-left"></span>
-                Edit Website
             </a>
-            <p class="navbar-text pull-right">
-                <a href="website-list.html" class="navbar-link">
-      <span class="glyphicon glyphicon-ok pull-right">
-      </span>
-                </a>
-            </p>
-        </div>
+        </p>
+        <span>
+        <!--heading on the nav bar-->
+        <p class="navbar-header pull-left">
+            <a class="navbar-brand thick">
+                <b>Edit Website</b>
+            </a>
+        </p>
+        </span>
+        <!--tick mark-->
+        <p class="navbar-text pull-right">
+            <a href="website-list.html" class="navbar-link">
+                <span class="glyphicon glyphicon-ok"></span>
+            </a>
+        </p>
+
     </div>
 </nav>
+
 
 
 <div class="container">
@@ -43,7 +61,7 @@
     <form>
         <div class="form-group">
             <label for="ApplicationDescription">Application Description</label>
-            <textarea type="text" class="form-control" id="ApplicationDescription"
+            <textarea rows="4" type="text" class="form-control" id="ApplicationDescription"
                       placeholder="Blogger is a blog-publishing service that allows multi user blogs with time stamped enteries
                       . It was developed by Pyra Labs, which was built by google in 2003.
                       Generally the blogs are hosted by Google. But mainly the text here is not coherent."></textarea>
@@ -56,16 +74,14 @@
 </div>
 
 <!-- Footer -->
-
 <nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container">
-        <div class="row navbar-text">
-            <div class="col-xs-3 text-center">
-                <a href="../user/profile.html">
-                    <span class="glyphicon glyphicon-user pull-right"></span>
-                </a>
-            </div>
-        </div>
+    <div class="container-fluid">
+        <p class="navbar-text pull-right">
+            <a href="../user/profile.html">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </p>
+
     </div>
 </nav>
 
