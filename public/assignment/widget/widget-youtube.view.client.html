@@ -8,7 +8,7 @@
 
 
     <meta charset="UTF-8">
-    <title>Page Edit</title>
+    <title>Widget Youtube</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
 
 
@@ -21,11 +21,12 @@
 <body>
 
 
+<!--Header-->
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <!--Left arrow-->
         <p class="navbar-text pull-left">
-            <a href="page-list.html" class="navbar-link">
+            <a href="widget-list.view.client.html" class="navbar-link">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </p>
@@ -33,13 +34,13 @@
         <!--heading on the nav bar-->
         <p class="navbar-header pull-left">
             <a class="navbar-brand thick">
-                <b>Edit Page</b>
+                <b>Widget Edit</b>
             </a>
         </p>
         </span>
         <!--tick mark-->
         <p class="navbar-text pull-right">
-            <a href="page-list.html" class="navbar-link">
+            <a href="widget-list.view.client.html" class="navbar-link">
                 <span class="glyphicon glyphicon-ok"></span>
             </a>
         </p>
@@ -48,23 +49,44 @@
 </nav>
 
 
+
 <div class="container">
     <form>
         <div class="form-group">
             <label for="Name">Name</label>
-            <input type="text" class="form-control" id="Name" value="Blog Post" placeholder="your blog name here">
+            <input type="text" class="form-control" id="Name">
         </div>
     </form>
 
     <form>
         <div class="form-group">
-            <label for="Title">Title</label>
-            <input type="text" class="form-control" id="Title" placeholder="Page Title">
+            <label for="Title">Text</label>
+            <input type="text" class="form-control" id="Title">
         </div>
     </form>
 
+
+    <form>
+        <div class="form-group">
+            <label for="URL">URL</label>
+            <input type="text" class="form-control" id="URL"
+            value="https://youtu.be/F5vqupbtEGE?list=PL_GGiAMracOWHzgUwaw-6rJTCEXlMjmIv0"
+                   placeholder="enter the youtube URL"
+            >
+        </div>
+    </form>
+
+
+    <form>
+        <div class="form-group">
+            <label for="width">Width</label>
+            <input type="text" class="form-control" id="width">
+        </div>
+    </form>
+
+
     <a class="btn btn-danger btn-block "
-       href="page-list.html" >Delete</a>
+       href="widget-list.view.client.html">Delete</a>
 
 
 </div>
@@ -73,7 +95,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <p class="navbar-text pull-right">
-            <a href="../user/profile.html">
+            <a href="../user/profile.view.client.html">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </p>
