@@ -1,29 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Meta tags for making website for mobile-->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="viewport" content="initial-scale=1.25, user-scalable=no">
-
-    <meta charset="UTF-8">
-    <title>Widgets</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-
-    <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
-
-    <link href="../css/style.css" rel="stylesheet"/>
-</head>
-
-
-<body>
 
 <!--Header-->
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <!--Left arrow-->
         <p class="navbar-text pull-left">
-            <a href="../views/page/page-list.view.client.html" class="navbar-link">
+            <a href="#/user/:uid/website/:wid/page" class="navbar-link">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </p>
@@ -37,7 +18,7 @@
         </span>
         <!--tick mark-->
         <p class="navbar-text pull-right">
-            <a href="widget-choose.view.client.html" class="navbar-link">
+            <a href="#/user/:uid/website/:wid/page/:pid/widget/new" class="navbar-link">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
         </p>
@@ -53,7 +34,7 @@
     <!--Sample Heading h1-->
     <div class="jga-widget">
         <div class="jga-widget-tool">
-            <a href="widget-heading.view.client.html">
+            <a href="#/user/:uid/website/:wid/page/:pid/widget/:wgid">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
             <span class="glyphicon glyphicon-align-justify"></span>
@@ -76,7 +57,7 @@
     <!--Image-->
     <div class="jga-widget">
         <div class="jga-widget-tool">
-            <a href="widget-image.view.client.html">
+            <a href="#/user/:uid/website/:wid/page/:pid/widget/:wgid">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
             <span class="glyphicon glyphicon-align-justify"></span>
@@ -109,7 +90,7 @@
     <!--youtube video-->
     <div class="jga-widget">
         <div class="jga-widget-tool">
-            <a href="widget-youtube.view.client.html">
+            <a href="#/user/:uid/website/:wid/page/:pid/widget/:wgid">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
             <span class="glyphicon glyphicon-align-justify"></span>
@@ -145,7 +126,7 @@
 
             <!--User Symbol-->
             <p class="navbar-text pull-right">
-                <a href="../views/user/profile.view.client.html">
+                <a href="#/user/:uid">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </p>
@@ -154,6 +135,3 @@
     </nav>
 </div>
 
-
-</body>
-</html>

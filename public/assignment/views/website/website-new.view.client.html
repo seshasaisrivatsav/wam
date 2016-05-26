@@ -1,30 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Meta tags for making website for mobile-->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="viewport" content="initial-scale=1.25, user-scalable=no">
 
-
-    <meta charset="UTF-8">
-    <title>Website New</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-
-
-    <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
-
-    <link href="../css/style.css" rel="stylesheet"/>
-</head>
-
-
-<body>
 <!--Header-->
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <!--Left arrow-->
         <p class="navbar-text pull-left">
-            <a href="website-list.view.client.html" class="navbar-link">
+            <a href="#/user/:uid/website" class="navbar-link">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </p>
@@ -38,7 +18,7 @@
         </span>
         <!--tick mark-->
         <p class="navbar-text pull-right">
-            <a href="website-list.view.client.html" class="navbar-link">
+            <a href="#/user/:uid/website" class="navbar-link">
                 <span class="glyphicon glyphicon-ok"></span>
             </a>
         </p>
@@ -70,7 +50,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <p class="navbar-text pull-right">
-            <a href="../views/user/profile.view.client.html">
+            <a href="#/user/:uid">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </p>
@@ -78,5 +58,3 @@
     </div>
 </nav>
 
-</body>
-</html>
