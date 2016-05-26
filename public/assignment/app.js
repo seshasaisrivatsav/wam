@@ -2,8 +2,6 @@
 //IIFEE ( Immediate invoked Function Expression )
 
 (function () {
-    angular.module("WebAppMaker",[]);
+    angular.module("WebAppMaker",["ngRoute"]);
 })();
-
-
 

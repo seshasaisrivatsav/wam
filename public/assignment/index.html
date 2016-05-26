@@ -3,37 +3,45 @@
 <head>
 
 
-    <meta charset="UTF-8">
-    <title>WAM</title>
-
+    <meta charset="UTF-8" >
     <!-- Meta tags for making website for mobile-->
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Making it Safari Friendly-->
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--Disabling user pinch and default to 25% size-->
     <meta name="viewport" content="initial-scale=1.25, user-scalable=no">
+    <!-- BootStrap style sheet-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <title>WAM</title>
+
+    <!--Angular Module. Deals with centralized routing mechanism-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+
+    <!--App.js-->
+    <script src="app.js"></script>
+
 
 
 
     <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
 
     <link href="css/style.css" rel="stylesheet"/>
-    <!--Angular Module-->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
 
     <!--Routing Module-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
 
-    <!--App.js-->
-    <script src="app.js"></script>
 
-    <!-- BootStrap style sheet-->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
 
-    <!--config.js. What do we wanna show when we click things-->
+    <!--config.js. What do we wanna show when we click things. configure-->
     <!-- this is the centralized single maintenance point-->
     <script src="config.js"></script>
     <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
 
 </head>
+
+
+
 <body>
     <div ng-view></div>
 </body>
