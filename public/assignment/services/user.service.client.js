@@ -30,6 +30,9 @@
 
         }
 
+        function findUserByUsername(username){
+
+        }
         function deleteUser(user){
         /* find the user by ID and splice it from the array */
 

@@ -11,7 +11,7 @@
         vm.updateUser = updateUser;
 
         var uid = $routeParams.uid;
-        /*it is good practice to declare initialization ina functon. say init*/
+        /*it is good practice to declare initialization ina function. say init*/
         function init(){
             vm.user = UserService.findUserById(uid);
         }
