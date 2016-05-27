@@ -6,7 +6,7 @@
     /* HTML and Java script communicate via scope */
     /* handles the JAVA Script */
 
-    function LoginController(){
+    function LoginController($location){
         /* vm is view model. bound to instance of controller */
         /* we bind instance of controller to local variable vm. where ever we bind to VM, we are bound to instance of controller */
         var vm = this;
@@ -21,7 +21,8 @@ var users = [
             for(var i in users){
                 if (users[i].username ===username
                     &&users[i].password=== password){
-                console.log("Yay");
+                /* programatically navigate to profile page */
+                    $location.url("/user/"+users[i]._id);
                 }else{
                     vm.error="User not found";
                 }
