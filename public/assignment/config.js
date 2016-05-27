@@ -32,16 +32,20 @@
             })
 
             /* Website */
-            .when("/user/:uid/website",{
+            .when("/user/:userId/website",{
                 templateUrl :"views/website/website-list.view.client.html",
                 controller: "WebsiteListController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/website/new",{
-                templateUrl :"views/website/website-new.view.client.html"
+            .when("/user/:userId/website/new",{
+                templateUrl :"views/website/website-new.view.client.html",
+                controller: "NewWebsiteController",
+                controllerAs: "model"
             })
-            .when("/user/:uid/website/:wid",{
-                templateUrl :"views/website/website-edit.view.client.html"
+            .when("/user/:userId/website/:websiteId",{
+                templateUrl :"views/website/website-edit.view.client.html",
+                controller: "EditWebsiteController",
+                controllerAs: "model"
             })
             /* Page */
             .when("/user/:uid/website/:wid/page",{

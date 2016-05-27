@@ -19,20 +19,33 @@
         var api =  {
             createWebsite: createWebsite,
             findWebsitesByUser: findWebsitesByUser,
-            findWebsiteById: findWebsiteById,
-            updateWebsite: updateWebsite,
             deleteWebsite: deleteWebsite
+
         };
         return api;
         /*functions are implemented below*/
 
-        function createWebsite(userId, website){
-        /* - adds the website parameter instance to the local websites array. The new website's developerId is set to the userId parameter*/
-
+        function deleteWebsite(websiteId) {
+            for (var i in websites){
+                if (websites[i]._id === websiteId){
+                    websites.splice(i, 1);
+                    return true;
+                }
+            }
+            return false;
         }
-
+        function createWebsite(developerId, name, description){
+            var newWebsite = {
+                _id: (new Date()).getTime()+"",
+                name: name,
+                description: description,
+                developerId: developerId
+            }
+            websites.push(newWebsite);
+            return newWebsite;
+        }
         function findWebsitesByUser(userId){
-           /*retrieves the websites in local websites array whose developerId matches the parameter userId */
+            /*retrieves the websites in local websites array whose developerId matches the parameter userId */
             var resultSet = [];
             for (var i in websites){
                 if (websites[i].developerId === userId) {
@@ -41,20 +54,8 @@
             }
             return resultSet;
         }
-        function findWebsiteById(websiteId){
-        /* retrieves the website in local websites array whose _id matches the websiteId parameter*/
 
-        }
 
-        function updateWebsite(websiteId, website) {
-            /*  updates the website in local websites array whose _id matches the websiteId parameter */
-
-        }
-
-        function deleteWebsite(websiteId) {
-            /*  removes the website from local websites array whose _id matches the websiteId parameter */
-
-        }
 
     }
 })();

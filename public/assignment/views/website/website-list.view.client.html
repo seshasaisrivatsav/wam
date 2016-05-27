@@ -14,7 +14,7 @@
         </span>
         <!--tick mark-->
         <p class="navbar-text pull-right">
-            <a href="#/user/:uid/website/new" class="navbar-link">
+            <a href="#/user/{{model.userId}}/website/new" class="navbar-link">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
         </p>
@@ -22,21 +22,22 @@
     </div>
 </nav>
 
+{{model.websites}}
 
 
 <!--Body of the page-->
 
 <div class="container">
     <ul class="list-group">
-        <li class="list-group-item">
+        <li ng-repeat="website in model.websites" class="list-group-item">
             <a href="#/user/:uid/website/:wid/page">
-                Blogging App
+                {{website.name}}
             </a>
 
             <a href="#" class="pull-right">
                 <span class="glyphicon glyphicon-play nudge-right-10px"></span>
             </a>
-            <a href="#/user/:uid/website/:wid" class="pull-right">
+            <a href="#/user/{{website.developerId}}/website/{{website._id}}" class="pull-right">
                 <span class="glyphicon glyphicon-cog  "></span>
             </a>
         </li>

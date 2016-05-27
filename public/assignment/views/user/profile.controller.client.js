@@ -10,10 +10,10 @@
         var vm = this;
         vm.updateUser = updateUser;
 
-        var uid = $routeParams.uid;
+        var userId = $routeParams.userId;
         /*it is good practice to declare initialization ina function. say init*/
         function init(){
-            vm.user = UserService.findUserById(uid);
+            vm.user = UserService.findUserById(userId);
         }
        init();
 
