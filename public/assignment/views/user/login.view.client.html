@@ -1,17 +1,30 @@
 
 <div class="container">
+    <!--truthee. not undefined, not true, not empty string, array that is not zero -->
+    <!-- if it is anything it will show -->
+    <!-- since model.error is undefined it will show -->
+    <!-- ng-showalert is programatically muted-->
 
+    <!-- ng-if gives same thing. but it is only added if it is a truthee-->
+    <div ng-if="model.error"
+         class="alert alert-danger">
+        {{model.error}}
+    </div>
     <h1>Login</h1>
 
-    <input placeholder="username"
+    <input ng-model="username"
+           placeholder="username"
            type="text"
-            class="form-control"/>
+           class="form-control"/>
 
-    <input placeholder="password"
+    <input ng-model="password"
+           placeholder="password"
            type="password"
            class="form-control"/>
-    <a class="btn btn-primary btn-block"
-       href="#/user/:uid" >Login</a>
+
+    <a ng-click="model.login(username,password)"
+       class="btn btn-primary btn-block"
+        >Login</a>
     <a class="btn btn-success btn-block"
        href="#/register" >Register</a>
 
