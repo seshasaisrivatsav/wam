@@ -1,20 +1,29 @@
 
 <div class="container">
 <h1>Register</h1>
-<input placeholder="username"
-       type="text"
-        class="form-control"/>
-<input placeholder="password"
-       type="password"
-       class="form-control"/>
-    <input placeholder="verify password"
+
+    <div ng-if="model.error"
+         class="alert alert-danger">
+        {{model.error}}
+    </div>
+
+
+    <input ng-model="model.user.username"
+           placeholder="username"
+           type="text"
+            class="form-control"/>
+    <input ng-model="model.user.password"
+            placeholder="password"
            type="password"
            class="form-control"/>
+    <input ng-model="model.user.vpassword"
+           placeholder="verify password"
+           type="password"
+           class="form-control"/>
+
     <a class="btn btn-primary btn-block"
-       href="#/user/:userId">Register</a>
+       ng-click="model.createUser(model.user)">Register</a>
     <a class="btn btn-danger btn-block"
        href="#/login" >Cancel</a>
-
-
 
 </div>

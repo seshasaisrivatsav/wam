@@ -22,7 +22,9 @@
                 controllerAs : "model"
             })
             .when("/register",{
-                templateUrl : "views/user/register.view.client.html"
+                templateUrl : "views/user/register.view.client.html",
+                controller: "RegisterController",
+                controllerAs : "model"
 
             })
             .when("/user/:userId",{
@@ -47,6 +49,7 @@
                 controller: "EditWebsiteController",
                 controllerAs: "model"
             })
+                
             /* Page */
             .when("/user/:uid/website/:wid/page",{
                 templateUrl :"views/page/page-list.view.client.html"
