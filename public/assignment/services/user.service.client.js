@@ -49,9 +49,9 @@
             return false;
         }
 
-        function findUserById(uid) {
+        function findUserById(userId) {
            for (var i in users){
-                if(users[i]._id === uid){
+                if(users[i]._id === userId){
                     return users[i];
                     index = i;
                 }

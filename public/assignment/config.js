@@ -25,7 +25,7 @@
                 templateUrl : "views/user/register.view.client.html"
 
             })
-            .when("/user/:uid",{
+            .when("/user/:userId",{
                 templateUrl :"views/user/profile.view.client.html",
                 controller: "ProfileController",
                 controllerAs: "model"
@@ -59,19 +59,26 @@
             })
             /* Widget */
             .when("/user/:uid/website/:wid/page/:pid/widget",{
-                templateUrl :"views/widget/widget-list.view.client.html"
+                templateUrl :"views/widget/widget-list.view.client.html",
+                controller: "WidgetListController",
+                controllerAs: "model"
             })
             .when("/user/:uid/website/:wid/page/:pid/widget/new",{
                 templateUrl :"views/widget/widget-choose.view.client.html"
             })
             .when("/user/:uid/website/:wid/page/:pid/widget/:wgid",{
                 templateUrl :"views/widget/widget-edit.view.client.html"
+
             })
             .when("/",{
-                templateUrl :"views/user/login.view.client.html"
+                templateUrl :"views/user/login.view.client.html",
+                controller: "LoginController",
+                controllerAs : "model"
             })
             .otherwise({
-                redirectTo: "views/user/login.view.client.html"
+                redirectTo: "views/user/login.view.client.html",
+                controller: "LoginController",
+                controllerAs : "model"
             });
 
         
