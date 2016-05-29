@@ -1,21 +1,24 @@
 (function(){
     angular
         .module("WebAppMaker")
-        .controller("NewWebsiteController",NewWebsiteController);
+        .controller("NewPageController",NewPageController);
 
     /*we need $routeParams to know which user is creating the website*/
     /*we use location to navigate back s*/
-    function NewWebsiteController($location, $routeParams, WebsiteService) {
+    function NewPageController($location, $routeParams, PageService) {
         var vm = this;
         vm.userId = $routeParams.userId;
-        vm.createWebsite =createWebsite;
+        vm.websiteId = $routeParams.websiteId;
+        
+        vm.createPage =createPage;
 
-        function createWebsite(name, description){
-            var newWebsite = WebsiteService.createWebsite(vm.userId, name, description);
-            if(newWebsite){
-                $location.url("/user/"+vm.userId+"/website");
+        function createPage(page){
+            
+            var newPage = PageService.createPage(vm.websiteId, page);
+            if(newPage){
+                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
             }else{
-                vm.error = "unable to create website";
+                vm.error = "unable to create page";
             }
 
         }

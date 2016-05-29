@@ -1,43 +1,43 @@
 (function(){
     angular
         .module("WebAppMaker")
-        .controller("EditWebsiteController",EditWebsiteController);
+        .controller("EditPageController",EditPageController);
 
     /*we need $routeParams to know which user is creating the website*/
     /*we use location to navigate back s*/
-    function EditWebsiteController($location, $routeParams, WebsiteService) {
+    function EditPageController($location, $routeParams, PageService) {
         var vm = this;
-        var websiteId = $routeParams.websiteId;
+        var pageId =  $routeParams.pageId;
 
         vm.userId = $routeParams.userId;
-        vm.websiteId= websiteId;
+        vm.websiteId= $routeParams.websiteId;
+        vm.pageId = $routeParams.pageId;
 
-        vm.deleteWebsite = deleteWebsite;
-        vm.updateWebsite = updateWebsite;
+        vm.deletePage = deletePage;
+        vm.updatePage = updatePage;
 
         function  init() {
-            vm.website = WebsiteService.findWebsiteById(websiteId);
+            vm.page = PageService.findPageById(pageId);
         }
-
         init();
 
 
-        function deleteWebsite(websiteId){
-            var result = WebsiteService.deleteWebsite(websiteId);
+        function deletePage(pageId){
+            var result = PageService.deletePage(pageId);
             if(result){
-                $location.url("/user/"+ vm.userId+"/website");
+                $location.url("/user/"+ vm.userId+"/website/"+vm.websiteId+"/page");
             }else{
-                vm.error = "unable to delete website";
+                vm.error = "unable to delete page";
             }
 
         }
 
-        function updateWebsite(website){
-            var result = WebsiteService.updateWebsite(websiteId, website);
+        function updatePage(page){
+            var result = PageService.updatePage(vm.pageId, page);
             if(result){
-                $location.url("/user/"+ vm.userId +"/website");
+                $location.url("/user/"+ vm.userId+"/website/"+vm.websiteId+"/page");
             } else{
-                vm.error = "unable to modify website";
+                vm.error = "unable to modify page";
             }
 
         }

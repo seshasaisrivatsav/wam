@@ -8,7 +8,6 @@
     function EditWebsiteController($location, $routeParams, WebsiteService) {
         var vm = this;
         var websiteId = $routeParams.websiteId;
-
         vm.userId = $routeParams.userId;
         vm.websiteId= websiteId;
 
