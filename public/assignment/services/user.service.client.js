@@ -41,7 +41,7 @@
                 users.push(newUser);
                 return newUser;
             }
-            else {"return null"};
+            return null;
 
         }
 
@@ -57,9 +57,6 @@
             return null;
         }
 
-
-
-
         function deleteUser(userId){
             for(var i in users){
                 if(users[i]._id===userId){
@@ -70,7 +67,7 @@
             return false;
         }
 
-        
+
         function updateUser(userId, user){
             console.log(user);
             for (var i in users){
@@ -83,12 +80,12 @@
             }
             return false;
         }
-
+        
         function findUserById(userId) {
            for (var i in users){
                 if(users[i]._id === userId){
                     return users[i];
-                    index = i;
+//                    index = i;
                 }
             } return null;
         }

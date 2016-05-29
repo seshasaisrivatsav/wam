@@ -30,11 +30,11 @@
 <div class="container">
     <ul class="list-group">
         <li ng-repeat="website in model.websites" class="list-group-item">
-            <a href="#/user/:uid/website/:wid/page">
+            <a href="#/user/{{model.userId}}/website/{{website._id}}/page">
                 {{website.name}}
             </a>
 
-            <a href="#" class="pull-right">
+            <a href="#/user/{{model.userId}}/website/{{website._id}}/page" class="pull-right">
                 <span class="glyphicon glyphicon-play nudge-right-10px"></span>
             </a>
             <a href="#/user/{{website.developerId}}/website/{{website._id}}" class="pull-right">
@@ -49,7 +49,7 @@
     <div class="container-fluid">
 
         <p class="navbar-text pull-right">
-            <a href="#/user/:uid">
+            <a href="#/user/{{model.userId}}">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </p>

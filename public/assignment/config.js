@@ -33,6 +33,7 @@
                 controllerAs: "model"
             })
 
+
             /* Website */
             .when("/user/:userId/website",{
                 templateUrl :"views/website/website-list.view.client.html",
@@ -49,17 +50,19 @@
                 controller: "EditWebsiteController",
                 controllerAs: "model"
             })
-                
+
             /* Page */
-            .when("/user/:uid/website/:wid/page",{
+            .when("/user/:userId/website/:websiteId/page",{
                 templateUrl :"views/page/page-list.view.client.html"
             })
-            .when("/user/:uid/website/:wid/page/new",{
+            .when("/user/:userId/website/:websiteId/page/new",{
                 templateUrl :"views/page/page-new.view.client.html"
             })
-            .when("/user/:uid/website/:wid/page/:pid",{
+            .when("/user/:userId/website/:websiteId/page/:pid",{
                 templateUrl :"views/page/page-edit.view.client.html"
             })
+
+
             /* Widget */
             .when("/user/:uid/website/:wid/page/:pid/widget",{
                 templateUrl :"views/widget/widget-list.view.client.html",

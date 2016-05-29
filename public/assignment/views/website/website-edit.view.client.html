@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <!--Left arrow-->
         <p class="navbar-text pull-left">
-            <a href="#/user/:uid/website" class="navbar-link">
+            <a href="#/user/{{model.userId}}/website" class="navbar-link">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </p>
@@ -19,7 +19,9 @@
         </span>
         <!--tick mark-->
         <p class="navbar-text pull-right">
-            <a href="#/user/:uid/website" class="navbar-link">
+
+            <a ng-click = "model.updateWebsite(model.website)"
+               class="navbar-link">
                 <span class="glyphicon glyphicon-ok"></span>
             </a>
         </p>
@@ -27,30 +29,33 @@
     </div>
 </nav>
 
-
-
+{{model.websiteId}}
+{{model.website}}
 <div class="container">
     <form>
         <div class="form-group">
-            <label for="ApplicationName">Application Name</label>
-            <input type="text"
+            <label for="WebsiteName">Website Name</label>
+            <input ng-model = "model.website.name"
+                   type="text"
                    class="form-control"
-                   id="ApplicationName"
-                   placeholder="Blogger"
-                   value="Blogger"
+                   id="WebsiteName"
+                   placeholder="Name of the blog"
+
             >
         </div>
     </form>
 
     <form>
         <div class="form-group">
-            <label for="ApplicationDescription">Application Description</label>
-            <textarea rows="4" type="text" class="form-control" id="ApplicationDescription"
-                      placeholder="Blog">
-  Blogger is a blog-publishing service that allows multi user blogs with time stamped enteries . It was developed by Pyra Labs, which was built by google in 2003.
-Generally the blogs are hosted by Google. But mainly the text here is not coherent.
-            </textarea>
+            <label for="WebsiteDescription">Website Description</label>
+            <textarea ng-model="model.website.description"
+                      rows="4"
+
+                      class="form-control"
+                      id="WebsiteDescription"
+                      placeholder="Enter the content of the blog"></textarea>
         </div>
+
     </form>
     <a ng-click="model.deleteWebsite(model.websiteId)"
        class="btn btn-danger btn-block" >Delete</a>
@@ -67,7 +72,7 @@ Generally the blogs are hosted by Google. But mainly the text here is not cohere
             </a>
         </p>
         <p class="navbar-text pull-right">
-            <a href="#/user/:uid">
+            <a href="#/user/{{model.userId}}">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </p>

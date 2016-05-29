@@ -19,8 +19,9 @@
         var api =  {
             createWebsite: createWebsite,
             findWebsitesByUser: findWebsitesByUser,
-            deleteWebsite: deleteWebsite
-
+            deleteWebsite: deleteWebsite,
+            findWebsiteById: findWebsiteById,
+            updateWebsite: updateWebsite
         };
         return api;
         /*functions are implemented below*/
@@ -35,7 +36,37 @@
             return false;
         }
 
+        function updateWebsite(websiteId, website){
+            console.log(website);
+            for (var i in websites){
+                if(websites[i]._id === websiteId){
+                    websites[i].name = website.name;
+                    websites[i].description = website.description;
+                     return true;
+                }
+            }
+            return false;
+        }
 
+        // another way of writing it ??
+        // function updateWebsite(websiteId, website){
+        //     console.log(website);
+        //
+        //     if(website._id===findWebsiteById(websiteId)._id){
+        //         website
+        //     }
+        //
+        // }
+
+
+        function findWebsiteById(websiteId) {
+            for (var i in websites){
+                if(websites[i]._id === websiteId){
+                    return websites[i];
+
+                }
+            } return null;
+        }
 
 
         function createWebsite(developerId, name, description){
