@@ -1,21 +1,15 @@
 (function(){
     angular
         .module("WebAppMaker")
-        .controller("WidgetListController",WidgetListController);
+        .controller("WidgetEditController",WidgetEditController);
 
     /* you will need $routeParams to extract the page Id when you are implementing it */
     /* the below one just works for hard coded stuff */
 
-    function WidgetListController($sce, $routeParams, WidgetService) {
+    function WidgetEditController($sce, $routeParams, WidgetService) {
         var vm = this;
         /* based on the pageId, you have to retrieve widgets for that pageID */
-
-         vm.pageId= $routeParams.pageId;
-         vm.userId = $routeParams.userId;
-       vm.websiteId = $routeParams.websiteId;
-
         var pageId = $routeParams.pageId;
-
         vm.getSafeHtml = getSafeHtml;
         vm.getSafeUrl = getSafeUrl;
 
