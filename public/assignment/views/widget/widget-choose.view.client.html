@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <!--Left arrow-->
         <p class="navbar-text pull-left">
-            <a href="#/user/:uid/website/:wid/page/:pid/widget" class="navbar-link">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </p>
@@ -20,66 +20,25 @@
 </nav>
 
 <!--Body of the page-->
+
 <div class="container">
     <ul class="col-lg-12">
-        <a href="#/user/:uid/website/:wid/page/:pid/widget/:wgid">
+        <a ng-click = "model.createHeaderWidget(model.pageId)">
         Header
         </a>
     </ul>
 
     <ul class="col-lg-12">
-        <a href="#/user/:uid/website/:wid/page/:pid/widget/:wgid">
+        <a  ng-click = "model.createImageWidget(model.pageId)">
             Image
         </a>
     </ul>
 
     <ul class="col-lg-12">
-        <a href="#/user/:uid/website/:wid/page/:pid/widget/:wgid">
+        <a  ng-click = "model.createYouTubeWidget(model.pageId)">
             YouTube
         </a>
     </ul>
-    <ul class="col-lg-12">
-        <a href="#">
-            Label
-        </a>
-    </ul>
-    <ul class="col-lg-12">
-        <a href="#">
-            HTML
-        </a>
-    </ul>
-    <ul class="col-lg-12">
-        <a href="#">
-            Text Input
-        </a>
-    </ul>
-
-
-    <ul class="col-lg-12">
-        <a href="#">
-            Link
-        </a>
-    </ul>
-
-    <ul class="col-lg-12">
-        <a href="#">
-            Button
-        </a>
-    </ul>
-
-
-    <ul class="col-lg-12">
-        <a href="#">
-            Data Table
-        </a>
-    </ul>
-
-    <ul class="col-lg-12">
-        <a href="#">
-            Repeater
-        </a>
-    </ul>
-
 </div>
 
 <!-- Footer -->

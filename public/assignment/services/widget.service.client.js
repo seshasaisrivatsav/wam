@@ -17,19 +17,74 @@
         ]
         ;
 
+
+
     function WidgetService(){
     /* API is driven by the use cases*/
         var api =  {
-            findWidgetsByPageId: findWidgetsByPageId
+            findWidgetsByPageId: findWidgetsByPageId,
+            updateWidget : updateWidget,
+            deleteWidget: deleteWidget,
+            findWidgetById: findWidgetById,
+            createWidget: createWidget
         };
         return api;
         /*functions are implemented below*/
+
+        function createWidget(pageId, widget){
+            widgets.push(widget);
+            /* return true only if the JSON object is inserted */
+            return true;
+        }
+
 
         function findWidgetsByPageId(pageId) {
             return widgets;
         }
 
 
+        function findWidgetById(widgetId) {
+            for(var i in widgets){
+                if(widgetId === widgets[i]._id){
+                    return widgets[i];
+                }
+            }
+        }
+
+        function updateWidget(widgetId, widget) {
+            for(var i in widgets){
+                if(widgetId === widgets[i]._id){
+                    switch (widget.widgetType){
+                        case "HEADER":
+                            widgets[i].name = widget.name;
+                            widgets[i].text = widget.text;
+                            widgets[i].size = widget.size;
+                            return true;
+
+                        case "IMAGE":
+                        case "YOUTUBE":
+                            widgets[i].name = widget.name;
+                            widgets[i].text = widget.text;
+                            widgets[i].url = widget.url;
+                            widgets[i].width = widget.width;
+                            return true;
+                    }
+
+                }
+            }
+            return false;
+        }
+
+
+        function deleteWidget(widgetId) {
+            for(var i in widgets){
+                if(widgetId === widgets[i]._id){
+                    widgets.splice(i,1);
+                    return true;
+                }
+            }
+            return false;
+        }
 
 
     }

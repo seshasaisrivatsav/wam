@@ -13,6 +13,7 @@
          vm.pageId= $routeParams.pageId;
          vm.userId = $routeParams.userId;
        vm.websiteId = $routeParams.websiteId;
+        
 
         var pageId = $routeParams.pageId;
 

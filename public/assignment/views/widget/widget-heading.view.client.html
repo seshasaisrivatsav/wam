@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <!--Left arrow-->
         <p class="navbar-text pull-left">
-            <a href="#/user/:uid/website/:wid/page/:pid/widget" class="navbar-link">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </p>
@@ -32,12 +32,19 @@
     <form>
         <div class="form-group">
             <label for="Name">Name</label>
-            <input type="text" class="form-control" id="Name" placeholder="Name">
+            <input type="text"
+                   class="form-control"
+                   id="Name"
+                   placeholder="Name">
         </div>
 
         <div class="form-group">
             <label for="Title">Text</label>
-            <input type="text" class="form-control" id="Title" value="Us Senate reaches" placeholder="enter the text">
+            <input type="text"
+                   class="form-control"
+                   id="Title"
+                   value="Us Senate reaches"
+                   placeholder="enter the text">
         </div>
 
         <div class="form-group">
@@ -55,7 +62,7 @@
     </form>
 
     <a class="btn btn-danger btn-block "
-       href="#/user/:uid/website/:wid/page/:pid/widget">Delete</a>
+       ng-click="model.deleteWidget(model.widget)">Delete</a>
 
 
 </div>

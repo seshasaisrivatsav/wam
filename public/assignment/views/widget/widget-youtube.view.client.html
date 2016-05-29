@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <!--Left arrow-->
         <p class="navbar-text pull-left">
-            <a href="#/user/:uid/website/:wid/page/:pid/widget" class="navbar-link">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </p>
@@ -66,7 +66,7 @@
 
 
     <a class="btn btn-danger btn-block "
-       href="#/user/:uid/website/:wid/page/:pid/widget">Delete</a>
+       ng-click="model.deleteWidget(model.widget)">Delete</a>
 
 
 </div>
