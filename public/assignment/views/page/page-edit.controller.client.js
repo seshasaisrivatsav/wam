@@ -29,7 +29,6 @@
             }else{
                 vm.error = "unable to delete page";
             }
-
         }
 
         function updatePage(page){
