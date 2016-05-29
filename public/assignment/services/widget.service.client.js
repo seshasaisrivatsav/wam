@@ -62,6 +62,13 @@
                             return true;
 
                         case "IMAGE":
+                            widgets[i].name = widget.name;
+                            widgets[i].text = widget.text;
+                            widgets[i].url = widget.url;
+                            widgets[i].width = widget.width;
+                            widgets[i].file = widget.file;
+                            return true;
+                        
                         case "YOUTUBE":
                             widgets[i].name = widget.name;
                             widgets[i].text = widget.text;

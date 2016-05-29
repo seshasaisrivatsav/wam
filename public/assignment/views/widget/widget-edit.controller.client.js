@@ -35,7 +35,7 @@
 
         }
 
-
+        
         function deleteWidget(widget) {
             var result = WidgetService.deleteWidget(vm.widgetId);
 
