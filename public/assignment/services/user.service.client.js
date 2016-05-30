@@ -91,15 +91,28 @@
         }
 
         function findUserByCredentials(username, password){
+
             for(var i in users){
                 if (users[i].username ===username
                     &&users[i].password=== password){
                     return users[i];
-
                 }
-
             }
-            return null;
+
+          var errMsg = generateError(username, password);
+          return errMsg;
+        }
+        
+
+        function generateError(username, password) {
+
+            for(var i in users){
+                if(users[i].username === username &&
+                    users[i].password !== password) {
+                    return "Wrong PW. BOO!";
+                }
+            } return "User doesn't exist!";
+
         }
     }
 })();

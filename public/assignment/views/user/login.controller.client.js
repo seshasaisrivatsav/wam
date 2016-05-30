@@ -13,14 +13,32 @@
         var vm = this;
 
 
+        // vm.login = function (username, password) {
+        //     var user = UserService.findUserByCredentials (username, password);
+        //     if (user){
+        //         $location.url("/user/"+user._id);
+        //     } else {
+        //         vm.error = "User not found";
+        //     }
+        // }
+
         vm.login = function (username, password) {
             var user = UserService.findUserByCredentials (username, password);
-            if (user){
+            console.log(user);
+            if(typeof user === 'string'){
+
+                vm.error = user;
+               // return true;
+
+            }else{
                 $location.url("/user/"+user._id);
-            } else {
-                vm.error = "User not found";
+
             }
+            console.log(user);
         }
+
+
+
 }
 
 })();

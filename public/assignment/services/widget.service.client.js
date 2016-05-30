@@ -39,7 +39,13 @@
 
 
         function findWidgetsByPageId(pageId) {
-            return widgets;
+            var resultSet = [];
+            for(var i in widgets){
+                if(widgets[i].pageId === pageId){
+                    resultSet.push(widgets[i]);
+                }
+            } return resultSet;
+
         }
 
 
@@ -68,7 +74,7 @@
                             widgets[i].width = widget.width;
                             widgets[i].file = widget.file;
                             return true;
-                        
+
                         case "YOUTUBE":
                             widgets[i].name = widget.name;
                             widgets[i].text = widget.text;
