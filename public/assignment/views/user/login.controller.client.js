@@ -24,11 +24,9 @@
 
         vm.login = function (username, password) {
             var user = UserService.findUserByCredentials (username, password);
-             
             if(typeof user === 'string'){
-
                 vm.error = user;
-               // return true;
+                return true;
 
             }else{
                 $location.url("/user/"+user._id);

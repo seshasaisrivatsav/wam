@@ -11,8 +11,7 @@
             { "_id": "567", "name": "Tic Tac Toe", "developerId": "123" },
             { "_id": "678", "name": "Checkers",    "developerId": "123" },
             { "_id": "789", "name": "Chess",       "developerId": "234" }
-        ]
-        ;
+        ];
 
     function WebsiteService(){
     /* API is driven by the use cases*/
@@ -26,6 +25,49 @@
         return api;
         /*functions are implemented below*/
 
+        function createWebsite(userId, website){
+            var newWebsite = {
+                _id: (new Date()).getTime()+"",
+                name: website.name,
+                description: website.description,
+                developerId: userId
+            }
+            websites.push(newWebsite);
+            return newWebsite;
+        }
+
+        function findWebsitesByUser(userId){
+            /*retrieves the websites in local websites array whose developerId matches the parameter userId */
+            var resultSet = [];
+            for (var i in websites){
+                if (websites[i].developerId === userId) {
+                    resultSet.push(websites[i]);
+                }
+            }
+            return resultSet;
+        }
+
+        function findWebsiteById(websiteId) {
+            for (var i in websites){
+                if(websites[i]._id === websiteId){
+                    return websites[i];
+
+                }
+            } return null;
+        }
+        
+        function updateWebsite(websiteId, website){
+            console.log(website);
+            for (var i in websites){
+                if(websites[i]._id === websiteId){
+                    websites[i].name = website.name;
+                    websites[i].description = website.description;
+                    return true;
+                }
+            }
+            return false;
+        }
+
         function deleteWebsite(websiteId) {
             for (var i in websites){
                 if (websites[i]._id === websiteId){
@@ -36,17 +78,6 @@
             return false;
         }
 
-        function updateWebsite(websiteId, website){
-            console.log(website);
-            for (var i in websites){
-                if(websites[i]._id === websiteId){
-                    websites[i].name = website.name;
-                    websites[i].description = website.description;
-                     return true;
-                }
-            }
-            return false;
-        }
 
         // another way of writing it ??
         // function updateWebsite(websiteId, website){
@@ -59,36 +90,11 @@
         // }
 
 
-        function findWebsiteById(websiteId) {
-            for (var i in websites){
-                if(websites[i]._id === websiteId){
-                    return websites[i];
-
-                }
-            } return null;
-        }
 
 
-        function createWebsite(developerId, name, description){
-            var newWebsite = {
-                _id: (new Date()).getTime()+"",
-                name: name,
-                description: description,
-                developerId: developerId
-            }
-            websites.push(newWebsite);
-            return newWebsite;
-        }
-        function findWebsitesByUser(userId){
-            /*retrieves the websites in local websites array whose developerId matches the parameter userId */
-            var resultSet = [];
-            for (var i in websites){
-                if (websites[i].developerId === userId) {
-                    resultSet.push(websites[i]);
-                }
-            }
-            return resultSet;
-        }
+
+
+
 
 
 

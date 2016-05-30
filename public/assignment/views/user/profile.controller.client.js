@@ -19,8 +19,12 @@
 
 
         function updateUser(user){
-            UserService.updateUser(userId, user);
-           
+            var updatedUser = UserService.updateUser(userId, user);
+           if (updatedUser){
+               vm.error="successfully updated!";
+           }else{
+               vm.error = "Some thing doesn't seem right here";
+           }
         }
 
    }
