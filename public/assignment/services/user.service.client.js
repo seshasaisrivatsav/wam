@@ -20,10 +20,31 @@
             findUserById: findUserById,
             updateUser: updateUser,
             deleteUser: deleteUser,
-            findUserByUsername: findUserByUsername
+            findUserByUsername: findUserByUsername,
+            getRegisterError: getRegisterError
         };
         return api;
         /*functions are implemented below*/
+
+        // function createUser(user) {
+        //     for (var i in users){
+        //         if (users[i].username === user.username){
+        //             return null;
+        //         }
+        //     }
+        //
+        //     if(user.password === user.vpassword){
+        //         var newUser = {
+        //             _id: (new Date()).getTime() + "",
+        //             username: user.username,
+        //             password: user.password
+        //         };
+        //         users.push(newUser);
+        //         return newUser;
+        //     }
+        //     return null;
+        //
+        // }
 
         function createUser(user) {
             for (var i in users){
@@ -42,9 +63,45 @@
                 return newUser;
             }
             return null;
+         }
+        
+        
+        function findUserByCredentials(username, password){
+
+            for(var i in users){
+                if (users[i].username ===username
+                    &&users[i].password=== password){
+                    return users[i];
+                }
+            }
+
+            var errMsg = generateError(username, password);
+            return errMsg;
+        }
+
+
+        function generateError(username, password) {
+
+            for(var i in users){
+                if(users[i].username === username &&
+                    users[i].password !== password) {
+                    return "Wrong Password. Wake Up!";
+                }
+            } return "Username doesn't exist !!!";
 
         }
 
+
+        function getRegisterError(user){
+            for(var i in users){
+                if (users[i].username === user.username){
+                    return "Username is already chosen. Either be creative or forget this."
+                    console.log(user);
+                }
+
+            }
+                return "the passwords do not match! Wake up"
+         }
 
 
 
@@ -69,7 +126,7 @@
 
 
         function updateUser(userId, user){
-            console.log(user);
+
             for (var i in users){
                 if(users[i]._id === userId){
                     users[i].firstName = user.firstName;
@@ -90,29 +147,6 @@
             } return null;
         }
 
-        function findUserByCredentials(username, password){
 
-            for(var i in users){
-                if (users[i].username ===username
-                    &&users[i].password=== password){
-                    return users[i];
-                }
-            }
-
-          var errMsg = generateError(username, password);
-          return errMsg;
-        }
-        
-
-        function generateError(username, password) {
-
-            for(var i in users){
-                if(users[i].username === username &&
-                    users[i].password !== password) {
-                    return "Wrong PW. BOO!";
-                }
-            } return "User doesn't exist!";
-
-        }
     }
 })();

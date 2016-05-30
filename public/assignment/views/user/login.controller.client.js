@@ -24,7 +24,7 @@
 
         vm.login = function (username, password) {
             var user = UserService.findUserByCredentials (username, password);
-            console.log(user);
+             
             if(typeof user === 'string'){
 
                 vm.error = user;

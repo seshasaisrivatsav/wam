@@ -10,6 +10,17 @@
         var vm = this;
         vm.createUser = createUser;
  
+        // function createUser(user) {
+        //     var newUser = UserService.createUser(user);
+        //
+        //     if(newUser){
+        //         $location.url("/user/"+newUser._id);
+        //     }
+        //     else{
+        //         vm.error="error creating User";
+        //     }
+        // }
+
         function createUser(user) {
             var newUser = UserService.createUser(user);
 
@@ -17,7 +28,7 @@
                 $location.url("/user/"+newUser._id);
             }
             else{
-                vm.error="error creating User";
+                vm.error= UserService.getRegisterError(user);
             }
         }
    }
