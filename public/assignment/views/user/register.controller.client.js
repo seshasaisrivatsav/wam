@@ -22,27 +22,31 @@
         // }
 
         function createUser(user) {
-            var newUser = UserService.createUser(user);
+          UserService
+              .createUser(user)
+              .then(function (res) {
+                  var newUser=res.data;
+                  switch (newUser){
+                      case "dupuid":
+                      {
+                          return vm.error = "userId has been taken";
+                          break;
+                      }
+                      case "uepw":
+                      {
+
+                          return vm.error = "pw no match";
+                          break;
+                      }
+                      default:
+                          $location.url("/user/"+newUser._id);
+                  }
+              });
 
             // if(typeof newUser === 'string'){
             //     vm.error = newUser;
             // }
 
-            switch (newUser){
-                case "dupuid":
-                {
-                    return vm.error = "userId has been taken";
-                    break;
-                }
-                case "uepw":
-                {
-
-                    return vm.error = "pw no match";
-                    break;
-                }
-                default:
-                    $location.url("/user/"+newUser._id);
-            }
 
 
         }

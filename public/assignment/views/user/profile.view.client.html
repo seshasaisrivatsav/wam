@@ -26,11 +26,15 @@
 
 <div class="container">
 
-    <div ng-if="model.error"
+    <div ng-if="model.success"
          class="alert alert-success">
-        {{model.error}}
+        {{model.success}}
     </div>
 
+    <div ng-if="model.error"
+         class="alert alert-danger">
+        {{model.error}}
+    </div>
 
     <form>
         <div class="form-group">
@@ -78,6 +82,8 @@
        href="#/user/{{model.user._id}}/website">Websites</a>
     <a class="btn btn-danger btn-block "
        href="#/login">Logout</a>
+    <a class="btn btn-danger btn-block "
+       ng-click = "model.deleteUser()">un-register</a>
 
 </div>
 
