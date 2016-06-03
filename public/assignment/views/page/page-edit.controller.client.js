@@ -17,27 +17,40 @@
         vm.updatePage = updatePage;
 
         function  init() {
-            vm.page = PageService.findPageById(pageId);
+           PageService.findPageById(pageId)
+               .then(function (response) {
+                   vm.page = response.data ;
+
+               });
         }
         init();
 
 
         function deletePage(pageId){
-            var result = PageService.deletePage(pageId);
-            if(result){
-                $location.url("/user/"+ vm.userId+"/website/"+vm.websiteId+"/page");
-            }else{
-                vm.error = "unable to delete page";
-            }
+            PageService.deletePage(pageId)
+                .then(function (response) {
+                    var result = response.data;
+                    if(result){
+                        $location.url("/user/"+ vm.userId+"/website/"+vm.websiteId+"/page");
+                    }else{
+                        vm.error = "unable to delete page";
+                    }
+                });
+            
         }
 
         function updatePage(page){
-            var result = PageService.updatePage(vm.pageId, page);
-            if(result){
-                $location.url("/user/"+ vm.userId+"/website/"+vm.websiteId+"/page");
-            } else{
-                vm.error = "unable to modify page";
-            }
+            PageService.updatePage(vm.pageId, page)
+                .then (function (response) {
+                    var result = response.data;
+                    if(result){
+                        $location.url("/user/"+ vm.userId+"/website/"+vm.websiteId+"/page");
+                    } else{
+                        vm.error = "unable to modify page";
+                    }
+                });
+
+
 
         }
 
