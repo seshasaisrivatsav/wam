@@ -31,8 +31,11 @@
         }
 
         function init(){
-            
-            vm.widgets = WidgetService.findWidgetsByPageId(pageId);
+            WidgetService.findWidgetsByPageId(pageId)
+                .then(function (response) {
+                    vm.widgets = response.data;
+                });
+        //    vm.widgets = WidgetService.findWidgetsByPageId(pageId);
         }
         init();
     }

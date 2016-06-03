@@ -28,12 +28,19 @@
                 pageId : pageId
             };
 
-            var result = WidgetService.createWidget(pageId, widget);
-            if (result){
-                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+widget._id);
-            }else{
-                vm.error = "error in creating Header page";
-            }
+
+            WidgetService
+                .createWidget(pageId, widget)
+                .then(function (response) {
+                    var result = response.data;
+                    if (result){
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+widget._id);
+                    }else{
+                        vm.error = "error in creating Header page";
+                    }
+                });
+
+
          }
 
 
@@ -44,12 +51,16 @@
                 pageId : pageId
             };
 
-            var result = WidgetService.createWidget(pageId, widget);
-            if (result){
-                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+widget._id);
-            }else{
-                vm.error = "error in creating Image page";
-            }
+            WidgetService.createWidget(pageId, widget)
+                .then (function (response) {
+                    var result = response.data;
+                    if (result){
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+widget._id);
+                    }else{
+                        vm.error = "error in creating Image page";
+                    }
+                });
+
         }
 
 
@@ -60,12 +71,16 @@
                 pageId : pageId
             };
 
-            var result = WidgetService.createWidget(pageId, widget);
-            if (result){
-                $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+widget._id);
-            }else{
-                vm.error = "error in creating Youtube Page ";
-            }
+            WidgetService.createWidget(pageId, widget)
+                .then (function (response) {
+                    var result = response.data;
+                    if (result){
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+widget._id);
+                    }else{
+                        vm.error = "error in creating Youtube Page ";
+                    }
+                });
+
         }
 
 
@@ -80,9 +95,6 @@
             return $sce.trustAsHtml(widget.text);
         }
 
-        function init(){
-            vm.widgets = WidgetService.findWidgetsByPageId(pageId);
-        }
-        init();
+
     }
 })();
