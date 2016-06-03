@@ -39,55 +39,19 @@
         function findWebsiteById(websiteId) {
             var url = "/api/website/"+websiteId;
             return $http.get(url);
-            for (var i in websites){
-                if(websites[i]._id === websiteId){
-                    return websites[i];
 
-                }
-            } return null;
         }
         
         function updateWebsite(websiteId, website){
-            console.log(website);
-            for (var i in websites){
-                if(websites[i]._id === websiteId){
-                    websites[i].name = website.name;
-                    websites[i].description = website.description;
-                    return true;
-                }
-            }
-            return false;
+            var url = "/api/website/"+websiteId;
+            return $http.put(url, website);
+
         }
 
         function deleteWebsite(websiteId) {
-            for (var i in websites){
-                if (websites[i]._id === websiteId){
-                    websites.splice(i, 1);
-                    return true;
-                }
-            }
-            return false;
+            var url = "/api/website/"+websiteId;
+            return $http.delete(url);
+
         }
-
-
-        // another way of writing it ??
-        // function updateWebsite(websiteId, website){
-        //     console.log(website);
-        //
-        //     if(website._id===findWebsiteById(websiteId)._id){
-        //         website
-        //     }
-        //
-        // }
-
-
-
-
-
-
-
-
-
-
     }
 })();

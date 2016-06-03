@@ -11,6 +11,7 @@ module.exports = function (app) {
     /* passing the instance app and immediately calling it*/
     require("./services/user.service.server.js")(app);
     require("./services/website.service.server.js")(app);
+    require("./services/page.service.server.js")(app);
 
 
 

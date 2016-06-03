@@ -26,22 +26,40 @@
 
 
         function deleteWebsite(websiteId){
-            var result = WebsiteService.deleteWebsite(websiteId);
-            if(result){
-                $location.url("/user/"+ vm.userId+"/website");
-            }else{
-                vm.error = "unable to delete website";
-            }
+            WebsiteService
+                .deleteWebsite(websiteId)
+                .then(function (response) {
+                    var result = response.data;
+                    if(result){
+                        $location.url("/user/"+ vm.userId+"/website");
+                    }else{
+                        vm.error = "unable to delete website";
+                    }
+                });
+
 
         }
 
         function updateWebsite(website){
-            var result = WebsiteService.updateWebsite(websiteId, website);
-            if(result){
-                $location.url("/user/"+ vm.userId +"/website");
-            } else{
-                vm.error = "unable to modify website";
-            }
+            
+            WebsiteService
+                .updateWebsite(websiteId, website)
+                .then(function (response) {
+                    var result = response.data;
+                    if(result){
+                        $location.url("/user/"+ vm.userId +"/website");
+                    } else{
+                        vm.error = "unable to modify website";
+                    }
+                });
+
+
+            // var result = WebsiteService.updateWebsite(websiteId, website);
+            // if(result){
+            //     $location.url("/user/"+ vm.userId +"/website");
+            // } else{
+            //     vm.error = "unable to modify website";
+            // }
 
         }
 
