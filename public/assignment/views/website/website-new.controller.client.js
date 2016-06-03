@@ -9,14 +9,27 @@
         var vm = this;
         vm.userId = $routeParams.userId;
         vm.createWebsite =createWebsite;
-
+        
+        /* we'd get website from ng-click in the controller*/
         function createWebsite(website){
-            var newWebsite = WebsiteService.createWebsite(vm.userId, website);
-            if(newWebsite){
-                $location.url("/user/"+vm.userId+"/website");
-            }else{
-                vm.error = "unable to create website";
-            }
+            WebsiteService
+                .createWebsite(vm.userId, website)
+                /* we'd get a promise from the service client */
+                .then(function (response) {
+                    var newWebsite = response.data;
+                    if(newWebsite){
+                        $location.url("/user/"+vm.userId+"/website");
+                    }else{
+                        vm.error = "unable to create website";
+                    }
+                });
+            
+            // var newWebsite = WebsiteService.createWebsite(vm.userId, website);
+            // if(newWebsite){
+            //     $location.url("/user/"+vm.userId+"/website");
+            // }else{
+            //     vm.error = "unable to create website";
+            // }
 
         }
 

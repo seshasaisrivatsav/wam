@@ -15,7 +15,11 @@
         vm.updateWebsite = updateWebsite;
 
         function  init() {
-            vm.website = WebsiteService.findWebsiteById(websiteId);
+            WebsiteService
+                .findWebsiteById(websiteId)
+                .then(function (response) {
+                    vm.website = response.data;
+                });
         }
 
         init();

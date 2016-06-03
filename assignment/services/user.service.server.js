@@ -77,8 +77,7 @@ module.exports= function(app){
         res.send(400);
     }
 
-    function findUserById(req, res){
-        var id = req.params.userId;
+    function findUserById(req, res){var id = req.params.userId;
        for (var i in users){
             if(users[i]._id === id){
                 res.send(users[i]);

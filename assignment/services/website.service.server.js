@@ -3,150 +3,67 @@
 
 module.exports= function(app){
 
-    var users = [
-        {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"},
-        {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"},
-        {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"},
-        {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi"}
+    var websites = [
+        { "_id": "123", "name": "Facebook",    "developerId": "456" },
+        { "_id": "234", "name": "Tweeter",     "developerId": "456" },
+        { "_id": "456", "name": "Gizmodo",     "developerId": "456" },
+        { "_id": "567", "name": "Tic Tac Toe", "developerId": "123" },
+        { "_id": "678", "name": "Checkers",    "developerId": "123" },
+        { "_id": "789", "name": "Chess",       "developerId": "234" }
     ];
 
-
     /* John pappy's - declare APIs at top and write functions below */
-    app.get("/api/user", getUsers);
-    app.post("/api/user", createUser);
-    app.get("/api/user/:userId", findUserById);
-    app.delete("/api/user/:userId", deleteUser);
-    app.put("/api/user/:userId", updateUser);
+
+
+    app.post("/api/user/:userId/website", createWebsite);
+    app.get("/api/user/:userId/website",findAllWebsitesForUser);
+    app.get("/api/website/:websiteId",findWebsiteById);
+    app.put("/api/website/:websiteId",updateWebsite);
+    app.delete("/api/website/:websiteId",deleteWebsite);
 
     /* pattern matching usies only base URL. it ignores anything after ?
      app.get("/api/user/:userId", findUserById);
      app.get("/api/user/:userId", findUserById);
      are the same URLs to Express!     */
 
-     
-    function createUser(req,res) {
-        var user = req.body;
-
-        for (var i in users){
-            if (users[i].username === user.username){
-                var err = "dupuid";
-                res.send(err);
-
-                //return "yes";
-            }
-        }
-
-        if(user.password === user.vpassword){
-
-                user._id = (new Date()).getTime() + "";
-
-            users.push(user);
-            res.send(user);
-        }
-        var err = "uepw";
-        res.send(err);
-
-    }
-
-
-
-    function deleteUser(req,res) {
+    function createWebsite(req,res) {
         var userId = req.params.userId;
-        for(var i in users){
-            if(users[i]._id===userId){
-                users.splice(i,1);
-                 console.log("deleted user");
-                res.send(200); /* 200 - OK */
-                return;
-            }
-        }
-        res.send(400);
+        var website = req.body;
+
+        website._id = (new Date()).getTime()+"";
+
+        websites.push(website);
+
+        res.send(website);
+
     }
 
-    function updateUser(req,res) {
+
+    function findAllWebsitesForUser(req,res) {
         var userId = req.params.userId;
-        var user = req.body;
-        for (var i in users){
-            if(users[i]._id === userId){
-                users[i].firstName = user.firstName;
-                users[i].lastName = user.lastName;
-                users[i].email = user.email;
-                res.send(200);
+        /*retrieves the websites in local websites array whose developerId matches the parameter userId */
+        var resultSet = [];
+        for (var i in websites){
+            if (websites[i].developerId === userId) {
+                resultSet.push(websites[i]);
             }
         }
-        res.send(400);
-    }
+        res.send(resultSet);
 
-    function findUserById(req, res){
-        var id = req.params.userId;
-       for (var i in users){
-            if(users[i]._id === id){
-                res.send(users[i]);
-                return;
-            }
-        } res.send({});
-    }
-
-    function getUsers(req, res){
-        var username = req.query['username'];
-        var password= req.query['password'];
-        console.log(username);
-        console.log(password);
-        if(username && password){
-            findUserByCredentials(username,password, res);
-        } else if (username){
-            findUserByUsername(username, res);
-        }else {
-            res.send(users);
-        }
-    }
-
-    function findUserByCredentials (username, password, res){
-        for (var i in users){
-            if(users[i].username === username &&
-                users[i].password === password){
-                res.send(users[i]);
-                return;
-            }
-        }
-        res.send({});
-    }
-
-    function findUserByUsername (username, res){
-        for (var i in users){
-            if(users[i].username === username){
-                res.send(users[i]);
-                return;
-            }
-        }
-
-        var errMsg = generateError(username, password);
-        return errMsg;
-    }
-
-
-
-    /* helper functions */
-    function generateError(username, password) {
-
-        for(var i in users){
-            if(users[i].username === username &&
-                users[i].password !== password) {
-                return "Wrong Password. Wake Up!";
-            }
-        } return "Username doesn't exist !!!";
 
     }
 
-    function getRegisterError(user){
-        for(var i in users){
-            if (users[i].username === user.username){
-                return "Username is already chosen. Either be creative or forget this.";
+    function findWebsiteById() {
 
-            }
-
-        }
-        return "the passwords do not match! Wake up";
     }
+
+    function updateWebsite() {
+
+    }
+
+    function deleteWebsite() {
+
+    }
+
 
 };
