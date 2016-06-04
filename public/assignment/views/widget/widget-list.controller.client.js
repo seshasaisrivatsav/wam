@@ -34,6 +34,11 @@
             WidgetService.findWidgetsByPageId(pageId)
                 .then(function (response) {
                     vm.widgets = response.data;
+                    $(".container")
+                        .sortable({
+                            axis: 'y'
+                        });
+
                 });
         //    vm.widgets = WidgetService.findWidgetsByPageId(pageId);
         }
