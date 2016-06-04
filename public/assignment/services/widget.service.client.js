@@ -4,11 +4,7 @@
         .module("WebAppMaker")
         .factory("WidgetService", WidgetService);
 
-
-
-
-
-    function WidgetService($http){
+   function WidgetService($http){
     /* API is driven by the use cases*/
         var api =  {
             findWidgetsByPageId: findWidgetsByPageId,
@@ -45,15 +41,12 @@
         function updateWidget(widgetId, widget) {
             var url = "/api/widget/"+widgetId;
             return $http.put(url, widget);
-
-
         }
 
 
         function deleteWidget(widgetId) {
             var url = "/api/widget/"+widgetId;
             return $http.delete(url);
-
         }
 
 

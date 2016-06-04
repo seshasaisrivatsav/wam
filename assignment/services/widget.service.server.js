@@ -92,12 +92,14 @@ module.exports= function(app){
         }
     }
     function updateWidget (req,res) {
+  
         var widgetId  = req.params.widgetId;
         var widget = req.body;
 
         for(var i in widgets){
             if(widgetId === widgets[i]._id){
-                switch (widget.widgetType){
+
+                switch (widgets[i].widgetType){
                     case "HEADER":
                         widgets[i].name = widget.name;
                         widgets[i].text = widget.text;
