@@ -76,20 +76,29 @@
     </form>
 
 
-    <form>
-         <div class="form-group">
-             <label ng-model="model.widget.file"
-                    for="exampleInputFile">Upload</label>
-            <input
-                   type="file"
-                   id="exampleInputFile"
-                   class="form-control"/>
-        </div>
+    <!--<form>-->
+         <!--<div class="form-group">-->
+             <!--<label ng-model="model.widget.file"-->
+                    <!--for="exampleInputFile">Upload</label>-->
+            <!--<input-->
+                   <!--type="file"-->
+                   <!--id="exampleInputFile"-->
+                   <!--class="form-control"/>-->
+        <!--</div>-->
+    <!--</form>-->
+
+    <form action="/api/upload"  method="post" enctype="multipart/form-data">
+        <input  name="myFile"   type="file" class="form-control"/>
+        <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
+        <input  name="widgetId" value="{{model.widget._id}}"   style="display: none"/>
+        <input name="websiteId" value="{{model.websiteId}}" style="display: none"/>
+        <input name="userId" value="{{model.userId}}" style="display: none"/>
+        <input name="pageId" value="{{model.pageId}}" style="display: none"/>
+        <button type="submit"   class="btn btn-block btn-primary">Upload Image</button>
     </form>
 
-    <a class="btn btn-primary btn-block"
-       href="#" >Upload Image</a>
 
+    <p></p>
     <a class="btn btn-danger btn-block "
        ng-click="model.deleteWidget(model.widget)">Delete</a>
 

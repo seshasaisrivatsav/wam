@@ -3,6 +3,10 @@
 
 module.exports= function(app){
 
+    var multer = require('multer'); // npm install multer --save
+    var upload = multer({ dest: __dirname+'/../../public/uploads' });
+
+
     var widgets = [
             { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO"},
             { "_id": "234", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
@@ -23,11 +27,44 @@ module.exports= function(app){
     app.get("/api/widget/:widgetId",findWidgetById);
     app.put("/api/widget/:widgetId",updateWidget);
     app.delete("/api/widget/:widgetId",deleteWidget);
+    //UPLOAD
+    app.post ("/api/upload", upload.single('myFile'), uploadImage);
 
     /* pattern matching usies only base URL. it ignores anything after ?
      app.get("/api/user/:userId", findUserById);
      app.get("/api/user/:userId", findUserById);
      are the same URLs to Express!     */
+    function uploadImage(req, res) {
+
+        var userId = req.body.userId;
+        var websiteId = req.body.websiteId;
+        var pageId = req.body.pageId;
+
+
+        var widgetId      = req.body.widgetId;
+        var width         = req.body.width;
+        var myFile        = req.file;
+
+        var originalname  = myFile.originalname; // file name on user's computer
+        var filename      = myFile.filename;     // new file name in upload folder
+        var path          = myFile.path;         // full path of uploaded file
+        var destination   = myFile.destination;  // folder where file is saved to
+        var size          = myFile.size;
+        var mimetype      = myFile.mimetype;
+
+
+
+    for (var i in widgets){
+        if(widgets[i]._id === widgetId){
+            widgets[i].url = "/uploads/"+filename;
+
+
+        }
+    }
+        res.redirect("/assignment/#/user/"+userId +"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
+    }
+
+
 
     function createWidget (req,res) {
         var pageId = req.params.pageId;
