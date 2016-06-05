@@ -108,7 +108,9 @@ module.exports= function(app){
                 return;
             }
         }
-        res.send({});
+      //  res.send({});
+        var user = generateError(username, password);
+        res.send(user);
     }
 
     function findUserByUsername (username, res){
@@ -120,7 +122,8 @@ module.exports= function(app){
         }
 
         var errMsg = generateError(username, password);
-        return errMsg;
+        console.log(errMsg);
+        res.send(errMsg);
     }
 
 

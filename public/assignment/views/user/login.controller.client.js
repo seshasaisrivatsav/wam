@@ -31,23 +31,24 @@
             UserService
                     .findUserByCredentials (username, password)
                     .then(function (response) {
-                  console.log(response);
+         
 
                 /* this is NOT synchronous */
                 var user = response.data;
-                if (user._id){
-                    $location.url("/user/"+user._id);
-                } else {
-                    vm.error = "user not found";
-                }
-                // if(typeof user === 'string'){
-                //     vm.error = user;
-                //     return true;
-                //
-                // }else{
+
+                // if (user._id){
                 //     $location.url("/user/"+user._id);
-                //
+                // } else {
+                //     vm.error = "user not found";
                 // }
+                if(typeof user === 'string'){
+                    vm.error = user;
+                    return true;
+
+                }else{
+                    $location.url("/user/"+user._id);
+
+                }
 
                });
 
