@@ -36,6 +36,9 @@ module.exports= function(app){
      are the same URLs to Express!     */
     function uploadImage(req, res) {
 
+
+
+
         var userId = req.body.userId;
         var websiteId = req.body.websiteId;
         var pageId = req.body.pageId;
@@ -45,13 +48,18 @@ module.exports= function(app){
         var width         = req.body.width;
         var myFile        = req.file;
 
+        if(myFile == null) {
+            res.redirect("/assignment/#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
+            return;
+        }
+
+
         var originalname  = myFile.originalname; // file name on user's computer
         var filename      = myFile.filename;     // new file name in upload folder
         var path          = myFile.path;         // full path of uploaded file
         var destination   = myFile.destination;  // folder where file is saved to
         var size          = myFile.size;
         var mimetype      = myFile.mimetype;
-
 
 
     for (var i in widgets){
@@ -61,6 +69,7 @@ module.exports= function(app){
 
         }
     }
+
         res.redirect("/assignment/#/user/"+userId +"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
     }
 
@@ -73,6 +82,8 @@ module.exports= function(app){
         /* return true only if the JSON object is inserted */
         res.send(200);
     }
+
+
     function findAllWidgetsForPage (req,res) {
     var pageId = req.params.pageId;
 
@@ -92,7 +103,7 @@ module.exports= function(app){
         }
     }
     function updateWidget (req,res) {
-  
+
         var widgetId  = req.params.widgetId;
         var widget = req.body;
 
