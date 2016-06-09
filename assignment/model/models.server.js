@@ -11,7 +11,8 @@ module.exports  = function () {
     
     
     var models = {
-      userModel: require("./user/user.model.server")()
+        userModel: require("./user/user.model.server")(),
+        websiteModel: require("./website/website.model.server")(),
         //TODO : add all other models
     };
     return models;
