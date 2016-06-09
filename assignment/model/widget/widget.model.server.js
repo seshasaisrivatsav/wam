@@ -18,6 +18,7 @@ module.exports = function () {
     return api;
 
     function findAllWidgetsForPage(pageId) {
+    
         return Widget.find({_page: pageId});
     }
 

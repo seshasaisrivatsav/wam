@@ -8,7 +8,7 @@ top level server.js */
 
 module.exports = function (app) {
     /* passing the instance app and immediately calling it*/
-    // we are passing app and models to the services 
+    // we are pasbsing app and models to the services 
     // instantiate them from 
     var models = require("./model/models.server.js")();
 

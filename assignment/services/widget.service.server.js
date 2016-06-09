@@ -37,11 +37,7 @@ module.exports= function(app, models){
      app.get("/api/user/:userId", findUserById);
      are the same URLs to Express!     */
     function uploadImage(req, res) {
-
-
-
-
-        var userId = req.body.userId;
+         var userId = req.body.userId;
         var websiteId = req.body.websiteId;
         var pageId = req.body.pageId;
 
@@ -64,13 +60,26 @@ module.exports= function(app, models){
         var mimetype      = myFile.mimetype;
 
 
-    for (var i in widgets){
-        if(widgets[i]._id === widgetId){
-            widgets[i].url = "/uploads/"+filename;
+        var widget = { url: "/uploads/"+filename};
+
+        widgetModel
+            .updateWidget(widgetId, widget)
+            .then(function (stats) {
+                    console.log(stats);
+                    res.send(200);
+                },
+                function (err) {
+                    res.sendStatus(404).send(err);
+                });
 
 
-        }
-    }
+        // for (var i in widgets){
+    //     if(widgets[i]._id === widgetId){
+    //         widgets[i].url = "/uploads/"+filename;
+    //
+    //
+    //     }
+    // }
 
         res.redirect("/assignment/#/user/"+userId +"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
     }
@@ -155,7 +164,7 @@ module.exports= function(app, models){
         var widgetId  = req.params.widgetId;
 
         widgetModel
-            .deletePage(widgetId)
+            .deleteWidget(widgetId)
             .then (function (stats) {
                     console.log(stats);
                     res.send(200);
@@ -163,20 +172,9 @@ module.exports= function(app, models){
                 function (err) {
                     res.sendStatus(404).send(err);
                 });
-        // for(var i in widgets){
-        //     if(widgetId === widgets[i]._id){
-        //         widgets.splice(i,1);
-        //         res.send(200);
-        //     }
-        // }
-        // res.sendStatus(400);
+
 
     }
-    
-    
-    
-    
-
 
 
 };

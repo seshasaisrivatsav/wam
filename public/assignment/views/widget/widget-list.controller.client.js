@@ -33,7 +33,16 @@
         function init(){
             WidgetService.findWidgetsByPageId(pageId)
                 .then(function (response) {
-                    vm.widgets = response.data;
+                    var rawList = response.data;
+                    for (var i in rawList){
+                        if (rawList[i].type === "IMAGE" ||
+                            rawList[i].type === "YOUTUBE"){
+                            rawList[i].width += "%";
+                        }
+                    }
+                    
+                    vm.widgets = rawList;
+
                     $(".container")
                         .sortable({
                             axis: 'y'
