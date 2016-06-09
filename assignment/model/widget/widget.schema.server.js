@@ -1,0 +1,26 @@
+//we create a schema
+
+module.exports = function () {
+  var mongoose = require("mongoose"); // mongoDb has no notion of schemas. this is at the application level
+
+    var WidgetSchema = mongoose.Schema ({
+        _page : {type : mongoose.Schema.ObjectId, ref: "Page"},
+        type: {type: String, enum: ['HEADER', 'IMAGE', 'YOUTUBE', 'HTML', 'INPUT']} ,
+        name : {type : String, required : true},
+        text : String,
+        placeholder : String,
+        description : String,
+        url : String,
+        width : Number,
+        height: Number,
+        rows : Number,
+        size : Number,
+        class : String,
+        icon : String,
+        deletable: Boolean,
+        formatted: Boolean,
+        dateCreated : {type: Date, default : Date.now} //Date.now is the current time
+    }, {collection: "assignment.widget" });
+
+    return WidgetSchema;
+};
