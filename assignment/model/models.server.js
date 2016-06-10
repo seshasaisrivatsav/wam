@@ -5,8 +5,8 @@
 module.exports  = function () {
 
     //connect to mongodb using mongoose library
-    var mongoose = require('mongoose');
-    mongoose.connect('mongodb://localhost/webdev-assignment');
+    // var mongoose = require('mongoose');
+    // mongoose.connect('mongodb://localhost/webdev-assignment');
     //
     
     
