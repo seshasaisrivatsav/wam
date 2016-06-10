@@ -154,7 +154,7 @@ module.exports= function(app, models){
                     res.send(200);
                 },
                 function (err) {
-                    res.sendStatus(500).send(err);
+                    res.sendStatus(404).send(err);
                 });
 
 

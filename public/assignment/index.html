@@ -19,29 +19,45 @@
     <!-- Load jQuery before Angular for DOM manipulation-->
     <!-- jQuery CSS-->
     <link href="../css/jquery-ui.css" rel="stylesheet"/>
-
+    <!-- Text Angular StyleSHeet-->
+    <link href="../css/textAngular.css" rel="stylesheet"/>
+    <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
+    <link href="css/style.css" rel="stylesheet"/>
     <!--JQuery-->
     <script src="../js/jquery.js"></script>
     <script src="../js/jquery-ui.js"></script>
 
 
 
-    <!--Angular Module. Deals with centralized routing mechanism-->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <!--Angular Modules-->
+        <!--Angular Module. Deals with centralized routing mechanism-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+       <!--Routing Module-->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
+
+
+
+
 
     <!--App.js-->
     <script src="app.js"></script>
-
+    <script src="config.js"></script>
     <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
-    <link href="css/style.css" rel="stylesheet"/>
+    <!--TextAngular-->
 
-    <!--Routing Module-->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
+    <!--Text Angular min scripts -->
+
+    <script src = "../js/textAngular-rangy.min.js"/>
+    <script src = "../js/textAngular-sanitize.min.js"/>
+    <script src = "../js/textAngular.min.js"/>
+    <script src = "../js/textAngular-sanitize.js"/>
+
+
+
+
 
     <!--config.js. What do we wanna show when we click things. configure-->
     <!-- this is the centralized single maintenance point-->
-    <script src="config.js"></script>
-    <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
 
     <!--Controllers-->
             <!--User-->
@@ -72,7 +88,6 @@
     <script src="services/page.service.client.js"></script>
     <script src="services/widget.service.client.js"></script>
     <script src="services/flickr.service.client.js"></script>
-
 
 </head>
 
