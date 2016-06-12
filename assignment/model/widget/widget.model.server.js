@@ -13,10 +13,39 @@ module.exports = function () {
         updateWidget: updateWidget,
         createWidget: createWidget,
         findWidgetById: findWidgetById,
-        deleteWidget: deleteWidget
+        deleteWidget: deleteWidget,
+        reorderWidgets: reorderWidgets
     };
     return api;
 
+
+    function reorderWidgets(pageId, startIndex, endIndex) {
+        return Widget.find({_page:pageId}, function (err,widgets) {
+            widgets.forEach (function (widget) {
+                if(startIndex < endIndex){
+                    if(widget.position === startIndex){
+                        widget.position = endIndex;
+                        widget.save();
+                    }else if (widget.position > startIndex
+                    && widget.position <= endIndex){
+                        widget.position --;
+                        widget.save();
+                    }else {
+                        if(widget.position === startIndex){
+                            widget.position = endIndex;
+                            widget.save();
+                        } else if(widget.position < startIndex
+                        && widget.position >= endIndex){
+                            widget.position ++;
+                            widget.save();
+                        }
+                    }
+                }
+            })
+        })
+    }
+    
+    
     function findAllWidgetsForPage(pageId) {
     
         return Widget.find({_page: pageId});
@@ -32,8 +61,9 @@ module.exports = function () {
 
     function createWidget(pageId, widget)  {
        widget._page = pageId;
-       console.log(widget);
+
         return Widget.create(widget);
+
     }
     
     function findWidgetById(widgetId) {
