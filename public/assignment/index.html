@@ -2,7 +2,6 @@
 <html lang="en" ng-app="WebAppMaker">
 <head>
 
-
     <meta charset="UTF-8" >
     <!-- Meta tags for making website for mobile-->
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -10,12 +9,15 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <!--Disabling user pinch and default to 25% size-->
     <meta name="viewport" content="initial-scale=1.25, user-scalable=no">
-    <!-- BootStrap style sheet-->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"/>
 
     <title>WAM</title>
+
+
+    <!-- BootStrap style sheet-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"/>
+
+
 
     <!--IMP-->
     <!-- Load jQuery before Angular for DOM manipulation-->
@@ -24,6 +26,7 @@
 
     <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
     <link href="css/style.css" rel="stylesheet"/>
+
     <!--JQuery-->
     <script src="../js/jquery.js"></script>
     <script src="../js/jquery-ui.js"></script>
@@ -31,19 +34,19 @@
 
 
     <!--Angular Modules-->
-        <!--Angular Module. Deals with centralized routing mechanism-->
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-       <!--Routing Module-->
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
+    <!--Angular Module. Deals with centralized routing mechanism-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <!--Routing Module-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
 
     <!--TextAngular-->
 
-        <!--Text Angular min scripts -->
-        <!-- Text Angular StyleSHeet-->
-        <link href="../css/textAngular.css" rel="stylesheet"/>
-        <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.0/textAngular-rangy.min.js'></script>
-        <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.0/textAngular-sanitize.min.js'></script>
-        <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.0/textAngular.min.js'></script>
+    <!--Text Angular min scripts -->
+    <!-- Text Angular StyleSHeet-->
+    <link href="../css/textAngular.css" rel="stylesheet"/>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.0/textAngular-rangy.min.js'></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.0/textAngular-sanitize.min.js'></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.0/textAngular.min.js'></script>
 
 
     <!--App.js-->
@@ -55,33 +58,34 @@
     <script src="config.js"></script>
     <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
 
+    <script src="./directives/wam-directives.js"></script>
 
     <!-- wam directives -->
-    <script src = "./directives/wam-directives.js"/>
+    <!--<script src = "./directives/wam-directives.js"></script>-->
 
 
     <!--Controllers-->
-            <!--User-->
-        <script src="views/user/login.controller.client.js"></script>
-        <script src="views/user/profile.controller.client.js"></script>
-        <script src="views/user/register.controller.client.js"></script>
+    <!--User-->
+    <script src="views/user/login.controller.client.js"></script>
+    <script src="views/user/profile.controller.client.js"></script>
+    <script src="views/user/register.controller.client.js"></script>
 
 
-            <!--Website-->
-        <script src="views/website/website-list.controller.client.js"></script>
-        <script src="views/website/website-new.controller.client.js"></script>
-        <script src="views/website/website-edit.controller.client.js"></script>
+    <!--Website-->
+    <script src="views/website/website-list.controller.client.js"></script>
+    <script src="views/website/website-new.controller.client.js"></script>
+    <script src="views/website/website-edit.controller.client.js"></script>
 
-            <!--Page-->
-        <script src="views/page/page-new.controller.client.js"></script>
-        <script src="views/page/page-edit.controller.client.js"></script>
-        <script src="views/page/page-list.controller.client.js"></script>
+    <!--Page-->
+    <script src="views/page/page-new.controller.client.js"></script>
+    <script src="views/page/page-edit.controller.client.js"></script>
+    <script src="views/page/page-list.controller.client.js"></script>
 
-            <!-- Widget-->
-        <script src="views/widget/widget-list.controller.client.js"></script>
-        <script src="views/widget/widget-edit.controller.client.js"></script>
-        <script src="views/widget/widget-choose.controller.client.js"></script>
-        <script src="views/widget/widget-flickr-search.controller.client.js"></script>
+    <!-- Widget-->
+    <script src="views/widget/widget-list.controller.client.js"></script>
+    <script src="views/widget/widget-edit.controller.client.js"></script>
+    <script src="views/widget/widget-choose.controller.client.js"></script>
+    <script src="views/widget/widget-flickr-search.controller.client.js"></script>
 
     <!--services-->
     <script src="services/user.service.client.js"></script>
@@ -94,6 +98,6 @@
 
 
 <body>
-    <div ng-view></div>
+<div ng-view></div>
 </body>
 </html>
