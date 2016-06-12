@@ -7,10 +7,6 @@ module.exports= function(app, models){
 
     var multer = require('multer'); // npm install multer --save
     var upload = multer({ dest: __dirname+'/../../public/uploads' });
-
-
-
-        ;
     /* John pappy's - declare APIs at top and write functions below */
 
 
@@ -172,6 +168,7 @@ module.exports= function(app, models){
     }
     function deleteWidget (req,res) {
         var widgetId  = req.params.widgetId;
+        var widget = req.body;
 
         widgetModel
             .deleteWidget(widgetId)

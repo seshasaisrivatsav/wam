@@ -42,6 +42,7 @@
 
         
         function deleteWidget(widget) {
+            
             WidgetService
                 .deleteWidget(vm.widgetId)
                 .then(function (response) {
