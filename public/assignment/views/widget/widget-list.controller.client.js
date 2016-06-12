@@ -29,6 +29,7 @@
         function getSafeHtml(widget){
             return $sce.trustAsHtml(widget.text);
         }
+ 
 
         function init(){
             WidgetService.findWidgetsByPageId(pageId)

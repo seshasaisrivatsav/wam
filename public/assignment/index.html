@@ -13,14 +13,15 @@
     <!-- BootStrap style sheet-->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
 
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"/>
+
     <title>WAM</title>
 
     <!--IMP-->
     <!-- Load jQuery before Angular for DOM manipulation-->
     <!-- jQuery CSS-->
     <link href="../css/jquery-ui.css" rel="stylesheet"/>
-    <!-- Text Angular StyleSHeet-->
-    <link href="../css/textAngular.css" rel="stylesheet"/>
+
     <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
     <link href="css/style.css" rel="stylesheet"/>
     <!--JQuery-->
@@ -35,29 +36,29 @@
        <!--Routing Module-->
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
 
+    <!--TextAngular-->
 
-
+        <!--Text Angular min scripts -->
+        <!-- Text Angular StyleSHeet-->
+        <link href="../css/textAngular.css" rel="stylesheet"/>
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.0/textAngular-rangy.min.js'></script>
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.0/textAngular-sanitize.min.js'></script>
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.5.0/textAngular.min.js'></script>
 
 
     <!--App.js-->
     <script src="app.js"></script>
-    <script src="config.js"></script>
-    <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
-    <!--TextAngular-->
-
-    <!--Text Angular min scripts -->
-
-    <script src = "../js/textAngular-rangy.min.js"/>
-    <script src = "../js/textAngular-sanitize.min.js"/>
-    <script src = "../js/textAngular.min.js"/>
-    <script src = "../js/textAngular-sanitize.js"/>
-
-
-
 
 
     <!--config.js. What do we wanna show when we click things. configure-->
     <!-- this is the centralized single maintenance point-->
+    <script src="config.js"></script>
+    <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
+
+
+    <!-- wam directives -->
+    <script src = "./directives/wam-directives.js"/>
+
 
     <!--Controllers-->
             <!--User-->
@@ -88,7 +89,6 @@
     <script src="services/page.service.client.js"></script>
     <script src="services/widget.service.client.js"></script>
     <script src="services/flickr.service.client.js"></script>
-
 </head>
 
 

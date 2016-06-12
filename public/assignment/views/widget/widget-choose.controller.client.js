@@ -20,56 +20,56 @@
         vm.createHeaderWidget= createHeaderWidget;
         vm.createImageWidget= createImageWidget;
         vm.createYouTubeWidget= createYouTubeWidget;
-        // vm.createHTMLWidget = createHTMLWidget;
-        // vm.createTextWidget = createTextWidget;
+        vm.createHTMLWidget = createHTMLWidget;
+        vm.createTextWidget = createTextWidget;
 
 
-        // function createTextWidget(pageId){
-        //     var widget = {
-        //         //_id : (new Date()).getTime()+"",
-        //         type: "Text"
-        //         //pageId : pageId
-        //     };
-        //
-        //
-        //     WidgetService
-        //         .createWidget(pageId, widget)
-        //         .then(function (response) {
-        //             var result = response.data;
-        //             console.log(response.data);
-        //             if (result){
-        //                 $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+result._id);
-        //             }else{
-        //                 vm.error = "error in creating Text page";
-        //             }
-        //         });
-        //
-        //
-        // }
-        //
-        //
-        // function createHTMLWidget(pageId){
-        //     var widget = {
-        //         //_id : (new Date()).getTime()+"",
-        //         type: "HTML"
-        //         //pageId : pageId
-        //     };
-        //
-        //
-        //     WidgetService
-        //         .createWidget(pageId, widget)
-        //         .then(function (response) {
-        //             var result = response.data;
-        //             console.log(response.data);
-        //             if (result){
-        //                 $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+result._id);
-        //             }else{
-        //                 vm.error = "error in creating HTML page";
-        //             }
-        //         });
-        //
-        //
-        // }
+        function createTextWidget(pageId){
+            var widget = {
+                //_id : (new Date()).getTime()+"",
+                type: "Text"
+                //pageId : pageId
+            };
+
+
+            WidgetService
+                .createWidget(pageId, widget)
+                .then(function (response) {
+                    var result = response.data;
+                    console.log(response.data);
+                    if (result){
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+result._id);
+                    }else{
+                        vm.error = "error in creating Text page";
+                    }
+                });
+
+
+        }
+
+
+        function createHTMLWidget(pageId){
+            var widget = {
+                //_id : (new Date()).getTime()+"",
+                type: "HTML"
+                //pageId : pageId
+            };
+ 
+
+            WidgetService
+                .createWidget(pageId, widget)
+                .then(function (response) {
+                    var result = response.data;
+                    console.log(response.data);
+                    if (result){
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+result._id);
+                    }else{
+                        vm.error = "error in creating HTML page";
+                    }
+                });
+
+
+        }
 
 
 
