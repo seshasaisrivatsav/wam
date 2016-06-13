@@ -14,10 +14,22 @@ module.exports = function () {
         createWidget: createWidget,
         findWidgetById: findWidgetById,
         deleteWidget: deleteWidget,
-        reorderWidgets: reorderWidgets
+        reorderWidgets: reorderWidgets,
+        updatePosition :updatePosition
     };
     return api;
 
+
+    function updatePosition (pageId, position) {
+        return Widget.find({_page:pageId}, function (err, widgets) {
+            widgets.forEach (function (widget) {
+                if(widget.position > position){
+                    widget.position--;
+                    widget.save();
+                }
+            })
+        })
+    }
 
     function reorderWidgets(pageId, startIndex, endIndex) {
         return Widget.find({_page:pageId}, function (err,widgets) {

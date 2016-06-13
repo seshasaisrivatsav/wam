@@ -168,17 +168,22 @@ module.exports= function(app, models){
     }
     function deleteWidget (req,res) {
         var widgetId  = req.params.widgetId;
-        var widget = req.body;
-
+        var pageId = req.query.pageId;
+        var position = req.query.postobedeleted;
         widgetModel
-            .deleteWidget(widgetId)
-            .then (function (stats) {
-                    console.log(stats);
-                    res.send(200);
-                },
-                function (err) {
-                    res.sendStatus(404).send(err);
-                });
+            .updatePosition(pageId, position)
+            .then(function (stats) {
+                widgetModel
+                    .deleteWidget(widgetId)
+                    .then (function (stats) {
+                            console.log(stats);
+                            res.send(200);
+                        },
+                        function (err) {
+                            res.sendStatus(404).send(err);
+                        });
+            });
+       
 
 
     }

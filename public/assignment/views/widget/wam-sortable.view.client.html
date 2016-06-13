@@ -4,10 +4,11 @@
     <div ng-repeat="widget in data.widgets | orderBy : 'position'"
          class="jga-widget">
         <div class="jga-widget-tool">
+
             <a href="#/user/{{data.userId}}/website/{{data.websiteId}}/page/{{data.pageId}}/widget/{{widget._id}}">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
+            <span class="glyphicon glyphicon-align-justify move-me"></span>
         </div>
 
         <div ng-switch="widget.type">

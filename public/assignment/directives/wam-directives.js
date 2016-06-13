@@ -12,6 +12,7 @@
                 .find(".container")
                 .sortable({
                     axis: 'y',
+                    handle: ".move-me",
                     start: function (event, ui) {
                         console.log("sorting started");
                         startIndex = ui.item.index();

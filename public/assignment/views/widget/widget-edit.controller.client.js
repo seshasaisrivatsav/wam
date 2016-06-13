@@ -44,7 +44,7 @@
         function deleteWidget(widget) {
             
             WidgetService
-                .deleteWidget(vm.widgetId)
+                .deleteWidget(vm.widgetId, vm.pageId, vm.widget.position)
                 .then(function (response) {
                     var result = response.data;
                     if (result){

@@ -44,8 +44,8 @@
             return $http.put(url, widget);
         }
 
-        function deleteWidget(widgetId) {
-            var url = "/api/widget/"+widgetId;
+        function deleteWidget(widgetId,pageId, position) {
+            var url = "/api/widget/"+widgetId+"?pageId="+pageId+"&postobedeleted="+position;
             return $http.delete(url);
         }
     }
