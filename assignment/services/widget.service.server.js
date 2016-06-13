@@ -7,20 +7,6 @@ module.exports= function(app, models){
 
     var multer = require('multer'); // npm install multer --save
     var upload = multer({ dest: __dirname+'/../../public/uploads' });
-
-
-    var widgets = [
-            { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO"},
-            { "_id": "234", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-            { "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
-                "url": "http://lorempixel.com/400/200/"},
-            { "_id": "456", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
-            { "_id": "567", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-            { "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
-                "url": "https://youtu.be/AM2Ivdi9c4E" },
-            { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
-        ]
-        ;
     /* John pappy's - declare APIs at top and write functions below */
 
 
@@ -29,6 +15,8 @@ module.exports= function(app, models){
     app.get("/api/widget/:widgetId",findWidgetById);
     app.put("/api/widget/:widgetId",updateWidget);
     app.delete("/api/widget/:widgetId",deleteWidget);
+    app.put("/api/page/:pageId/widget",reorderWidgets);
+
     //UPLOAD
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
 
@@ -86,10 +74,27 @@ module.exports= function(app, models){
 
 
 
+    function reorderWidgets(req,res) {
+        var pageId = req.params.pageId;
+        var startIndex = parseInt(req.query.start);
+        var endIndex = parseInt(req.query.end);
+        widgetModel
+            .reorderWidgets(pageId, startIndex, endIndex)
+            .then(function (stats) {
+                res.send(200);
+
+            }, function (err) {
+                res.sendStatus(400).send(err);
+            });
+
+    }
+
+
     function createWidget (req,res) {
         var pageId = req.params.pageId;
         var widget = req.body;
 
+        
         widgetModel
             .createWidget(pageId, widget)
             .then(function (widget) {
@@ -111,7 +116,8 @@ module.exports= function(app, models){
         widgetModel
             .findAllWidgetsForPage(pageId)
             .then(function (widgets) {
-                    res.json(widgets);
+                res.json(widgets);
+
                 },
                 function (err) {
                     res.sendStatus(404).send(err);
@@ -162,16 +168,22 @@ module.exports= function(app, models){
     }
     function deleteWidget (req,res) {
         var widgetId  = req.params.widgetId;
-
+        var pageId = req.query.pageId;
+        var position = req.query.postobedeleted;
         widgetModel
-            .deleteWidget(widgetId)
-            .then (function (stats) {
-                    console.log(stats);
-                    res.send(200);
-                },
-                function (err) {
-                    res.sendStatus(404).send(err);
-                });
+            .updatePosition(pageId, position)
+            .then(function (stats) {
+                widgetModel
+                    .deleteWidget(widgetId)
+                    .then (function (stats) {
+                            console.log(stats);
+                            res.send(200);
+                        },
+                        function (err) {
+                            res.sendStatus(404).send(err);
+                        });
+            });
+       
 
 
     }

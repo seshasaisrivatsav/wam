@@ -19,6 +19,15 @@
 
         vm.getSafeHtml = getSafeHtml;
         vm.getSafeUrl = getSafeUrl;
+        vm.reorderWidgets= reorderWidgets;
+
+        function reorderWidgets(startIndex, endIndex) {
+            WidgetService
+                .reorderWidgets(startIndex, endIndex, vm.pageId)
+                .then(function (response) {
+                    return "success";
+                });
+        }
 
         function getSafeUrl(widget) {
             var urlParts = widget.url.split("/");
@@ -44,14 +53,17 @@
                     
                     vm.widgets = rawList;
 
-                    $(".container")
-                        .sortable({
-                            axis: 'y'
-                        });
+                    // $(".container")
+                    //     .sortable({
+                    //         axis: 'y'
+                    //     });
 
                 });
         //    vm.widgets = WidgetService.findWidgetsByPageId(pageId);
         }
         init();
     }
+
+
+
 })();

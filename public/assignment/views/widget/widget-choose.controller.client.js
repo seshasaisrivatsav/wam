@@ -24,116 +24,166 @@
         vm.createTextWidget = createTextWidget;
 
 
-        function createTextWidget(pageId){
+        function createTextWidget(pageId) {
+
+            var index = -1;
             var widget = {
                 //_id : (new Date()).getTime()+"",
                 type: "Text"
                 //pageId : pageId
             };
-
-
             WidgetService
-                .createWidget(pageId, widget)
-                .then(function (response) {
-                    var result = response.data;
-                    console.log(response.data);
-                    if (result){
-                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+result._id);
-                    }else{
-                        vm.error = "error in creating Text page";
-                    }
-                });
+                .findWidgetsByPageId(vm.pageId)
+                .then(
+                    function (response) {
+                        var result = response.data;
+                        var length = result.length;
+                        index = length;
+
+                        widget.position = index;
+                       
 
 
+                        WidgetService
+                            .createWidget(pageId, widget)
+                            .then(function (response) {
+                                var result = response.data;
+
+                                if (result) {
+                                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + result._id);
+                                } else {
+                                    vm.error = "error in creating Text page";
+                                }
+                            });
+                     });
         }
 
 
-        function createHTMLWidget(pageId){
+        function createHTMLWidget(pageId) {
+
+            var index = -1;
             var widget = {
                 //_id : (new Date()).getTime()+"",
                 type: "HTML"
                 //pageId : pageId
             };
- 
-
             WidgetService
-                .createWidget(pageId, widget)
-                .then(function (response) {
-                    var result = response.data;
-                    console.log(response.data);
-                    if (result){
-                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+result._id);
-                    }else{
-                        vm.error = "error in creating HTML page";
-                    }
-                });
+                .findWidgetsByPageId(vm.pageId)
+                .then(
+                    function (response) {
+                        var result = response.data;
+                        var length = result.length;
+                        index = length;
+
+                        widget.position = index;
+
+                        WidgetService
+                            .createWidget(pageId, widget)
+                            .then(function (response) {
+                                var result = response.data;
+
+                                if (result) {
+                                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + result._id);
+                                } else {
+                                    vm.error = "error in creating HTML page";
+                                }
+                            });
 
 
+                    });
         }
 
 
 
-        function createHeaderWidget(pageId){
+        function createHeaderWidget(pageId) {
+            var index = -1;
             var widget = {
                 //_id : (new Date()).getTime()+"",
                 type: "HEADER"
                 //pageId : pageId
             };
-
-
             WidgetService
-                .createWidget(pageId, widget)
-                .then(function (response) {
-                    var result = response.data;
-                    console.log(response.data);
-                    if (result){
-                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+result._id);
-                    }else{
-                        vm.error = "error in creating Header page";
-                    }
-                });
+                .findWidgetsByPageId(vm.pageId)
+                .then(
+                    function (response) {
+                        var result = response.data;
+                        var length = result.length;
+                        index = length;
+
+                        widget.position = index;
+
+                        WidgetService
+                            .createWidget(pageId, widget)
+                            .then(function (response) {
+                                var result = response.data;
+
+                                if (result) {
+                                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + result._id);
+                                } else {
+                                    vm.error = "error in creating Header page";
+                                }
+                            });
 
 
-         }
-
-
-        function createImageWidget(pageId){
-            var widget = {
-              //  _id : (new Date()).getTime()+"",
-                type : "IMAGE"
-                //pageId : pageId
-            };
-
-            WidgetService.createWidget(pageId, widget)
-                .then (function (response) {
-                    var result = response.data;
-                    if (result){
-                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+result._id);
-                    }else{
-                        vm.error = "error in creating Image page";
-                    }
-                });
-
+                    });
         }
 
 
-        function createYouTubeWidget(pageId){
+        function createImageWidget(pageId) {
             var widget = {
-               // _id : (new Date()).getTime()+"",
-                type: "YOUTUBE"
-               // pageId : pageId
+                //  _id : (new Date()).getTime()+"",
+                type: "IMAGE"
+                //pageId : pageId
             };
+            WidgetService
+                .findWidgetsByPageId(vm.pageId)
+                .then(
+                    function (response) {
+                        var result = response.data;
+                        var length = result.length;
+                        index = length;
 
-            WidgetService.createWidget(pageId, widget)
-                .then (function (response) {
-                    var result = response.data;
-                    if (result){
-                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+result._id);
-                    }else{
-                        vm.error = "error in creating Youtube Page ";
-                    }
-                });
+                        widget.position = index;
+                        WidgetService.createWidget(pageId, widget)
+                            .then(function (response) {
+                                var result = response.data;
+                                if (result) {
+                                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + result._id);
+                                } else {
+                                    vm.error = "error in creating Image page";
+                                }
+                            });
 
+                    });
+        }
+
+
+        function createYouTubeWidget(pageId) {
+            var widget = {
+                // _id : (new Date()).getTime()+"",
+                type: "YOUTUBE"
+                // pageId : pageId
+            };
+            WidgetService
+                .findWidgetsByPageId(vm.pageId)
+                .then(
+                    function (response) {
+                        var result = response.data;
+                        var length = result.length;
+                        index = length;
+
+                        widget.position = index;
+                        WidgetService.createWidget(pageId, widget)
+                            .then(function (response) {
+                                var result = response.data;
+                                if (result) {
+                                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + result._id);
+                                } else {
+                                    vm.error = "error in creating Youtube Page ";
+                                }
+                            });
+
+                    });
         }
 
 

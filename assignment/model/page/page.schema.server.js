@@ -8,7 +8,7 @@ module.exports = function () {
         name : {type : String, required : true},
 
         title : String,
-            
+          widgets:[{type: mongoose.Schema.Types.ObjectId, ref: 'Widget'}],
         dateCreated : {type: Date, default : Date.now} //Date.now is the current time
     }, {collection: "assignment.page" });
 
