@@ -11,4 +11,3 @@
     angular.module ("WebAppMaker", ["ngRoute", "textAngular", "wamDirectives"]);
 })();
 
-//from new HardDhisk

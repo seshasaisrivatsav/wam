@@ -1,6 +1,4 @@
-/* Java script in IFFE*/
-
-
+   
 (function () {
     //we are going  to load the application/ Configure it
     // If you don't provide the array, [], then it is a read operation

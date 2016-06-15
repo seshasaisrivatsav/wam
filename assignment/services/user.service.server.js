@@ -1,3 +1,12 @@
+//we'dintegrate with passport. generate session, cookie
+//we will use LOCAL STRATEGY of passport.js
+// LocalStrategy = our datavase
+
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
+
+
 
 /* unlike angular, if w e ask by name, we cant get it */
 // we are passing models
@@ -5,16 +14,9 @@ module.exports= function(app, models){
 
    var userModel = models.userModel;
 
-    var users = [
-        {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"},
-        {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"},
-        {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"},
-        {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi"}
-    ];
-
-
     /* John pappy's - declare APIs at top and write functions below */
     app.get("/api/user", getUsers);
+    app.post("/api/login",login); //created afer introduction of sessions/passport
     app.post("/api/user", createUser);
     app.get("/api/user/:userId", findUserById);
     app.delete("/api/user/:userId", deleteUser);
@@ -24,6 +26,28 @@ module.exports= function(app, models){
      app.get("/api/user/:userId", findUserById);
      app.get("/api/user/:userId", findUserById);
      are the same URLs to Express!     */
+
+    function login ( req, res){
+
+        var username = req.body.username;
+        var password  = req.body.password;
+        userModel
+            .findUserByCredentials(username, password)
+            .then(function (user) {
+
+
+
+                    req.session.currentUser= user;
+
+
+                    res.json(user);
+                },
+                function (err) {
+                    res.statusCode(404).send(err);
+                });
+
+    }
+
 
      
     function createUser(req,res) {
@@ -141,7 +165,7 @@ module.exports= function(app, models){
         var password= req.query['password'];
  
         if(username && password){
-            findUserByCredentials(username,password, res);
+            findUserByCredentials(username,password, req, res);
         } else if (username){
             findUserByUsername(username, res);
         }else {
@@ -149,10 +173,16 @@ module.exports= function(app, models){
         }
     }
 
-    function findUserByCredentials (username, password, res){
+    function findUserByCredentials (username, password, req, res){
         userModel
             .findUserByCredentials(username, password)
             .then(function (user) {
+
+
+
+                req.session.currentUser= user;
+
+
                 res.json(user);
             },
             function (err) {
