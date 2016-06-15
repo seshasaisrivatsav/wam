@@ -11,6 +11,7 @@
         vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
         vm.userId = $routeParams.userId;
+        vm.logout = logout;
         var userId = $routeParams.userId;
         /*it is good practice to declare initialization ina function. say init*/
         function init(){
@@ -22,6 +23,18 @@
         }
        init();
 
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (response) {
+                        $location.url("/login");
+                    },
+                    function () {
+                        $location.url("/login");
+                    }
+                );
+        }
         function deleteUser() {
             UserService
                 .deleteUser(userId)

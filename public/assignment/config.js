@@ -1,9 +1,7 @@
-   
 (function () {
     //we are going  to load the application/ Configure it
     // If you don't provide the array, [], then it is a read operation
     angular
-
         .module("WebAppMaker") //.module gives an angular object
         .config(Config);
 
@@ -28,7 +26,10 @@
             .when("/user/:userId",{
                 templateUrl :"views/user/profile.view.client.html",
                 controller: "ProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
             })
 
 
@@ -101,6 +102,30 @@
                 controllerAs : "model"
             });
 
-        
+
+        // $q is part of angularlibrary used to handle promises(asynchronous calls)
+        function checkLoggedIn(UserService, $location, $q) {
+            //deferred obj has promise
+            var deferred = $q.defer();
+
+
+            UserService
+                .loggedIn()
+                .then(function (response) {
+                    var user = response.data;
+
+                    if(user=='0'){
+                        deferred.reject();
+                    }
+                    else
+                    {
+                        deferred.resolve();
+                    }
+
+
+                },function (err) {
+                    $location.url("/login");
+                });
+        }
     }
 })();

@@ -11,19 +11,27 @@
     function UserService($http) {
         /* provide an API that allows access to this thing */
         var api = {
+            loggedIn: loggedIn,
             createUser: createUser,
             findUserByCredentials: findUserByCredentials,
             findUserById: findUserById,
             updateUser: updateUser,
             deleteUser: deleteUser,
             login: login,
+            logout: logout,
             findUserByUsername: findUserByUsername
+          
         };
 
         return api;
         /*functions are implemented below*/
 
-        
+        function loggedIn() {
+            return $http.get("/api/loggedIn");
+        }
+        function logout() {
+            return $http.post("/api/logout" );
+        }
         function login(username, password) {
             var user ={
                 username: username,

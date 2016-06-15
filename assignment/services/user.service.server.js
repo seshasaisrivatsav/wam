@@ -16,7 +16,9 @@ module.exports= function(app, models){
 
     /* John pappy's - declare APIs at top and write functions below */
     app.get("/api/user", getUsers);
-    app.post("/api/login",login); //created afer introduction of sessions/passport
+    app.get("/api/loggedIn", loggedIn);
+    app.post("/api/logout", logout);
+    app.post('/api/login', passport.authenticate('wam'), login);//created afer introduction of sessions/passport
     app.post("/api/user", createUser);
     app.get("/api/user/:userId", findUserById);
     app.delete("/api/user/:userId", deleteUser);
@@ -27,29 +29,68 @@ module.exports= function(app, models){
      app.get("/api/user/:userId", findUserById);
      are the same URLs to Express!     */
 
-    function login ( req, res){
+    // instead of wam if you use local in passport.authenticate, then you dont need to provide it here
+    passport.use('wam', new LocalStrategy(localStrategy));
 
-        var username = req.body.username;
-        var password  = req.body.password;
-        userModel
-            .findUserByCredentials(username, password)
-            .then(function (user) {
+    //done - is to notify passport of success/failures
 
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
 
-
-                    req.session.currentUser= user;
-
-
-                    res.json(user);
-                },
-                function (err) {
-                    res.statusCode(404).send(err);
-                });
-
+    function serializeUser(user, done) {
+        done(null, user);
     }
 
 
-     
+    function deserializeUser(user, done) {
+        userModel
+            .findUserById(user._id)
+            .then(
+                function(user){
+                    done(null, user);
+                },
+                function(err){
+                    done(err, null);
+                }
+            );
+    }
+    function localStrategy(username, password, done) {
+        userModel
+            .findUserByCredentials(username, password)
+            .then(
+                function (user) {
+                if(user){
+                    done(null,user);
+                }else {
+                    done(null, false);
+                  }
+                },
+                function(err) {
+                    done(err);
+                });
+    }
+    function login ( req, res){
+        var user = req.user;
+        res.json(user);
+    }
+
+
+    function logout(req, res) {
+        //we're using function provided by passport
+        req.logout();
+        res.sendStatus(200); //success
+    }
+
+    function loggedIn(req,res) {
+
+        //function given by passport
+        if(req.isAuthenticated()){
+            res.json(req.user);
+        }else{
+            
+            res.send('0');
+        }
+    }
     function createUser(req,res) {
         var user = req.body;
 
