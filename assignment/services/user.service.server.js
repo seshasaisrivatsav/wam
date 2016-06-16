@@ -54,6 +54,9 @@ module.exports= function(app, models){
                     res.status(400).send("Username is in use");
                     return;
                 }else{
+                    //right before we create the user, we encrypt the password
+                    // we replace then req.body password by hashing it
+                    req.body.password = bcrypt.hashSync(req.body.password);
                     return userModel
                         .createUser(req.body);
 
@@ -96,10 +99,10 @@ module.exports= function(app, models){
     }
     function localStrategy(username, password, done) {
         userModel
-            .findUserByCredentials(username, password)
+            .findUserByUsername(username)
             .then(
                 function (user) {
-                if(user){
+                if(user && bcrypt.compareSync(password, user.password)){
                     done(null,user);
                 }else {
                     done(null, false);
