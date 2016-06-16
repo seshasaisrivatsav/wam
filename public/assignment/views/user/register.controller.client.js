@@ -8,7 +8,8 @@
 
     function RegisterController($location, UserService) {
         var vm = this;
-        vm.createUser = createUser;
+        //vm.createUser = createUser;
+        vm.register = register;
  
         // function createUser(user) {
         //     var newUser = UserService.createUser(user);
@@ -20,36 +21,52 @@
         //         vm.error="error creating User";
         //     }
         // }
+        
+        function register(username, password) {
 
-        function createUser(user) {
-          UserService
-              .createUser(user)
-              .then(function (res) {
-                  var newUser=res.data;
-                  switch (newUser){
-                      case "dupuid":
-                      {
-                          return vm.error = "userId has been taken";
-                          break;
-                      }
-                      case "uepw":
-                      {
+            UserService
+                .register(username,password)
+                .then(function (response) {
+                    var user = response.data;
+                    if(user){
+                  
+                        $location.url("/user/"+user._id);
+                    }
 
-                          return vm.error = "pw no match";
-                          break;
-                      }
-                      default:
-                          $location.url("/user/"+newUser._id);
-                  }
-              });
-
-            // if(typeof newUser === 'string'){
-            //     vm.error = newUser;
-            // }
-
-
-
+                },
+                function (err) {
+                    vm.error = err;
+                });
         }
+        // function createUser(user) {
+        //   UserService
+        //       .createUser(user)
+        //       .then(function (res) {
+        //           var newUser=res.data;
+        //           switch (newUser){
+        //               case "dupuid":
+        //               {
+        //                   return vm.error = "userId has been taken";
+        //                   break;
+        //               }
+        //               case "uepw":
+        //               {
+        //
+        //                   return vm.error = "pw no match";
+        //                   break;
+        //               }
+        //               default:
+        //                   $location.url("/user/"+newUser._id);
+        //           }
+        //       });
+        //
+        //     // if(typeof newUser === 'string'){
+        //     //     vm.error = newUser;
+        //     // }
+        //
+        //
+        //
+        // }
    }
 
 

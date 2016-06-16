@@ -24,7 +24,7 @@ module.exports = function () {
     }
 
     function findUserByUsername(username) {
-        return User.findById({username: username});
+        return User.findOne({username: username});
     }
 
     function updateUser(userId, user) {

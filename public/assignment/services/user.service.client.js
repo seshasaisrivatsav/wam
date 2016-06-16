@@ -13,6 +13,7 @@
         var api = {
             loggedIn: loggedIn,
             createUser: createUser,
+            register: register,
             findUserByCredentials: findUserByCredentials,
             findUserById: findUserById,
             updateUser: updateUser,
@@ -26,6 +27,21 @@
         return api;
         /*functions are implemented below*/
 
+        function register(username, password) {
+
+
+            var user= {
+                username: username,
+                password : password
+            };
+
+
+            console.log(user);
+            return $http.post("/api/register",user);
+
+        }
+
+        
         function loggedIn() {
             return $http.get("/api/loggedIn");
         }

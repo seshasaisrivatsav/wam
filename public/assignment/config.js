@@ -116,16 +116,15 @@
 
                     if(user=='0'){
                         deferred.reject();
-                    }
-                    else
-                    {
+                        $location.url("/login");
+                    }else{
                         deferred.resolve();
                     }
-
-
                 },function (err) {
                     $location.url("/login");
                 });
+
+            return deferred.promise;
         }
     }
 })();

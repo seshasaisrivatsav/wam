@@ -6,7 +6,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 
-
+var bcrypt = require("bcrypt-nodejs");
 
 /* unlike angular, if w e ask by name, we cant get it */
 // we are passing models
@@ -15,11 +15,12 @@ module.exports= function(app, models){
    var userModel = models.userModel;
 
     /* John pappy's - declare APIs at top and write functions below */
+    app.post("/api/user", createUser);
+    app.post("/api/register", register);
     app.get("/api/user", getUsers);
-    app.get("/api/loggedIn", loggedIn);
+    app.get("/api/loggedIn",loggedIn);
     app.post("/api/logout", logout);
     app.post('/api/login', passport.authenticate('wam'), login);//created afer introduction of sessions/passport
-    app.post("/api/user", createUser);
     app.get("/api/user/:userId", findUserById);
     app.delete("/api/user/:userId", deleteUser);
     app.put("/api/user/:userId", updateUser);
@@ -41,7 +42,46 @@ module.exports= function(app, models){
         done(null, user);
     }
 
+    function register(req,res) {
+        var username = req.body.username;
+        var password = req.body.password;
 
+        userModel
+            .findUserByUsername(username)
+            .then(function (user) {
+                if(user){
+                    //if user exists already we give an error
+                    res.status(400).send("Username is in use");
+                    return;
+                }else{
+                    return userModel
+                        .createUser(req.body);
+
+                }
+            },
+            function (err) {
+                res.status(400).send(err);
+
+            })
+
+            .then(
+                function (user) {
+                if(user){
+                    //provided by passport
+                    req.login(user, function (err) {
+                        if(err){
+                            res.status(400).send(err);
+                        }else{
+                            res.json(user);
+                        }
+                    })
+                }
+            },
+            function (err) {
+                res.status(400).send(err);
+            });
+
+    }
     function deserializeUser(user, done) {
         userModel
             .findUserById(user._id)
@@ -69,6 +109,7 @@ module.exports= function(app, models){
                     done(err);
                 });
     }
+
     function login ( req, res){
         var user = req.user;
         res.json(user);
@@ -78,16 +119,15 @@ module.exports= function(app, models){
     function logout(req, res) {
         //we're using function provided by passport
         req.logout();
-        res.sendStatus(200); //success
+        res.send(200); //success
     }
 
     function loggedIn(req,res) {
-
         //function given by passport
         if(req.isAuthenticated()){
             res.json(req.user);
         }else{
-            
+            console.log("0");
             res.send('0');
         }
     }
