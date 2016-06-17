@@ -47,7 +47,7 @@
                     return true;
 
                 }else{
-                    $location.url("/user/"+user._id);
+                    $location.url("/user");
 
                 }
 

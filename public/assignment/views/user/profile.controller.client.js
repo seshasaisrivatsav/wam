@@ -6,13 +6,13 @@
     /* HTML and Java script communicate via scope */
     /* handles the JAVA Script */
 
-    function ProfileController($routeParams, $location, UserService) {
+    function ProfileController($routeParams, $location, UserService, $rootScope) {
         var vm = this;
         vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
-        vm.userId = $routeParams.userId;
+        vm.userId = $rootScope.currentUser._id;
         vm.logout = logout;
-        var userId = $routeParams.userId;
+        var userId = $rootScope.currentUser._id;
         /*it is good practice to declare initialization ina function. say init*/
         function init(){
            UserService

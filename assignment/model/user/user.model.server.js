@@ -9,6 +9,7 @@ module.exports = function () {
     var User =  mongoose.model("User", UserSchema); //mongo plurarizes
     
     var api = {
+        findFacebookUser: findFacebookUser,
         createUser: createUser,
         findUserById: findUserById,
         findUserByCredentials: findUserByCredentials,
@@ -19,6 +20,10 @@ module.exports = function () {
     };
     return api;
     //findByID returns just one
+    
+    function findFacebookUser(id) {
+        return User.findOne({"facebook.id": id});
+    }
     function findUserById(userId) {
         return User.findById({_id: userId});
     }

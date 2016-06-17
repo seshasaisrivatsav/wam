@@ -4,7 +4,7 @@
 
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-
+var FacebookStrategy = require('passport-facebook').Strategy;
 
 var bcrypt = require("bcrypt-nodejs");
 
@@ -15,6 +15,12 @@ module.exports= function(app, models){
    var userModel = models.userModel;
 
     /* John pappy's - declare APIs at top and write functions below */
+    app.get("/auth/facebook",  passport.authenticate('facebook'));
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect: '/assignment/#/user',
+            failureRedirect: '/assignment/#/login'
+        }));
     app.post("/api/user", createUser);
     app.post("/api/register", register);
     app.get("/api/user", getUsers);
@@ -29,8 +35,14 @@ module.exports= function(app, models){
      app.get("/api/user/:userId", findUserById);
      app.get("/api/user/:userId", findUserById);
      are the same URLs to Express!     */
+    var facebookConfig = {
+        clientID     : process.env.FACEBOOK_CLIENT_ID,
+        clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
+        callbackURL  : process.env.FACEBOOK_CALLBACK_URL
+    };
 
     // instead of wam if you use local in passport.authenticate, then you dont need to provide it here
+    passport.use('facebook', new FacebookStrategy(facebookConfig, facebookLogin));
     passport.use('wam', new LocalStrategy(localStrategy));
 
     //done - is to notify passport of success/failures
@@ -38,10 +50,50 @@ module.exports= function(app, models){
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
+
+
     function serializeUser(user, done) {
         done(null, user);
     }
 
+
+    // has a unique token, has profile also
+    // profile has the info about user
+    // refresh toke - hashes info in db. makes sure the user
+    // done is simlar to that of local strategy.
+    // we need to call done with instance of an object that represents a user
+    function facebookLogin(token, refreshToken, profile, done) {
+        //check if the fb user already exists in our DB
+
+        userModel
+            .findFacebookUser(profile.id)
+            .then(
+                function (facebookUser) {
+                     // we arent validating, but checking if the user exists
+                    // only in local strategies we do validation here
+                    if(facebookUser){
+                        return done(null, facebookUser);
+                    }else{
+                        //if th euser doesnt exist, we create here
+                        facebookUser = {
+                            username: profile.displayName.replace(/ /g,''),
+                            facebook: {
+                                        token: token,
+                                        id: profile.id,
+                                        displayName: profile.displayName
+                                        }
+                        }
+                    }
+                    userModel
+                        .createUser(facebookUser)
+                        .then(
+                            function (user) {
+                                done(null,user);
+                            }
+                        );
+                }
+            );
+    }
     function register(req,res) {
         var username = req.body.username;
         var password = req.body.password;
