@@ -1,190 +1,441 @@
 <!DOCTYPE html>
 <html lang="en">
+  
 
 <head>
-    <title>WebDev Home</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Coderthemes">
 
-<body>
-    <!-- Title Heading -->
-    <div class="container-fluid">
-        <h1  style="text-align:center;">Web Dev Course Home Page</h1>
-    </div>
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="home_page/images/favicon.ico">
 
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
+    <!-- Site Title -->
+    <title>WebDev Home Page</title>
 
-            <!-- Logo -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavBar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="#" class="navbar-brand">Web Dev Course Home Page</a>
-            </div>
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"/>
 
-            <!-- Menu Items -->
-            <div class="collapse navbar-collapse" id="mainNavBar">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.html">Home</a></li>
-                    <li><a href="#">Project</a></li>
-                    <li><a href="#">Assignment</a></li>
-                    <li><a href="test/index.html">Test Mongo DB</a></li>
-                    <li><a href="https://github.com/seshasaisrivatsav/kuchibhotla-sesha_sai_srivatsav-web-dev">My Public Repository at Github.com</a></li>
-                    <li><a href="#">About Myself</a></li>
-                    <li><a href="#">Contact me</a></li>
+    <!-- Bootstrap core CSS -->
+    <link href="home_page/css/bootstrap.min.css" rel="stylesheet">
 
-                    <! -- drop down menu -->
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Useful Links <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="https://openshift.redhat.com/app/console/applications">OpenShift Console</a></li>
-                            <li><a href="https://neuidmsso.neu.edu/cas-server/login">Blackboard</a></li>
-                            <li><a href="https://github.com/">GitHub</a></li>
-                            <li><a href="http://myneu.neu.edu/cp/home/displaylogin">MyNeu</a></li>
-                            <li><a href="https://studentemployment.neu.edu/">Student Employement</a></li>
-                        </ul>
-                    </li>
+    <!-- Animate -->
+    <link href="home_page/css/animate.css" rel="stylesheet">
+    
+    <!-- Icon-font -->
+    <link rel="stylesheet" type="text/css" href="home_page/css/material-design-iconic-font.min.css">
 
-                </ul>
-            </div>
+    <!-- Custom styles for this template -->
+    <link href="home_page/css/style.css" rel="stylesheet">
+
+    <!-- Color css -->
+    <link href="home_page/css/colors/default.css" rel="stylesheet" id="color-opt">
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-74366260-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    
+  </head>
+
+<body data-spy="scroll" data-target="#navbar-menu" class="layout-dark">
+
+  <div class="navbar navbar-custom sticky" role="navigation">
+      <div class="container">
+
+        <!-- Navbar-header -->
+        <div class="navbar-header">
+          <!-- Responsive menu button -->
+          <button type="button" 
+		  class="navbar-toggle" 
+		  data-toggle="collapse" 
+		  data-target=".navbar-collapse">
+              <i class="zmdi zmdi-menu"></i>
+          </button>
+
+          <!-- LOGO -->
+          <a class="navbar-brand logo" href="#">
+            <i class="zmdi zmdi-home"></i> <span>WebDev Home</span>
+          </a>
 
         </div>
-    </nav>
+        <!-- end navbar-header -->
 
-    <!--Project-->
-    <div class="container-fluid">
-        <h1>Project</h1>
-        <h3>Project Link</h3>
-        <a href="project/index.html">Project</a>
-        <h3>Project Title Here</h3>
-        <p>Project Description Here</p>
+        <!-- menu -->
+        <div class="navbar-collapse collapse" id="navbar-menu">
 
-            <h3>Important Deadlines</h3>
+          <!-- Navbar left -->
+          <ul class="nav navbar-nav nav-custom-left">
+            <li class="active">
+              <a href="#home">Home</a>
+            </li>
+            <li>
+              <a href="#quicklinks">Quick Links</a>
+            </li>
+            <li>
+              <a href="#project">Project</a>
+            </li>
+			<li>
+              <a href="#wam">Assignments</a>
+            </li>
+            <li>
+              <a href="#myself">About</a>
+            </li>
+            <li>
+              <a href="#contact">Contact</a>
+            </li>
+            <!--<li class="dropdown">-->
+              <!--<a href="#" data-toggle="dropdown">-->
+                <!--Pages-->
+                <!--<span class="caret"></span>-->
+              <!--</a>-->
+              <!--<ul class="dropdown-menu arrow">-->
+                <!--<li><a href="about.html">About Us</a></li>-->
+                <!--<li><a href="contact.html">Contact</a></li>-->
+                <!--<li><a href="blog.html">Blog</a></li>-->
+                <!--<li><a href="blog-post.html">Blog Post</a></li>-->
+              <!--</ul>-->
+            <!--</li>-->
+          </ul>
 
-                <table class="table table-condensed">
-                    <thead>
-                    <tr>
-                        <th>Project</th>
-                        <th>Deadlines</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>Submission</td>
-                        <td>Sunday, June 26</td>
-                    </tr>
-                    <tr>
-                        <td>Evaluation</td>
-                        <td>Monday, June 27 -Thursday, June 30</td>
-                    </tr>
-                    </tbody>
-                </table>
+          <!-- Navbar right -->
+          <!--<ul class="nav navbar-nav navbar-right">-->
+            <!--<li>-->
+              <!--<a href="#">Login</a>-->
+            <!--</li>-->
+            <!--<li>-->
+              <!--<a href="#" class="btn btn-inverse btn-bordered navbar-btn">Signup</a>-->
+            <!--</li>-->
+          <!--</ul>-->
 
-
-    </div>
-
-    <!--Assignments-->
-    <div class="container-fluid">
-        <h1>Assignment</h1>
-        <h3>Assignment Link</h3>
-        <a href="assignment/index.html">Assignments</a>
-
-        <h3>Important Deadlines</h3>
-        <table class="table table-condensed">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Assignment</th>
-                <th>Deadline</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td>Development Environment</td>
-                <td>Sun, May 15</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>User Interface Development</td>
-                <td>Sun, May 22</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Client Side Development</td>
-                <td>Sun, May 29</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Server Side Development</td>
-                <td>Sun, Jun 5</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Database Development</td>
-                <td>Sun, Jun 12</td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>Security & User Management</td>
-                <td>Sun, Jun 19</td>
-            </tr>
-            </tbody>
-        </table>
-
-
-    </div>
-
-    <!--About Myself-->
-    <div class="container-fluid">
-        <h1>About Myself</h1>
-        <p>I am excited to learn WebDev. I hope to design fabulous web pages.
-        I like watching a lot of movies, travelling and cooking.
-        </p>
-
-        <div class="row">
-            <div class="col-md-4">
-                <a href="images/le_me.jpg"   class="thumbnail" >
-                    <br>
-                    <img src="images/le_me.jpg" alt="Pulpit Rock"  style="width:150px;height:150px">
-                    <p>Posing at Starbucks, Northeastern University</p>
-                    </a>
-                </div>
         </div>
-        <p>Follow me at</p>
-        <p>
-            <a href="https://plus.google.com/+seshasaisrivatsav">
-            <img src="images/google_logo.png" alt="Google Plus link"  height="42" border="0">
-            </a>
-            <a href="https://www.facebook.com/seshasai.srivatsav">
-                <img src="images/facebook_logo.jpg" alt="Facebook"  height="42" border="0">
-            </a>
-            <a href="https://www.instagram.com/seshasai_tris/">
-                <img src="images/instagram_logo.jpg" alt="Instagram"   height="42" border="0">
-            </a>
-            <a href="https://www.linkedin.com/in/seshasaisrivatsav">
-                <img src="images/linkedin_logo.png" alt="Linkedin"   height="42" border="0">
-            </a>
-            <a href="https://www.youtube.com/channel/UC_el31k7V2770-QH0T_xzcQ">
-                <img src="images/youtube_logo.png" alt="youtube" height="42" border="0">
-            </a>
-            <a href="https://twitter.com/seshasai_tris">
-                <img src="images/twitter_logo.png" alt="Twitter" height="42" border="0">
-            </a>
+        <!--/Menu -->
+      </div>
+      <!-- end container -->
+  </div>
+  <!-- End navbar-custom -->
 
-        </p>
+ 
+
+
+  <!-- HOME -->
+  <section class="home" id="home">
+    <!-- <div class="bg-overlay"></div> -->
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+
+          <div class="home-wrapper text-center">
+            <h2 class="animated fadeInDown wow" data-wow-delay=".1s">
+              Web Development <span class="text-colored">Home</span>
+            </h2>
+            <p class="animated fadeInDown wow text-muted" data-wow-delay=".2s">
+             This is a WebApplication Developed using MEAN Stack. I have worked on "WebAppMaker" assignment and created an application "FilmNerd".
+            </p>
+            <a href="#quicklinks" class="btn btn-primary btn-shadow btn-rounded w-lg animated fadeInDown wow" data-wow-delay=".4s">
+                Get Started</a>
+            <div class="clearfix"></div>
+          </div><!-- home wrapper -->
+
+        </div> <!-- end col -->
+      </div> <!-- end row -->
+    </div> <!-- end container -->
+  </section>
+  <!-- END HOME -->
+
+
+  <!-- FEATURES -->
+  <section class="section" id="quicklinks">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <div class="title-box">
+            <p class="title-alt"></p>
+            <h3 class="fadeIn animated wow text-white" data-wow-delay=".1s">Quick Links</h3>
+            <div class="border"></div>
+          </div>
+        </div> 
+      </div> <!-- end row -->
+
+      <div class="row text-center">
+        <div class="col-sm-4">
+          <div class="service-item animated fadeInLeft wow" data-wow-delay=".2s">
+            <img src="home_page/images/icons/github.svg" width="48" alt="img">
+            <div class="service-detail">
+              <a href="https://github.com/seshasaisrivatsav/kuchibhotla-sesha_sai_srivatsav-web-dev">
+                <h4 class="text-light">Github</h4>
+                <p>This Git has the source code for WAM (Assignments) and Project </p>
+              </a>
+            </div> <!-- /service-detail -->
+          </div> <!-- /service-item -->
+        </div> <!-- /col -->
+
+        <div  href="#" class="col-sm-4">
+          <div class="service-item animated fadeInDown wow" data-wow-delay=".3s">
+            <img src="home_page/images/icons/web_app_maker.png" height= "35" alt="img">
+            <div class="service-detail">
+                <a href="http://seshasaisrivatsav-asnmntprjt.rhcloud.com/assignment/#/">
+                    <h4 class="text-light">WebAppMaker</h4>
+                    <p>WebAppMaker is a WebApplication that enables users to create websites</p>
+                </a>
+            </div> <!-- /service-detail -->
+          </div> <!-- /service-item -->
+        </div> <!-- /col -->
+
+        <div class="col-sm-4">
+          <div class="service-item animated fadeInRight wow" data-wow-delay=".7s">
+            <img src="home_page/images/film_nerd_logo.PNG" width="48" alt="img">
+            <div class="service-detail">
+                <a href="http://seshasaisrivatsav-asnmntprjt.rhcloud.com/assignment/#/">
+              <h4 class="text-light">Film Nerd</h4>
+              <p>FilmNerd is a web application where film fans can review and rate films.</p>
+                </a>
+            </div> <!-- /service-detail -->
+          </div> <!-- /service-item -->
+        </div> <!-- /col -->       
+      </div> <!--end row -->
+
+
+    </div> <!-- end container -->
+  </section>
+  <!-- END FEATURES -->
+
+
+  <!-- FEATURES-ALT -->
+  <section class="section bg-gray" id="project">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="feature-detail">
+
+            <div class="title-box">
+              <p class="title-alt">Film Nerd</p>
+              <h3 class="fadeIn animated wow" data-wow-delay=".1s">Youtube demo for the project</h3>
+              <div class="border"></div>
+            </div>
+              <div>
+                  <p>
+                      Film Nerd is a WebApplication that enables users to search for films by Genre, Near Playing and give a rating and/or reviews.
+                      Users can follow each other and like a review.
+                  </p>
+              </div>
+
+
+            <a href="https://youtu.be/z2NFwBZLvoQ" class="btn btn-primary btn-shadow btn-rounded w-lg animated fadeInDown wow" data-wow-delay=".4s">Youtube Link</a>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+            <iframe width="560"
+                    src="https://www.youtube.com/embed/uEfNB6F0HK4"
+                    frameborder="0" allowfullscreen
+                    class="img-responsive fadeIn animated wow"
+                    data-wow-delay=".2s"></iframe>
+          <!--<img src="images/macbook.png" class="img-responsive fadeIn animated wow" data-wow-delay=".2s">-->
+        </div>
+
+      </div>
     </div>
+  </section>
+  <!-- END FEATURES-ALT -->
 
-    <!--Contact Me-->
 
 
-</body>
+  <!-- Assignments -->
+  <section class="section" id="wam">
+
+
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <div class="title-box">
+            <p class="title-alt fadeIn animated wow" data-wow-delay=".1s">Assignments</p>
+            <h3 class="fadeIn animated wow text-white" data-wow-delay=".2s">Topics Covered</h3>
+            <div class="border"></div>
+          </div>
+        </div> 
+      </div> <!-- end row -->
+
+      <div class="container text-center">
+          <ul class="zmdi-hc-ul">
+              <li class="fadeIn animated wow" data-wow-delay=".2s">
+                    <a href="http://portal-cs5610online.rhcloud.com/portal/index.html#/modules/1">
+                    <span  class="text-muted">Development Environment</span></a>
+              </li>
+              <li class="fadeIn animated wow" data-wow-delay=".3s">
+                  <a href="http://portal-cs5610online.rhcloud.com/portal/index.html#/modules/2">
+                      <span  class="text-muted">User Interface Development</span></a>
+              </li>
+              <li class="fadeIn animated wow" data-wow-delay=".4s">
+                  <a href="http://portal-cs5610online.rhcloud.com/portal/index.html#/modules/3">
+                      <span  class="text-muted">Client Side Development</span></a>
+              </li>
+              <li class="fadeIn animated wow" data-wow-delay=".5s">
+                  <a href="http://portal-cs5610online.rhcloud.com/portal/index.html#/modules/4">
+                      <span  class="text-muted">Server Side Development</span></a>
+              </li>
+              <li class="fadeIn animated wow" data-wow-delay=".6s">
+                  <a href="http://portal-cs5610online.rhcloud.com/portal/index.html#/modules/5">
+                      <span  class="text-muted">Database Development</span></a>
+              </li>
+              <li class="fadeIn animated wow" data-wow-delay=".7s">
+                  <a href="http://portal-cs5610online.rhcloud.com/portal/index.html#/modules/6">
+                      <span  class="text-muted">Security</span></a>
+              </li>    <li class="fadeIn animated wow" data-wow-delay=".8s">
+              <a href="http://portal-cs5610online.rhcloud.com/portal/index.html#/modules/7">
+                  <span  class="text-muted">Dynamic Server Pages</span></a>
+                </li>
+     </ul>
+    </div> <!-- end container -->
+  </section>
+  <!-- END ASSIGNMENTS -->
+
+
+
+
+
+
+
+  <!-- About Myself -->
+  <section class="section bg-gray" id="myself">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-sm-12 text-center">
+          <div class="title-box">
+            <p class="title-alt">About</p>
+            <h3 class="fadeIn animated wow" data-wow-delay=".1s">About Myself</h3>
+            <div class="border"></div>
+          </div>
+        </div> 
+      </div> <!-- end row -->
+
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="row team text-center">
+            <!-- team-member -->
+            <div class="col-sm-6">
+              <div class="team-member animated fadeInDown wow" data-wow-delay=".1s">
+                <img src="home_page/images/team/team-1.jpg" alt="team-member" class="img-responsive img-circle">
+                <h4>Sesha Sai Srivatsav</h4>
+                <p class="text-muted">Mean Stack Developer/ Database Analyst</p>
+              </div>
+            </div>
+
+
+            <!-- team-member -->
+            <div class="col-sm-6">
+              <div class="team-member animated fadeInDown wow" data-wow-delay=".5s">
+              <p>I loved developing these two web applications using MEAN Stack. I had great fun and would like to build more applications like these going forward!!</p>
+                  <p>Thanks to Prof. Jose Annunziato for equpping us wuth the great knowledge.</p>
+                  <a href="http://portal-cs5610online.rhcloud.com/portal/index.html#/course/agenda">Web Dev Course Website</a>
+                  <b></b>
+                  <p> </p>
+                  <p>To know more, check out my resume at</p>
+                  <a href="https://drive.google.com/file/d/0B-6TLW-AJILFZHVubldEU1lBS2M/view">Resume</a>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- END TEAM -->
+  
+
+
+  <!-- FAQ -->
+  
+   <section class="section contact-page" id="contact">
+
+    <div class="container">
+
+      <div class="row text-center">
+        <div class="col-sm-4">
+          <div class="contact-detail-box">
+            <i class="zmdi zmdi-phone zmdi-hc-3x text-colored"></i>
+            <h4>Reach me at</h4>
+            <abbr  title="Phone">P:</abbr> (617) 447-9680<br>
+            E: <a href="mailto:seshasaisrivatsav@gmail.com" class="text-muted">seshasaisrivatsav@gmail.com</a>
+          </div>
+        </div><!-- end col -->
+
+        <div class="col-sm-4">
+          <div class="contact-detail-box">
+            <i class="zmdi zmdi-pin zmdi-hc-3x text-colored"></i>
+            <h4>Address</h4>
+
+            <address>
+           525 Newbury St, Apt 3<br>
+            Boston, MA 02215<br>
+          </address>
+          </div>
+        </div><!-- end col -->
+
+          <div class="col-sm-4">
+              <div class="contact-detail-box">
+                  <i class="zmdi  zmdi-info zmdi-hc-3x text-colored"></i>
+                  <h4>Look Me up</h4>
+                  <ul class="zmdi-hc-ul">
+                      <li class="fadeIn animated wow fa fa-linkedin" data-wow-delay=".3s">
+                          <a href="https://www.linkedin.com/in/seshasaisrivatsav">
+                              <span  class="text-muted">LinkedIn</span></a>
+                      </li>
+                      <br></br>
+                      <li class="fadeIn animated wow fa fa-google-plus" data-wow-delay=".3s">
+                          <a href="https://plus.google.com/+seshasaisrivatsav">
+                              <span  class="text-muted">Google</span></a>
+                      </li>
+                      <br></br>
+                      <li class="fadeIn animated wow fa fa-facebook" data-wow-delay=".3s">
+                          <a href="https://www.facebook.com/seshasai.srivatsa">
+                              <span  class="text-muted">facebook</span></a>
+                      </li>
+
+                  </ul>
+
+              </div>
+          </div><!-- end col -->
+
+
+
+
+      </div>
+      <!-- end row -->
+	  
+  <!-- END FAQ -->
+
+  
+
+  <!-- END FOOTER -->
+
+
+  <!-- Back to top -->
+  <a href="#" class="back-to-top"> <i class="zmdi zmdi-chevron-up"> </i> </a>
+
+
+    <script src="home_page/js/jquery.js"></script>
+    <script src="home_page/js/bootstrap.min.js"></script>
+    <!-- Jquery easing -->                                                      
+    <script type="text/javascript" src="home_page/js/jquery.easing.1.3.min.js"></script>
+    <script src="home_page/js/wow.min.js"></script>
+    <!--sticky header-->
+    <script type="text/javascript" src="home_page/js/jquery.sticky.js"></script>
+            <!--common script for all pages-->
+    <script src="home_page/js/jquery.app.js"></script>
+        <script src="home_page/js/switcher.js"></script>
+  </body>
+
 </html>
