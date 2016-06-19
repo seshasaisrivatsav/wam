@@ -39,11 +39,13 @@
 
                         /* this is NOT synchronous */
                         var user = response.data;
+                        console.log(user);
 
-                        if (user._id){
+
+                        if (user){
                             $location.url("/user");
                         } else {
-                            vm.error = response.data;
+                            vm.error = "Error in login";
                            // $location.url("/login");
                         }
                     });

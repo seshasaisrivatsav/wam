@@ -53,7 +53,7 @@
                 username: username,
                 password: password
             };
-            return $http.post("/api/login",user);
+            return $http.post("/api/login", user);
 
         }
         function findUserByCredentials(username, password){

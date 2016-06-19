@@ -1,7 +1,3 @@
-//we'dintegrate with passport. generate session, cookie
-//we will use LOCAL STRATEGY of passport.js
-// LocalStrategy = our datavase
-
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
@@ -147,12 +143,11 @@ module.exports= function(app, models){
             .findUserByUsername(username)
             .then(
                 function (user) {
-                    console.log(user);
-                    console.log(password);
+
                 if(user && bcrypt.compareSync(password, user.password)){
-                    done(null,user);
+                    done(null, user);
                 }else {
-                    done(null, "Wrong Userid/Password");
+                     done(null, false);
                   }
                 },
                 function(err) {
@@ -165,7 +160,9 @@ module.exports= function(app, models){
     }
 
     function deserializeUser(user, done) {
+
         userModel
+
             .findUserById(user._id)
             .then(
                 function(user){
@@ -195,7 +192,6 @@ module.exports= function(app, models){
         if(req.isAuthenticated()){
             res.json(req.user);
         }else{
-            console.log("0");
             res.send('0');
         }
     }
@@ -206,7 +202,7 @@ module.exports= function(app, models){
             .createUser(user)
             .then(
                 function(user){
-                    console.log(user);
+
                     res.json(user);
                 },
                 function(error){
@@ -241,7 +237,7 @@ module.exports= function(app, models){
             .deleteUser(userId)
             //responds with some stats
             .then(function (stats) {
-                console.log(stats);
+
                 res.send(200);
             },
             function (error) {
@@ -268,7 +264,7 @@ module.exports= function(app, models){
         userModel
             .updateUser(userId, user)
             .then(function (stats) {
-                    console.log(stats);
+
                     res.send(200);
                 },
                 function (error) {
