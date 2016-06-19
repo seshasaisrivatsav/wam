@@ -15,7 +15,7 @@
 
     <h1>Login</h1>
 
-    <form novalidate name="myform">
+    <form novalidate name="model.myform">
     <input ng-model="username"
            placeholder="username"
            name="username"
@@ -23,7 +23,7 @@
            class="form-control"
            required/>
         <span class="alert-class"
-              ng-show="myform.username.$invalid && myform.$submitted">* Enter Username</span>
+              ng-show="model.myform.username.$invalid">{{model.alert}}</span>
 
     <input ng-model="password"
            placeholder="password"
@@ -32,7 +32,7 @@
            class="form-control"
            required/>
  <span class="alert-class"
-       ng-show="myform.password.$invalid && myform.$submitted">* Enter Password</span>
+       ng-show="model.myform.password.$invalid">{{model.alert}}</span>
 
     <button ng-click="model.login(username,password)"
        class="btn btn-primary btn-block" type="submit">Login</button>

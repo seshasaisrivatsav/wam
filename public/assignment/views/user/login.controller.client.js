@@ -27,36 +27,38 @@
             a function that will be invoked when the server comes back with data
             API called .then is used
              */
-
-            UserService
-                  //  .findUserByCredentials (username, password)
+            if(vm.myform.$valid == false){
+                vm.error = "Enter the username/password";
+                vm.alert = "* Enter the required fields";
+            }else{
+                UserService
+                //  .findUserByCredentials (username, password)
                     .login(username, password)
                     .then(function (response) {
-         
 
-                /* this is NOT synchronous */
-                var user = response.data;
 
-                // if (user._id){
-                //     $location.url("/user/"+user._id);
-                // } else {
-                //     vm.error = "user not found";
-                // }
-                if(typeof user === 'string'){
-                    vm.error = user;
-                    return true;
+                        /* this is NOT synchronous */
+                        var user = response.data;
 
-                }else{
-                    $location.url("/user");
-
-                }
-
-               });
-
-        }
+                        if (user._id){
+                            $location.url("/user");
+                        } else {
+                            vm.error = response.data;
+                           // $location.url("/login");
+                        }
+                    });
+            }
+    }
 
 
 
 }
 
 })();
+
+// if(typeof user === 'string'){
+//     vm.error = user;
+//     return true;
+//
+// }else{
+//     $location.url("/user");

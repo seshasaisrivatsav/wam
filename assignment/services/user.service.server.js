@@ -35,18 +35,18 @@ module.exports= function(app, models){
      app.get("/api/user/:userId", findUserById);
      app.get("/api/user/:userId", findUserById);
      are the same URLs to Express!     */
-    // var facebookConfig = {
-    //     clientID     : process.env.FACEBOOK_CLIENT_ID,
-    //     clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
-    //     callbackURL  : process.env.FACEBOOK_CALLBACK_URL
-    // };
-
-
     var facebookConfig = {
-        clientID     : "1386708058009748",
-        clientSecret : "51f66c7e9b96b4b5461ae14842703d81",
-        callbackURL  : "http://127.0.0.1:3000/auth/facebook/callback"
+        clientID     : process.env.FACEBOOK_CLIENT_ID,
+        clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
+        callbackURL  : process.env.FACEBOOK_CALLBACK_URL
     };
+
+    //
+    // var facebookConfig = {
+    //     clientID     : "1386708058009748",
+    //     clientSecret : "51f66c7e9b96b4b5461ae14842703d81",
+    //     callbackURL  : "http://127.0.0.1:3000/auth/facebook/callback"
+    // };
     // instead of wam if you use local in passport.authenticate, then you dont need to provide it here
     passport.use('facebook', new FacebookStrategy(facebookConfig, facebookLogin));
     passport.use('wam', new LocalStrategy(localStrategy));
@@ -58,9 +58,7 @@ module.exports= function(app, models){
 
 
 
-    function serializeUser(user, done) {
-        done(null, user);
-    }
+
 
 
     // has a unique token, has profile also
@@ -143,6 +141,29 @@ module.exports= function(app, models){
             });
 
     }
+
+    function localStrategy(username, password, done) {
+        userModel
+            .findUserByUsername(username)
+            .then(
+                function (user) {
+                    console.log(user);
+                    console.log(password);
+                if(user && bcrypt.compareSync(password, user.password)){
+                    done(null,user);
+                }else {
+                    done(null, "Wrong Userid/Password");
+                  }
+                },
+                function(err) {
+                    done(err);
+                });
+    }
+
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
     function deserializeUser(user, done) {
         userModel
             .findUserById(user._id)
@@ -155,21 +176,7 @@ module.exports= function(app, models){
                 }
             );
     }
-    function localStrategy(username, password, done) {
-        userModel
-            .findUserByUsername(username)
-            .then(
-                function (user) {
-                if(user && bcrypt.compareSync(password, user.password)){
-                    done(null,user);
-                }else {
-                    done(null, false);
-                  }
-                },
-                function(err) {
-                    done(err);
-                });
-    }
+
 
     function login ( req, res){
         var user = req.user;
@@ -192,9 +199,9 @@ module.exports= function(app, models){
             res.send('0');
         }
     }
+
     function createUser(req,res) {
         var user = req.body;
-
         userModel
             .createUser(user)
             .then(
@@ -206,8 +213,6 @@ module.exports= function(app, models){
                     res.statusCode(400).send(error);
                 }
             )
-
-
         // for (var i in users){
         //     if (users[i].username === user.username){
         //         var err = "dupuid";
@@ -216,7 +221,6 @@ module.exports= function(app, models){
         //         //return "yes";
         //     }
         // }
-
         // if(user.password === user.vpassword){
         //
         //     //     user._id = (new Date()).getTime() + "";
@@ -226,7 +230,6 @@ module.exports= function(app, models){
         // }
         // var err = "uepw";
         // res.send(err);
-
     }
 
 
