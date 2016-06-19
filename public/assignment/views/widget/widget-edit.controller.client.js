@@ -29,15 +29,24 @@
         init();
 
         function updateWidget(widget) {
-            WidgetService.updateWidget(vm.widgetId, widget)
-                .then (function (response) {
-                    var result= response.data;
-                    if(result){
-                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
-                    }else {
-                        vm.error = "Error";
-                    }
-                });
+            if(vm.myform.$valid == false){
+                vm.error = "Enter the name of the Widget";
+                vm.alert = "* Enter the field name";
+                if(widget.type == "HEADER"){
+                    vm.numerror="enter values between 1 and 6";
+                }
+            }else{
+                WidgetService.updateWidget(vm.widgetId, widget)
+                    .then (function (response) {
+                        var result= response.data;
+                        if(result){
+                            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
+                        }else {
+                            vm.error = "Error";
+                        }
+                    });
+            }
+
         }
 
         

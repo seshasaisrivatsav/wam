@@ -29,13 +29,22 @@
 
 
 <div class="container">
+    <div ng-show="model.error"
+         class="alert alert-danger">
+        {{model.error}}
+    </div>
+    <form novalidate name="model.myform">
     <div class="form-group">
         <label for="Name">Name</label>
         <input ng-model="model.widget.name"
                type="text"
                class="form-control"
                id="Name"
-               placeholder="Name">
+               name="name"
+               placeholder="Name"
+                required>
+         <span class="alert-class"
+               ng-show="model.myform.name.$invalid">{{model.alert}}</span>
     </div>
     <div ng-model="model.widget.text"
          text-angular
@@ -43,8 +52,9 @@
         ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
         ['indent','outdent'],['html']]">
     </div>
-
+    </form>
     <p></p>
+
     <a class="btn btn-danger btn-block "
        ng-click="model.deleteWidget(model.widget)">Delete</a>
 
@@ -55,7 +65,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
             <p class="navbar-text pull-right">
-                <a href="#/user/{{model.userId}}">
+                <a href="#/user">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </p>

@@ -29,20 +29,36 @@
 
 
 <div class="container">
-
-    <form>
+    <div ng-show="model.error"
+         class="alert alert-danger">
+        {{model.error}}
+    </div>
+    <form novalidate name="model.myform">
         <div class="form-group">
             <label for="Name">Name</label>
             <input ng-model="model.website.name"
-                   type="text" class="form-control" id="Name" placeholder="Name">
+                   type="text"
+                   class="form-control"
+                   id="Name"
+                   name="name"
+                   placeholder="Name"
+            required>
+                  <span class="alert-class"
+                        ng-show="model.myform.name.$invalid">{{model.alert}}</span>
         </div>
-    </form>
 
-    <form>
+
+
+        <p></p>
         <div class="form-group">
             <label
                    for="Description">Description</label>
-            <textarea ng-model="model.website.description" type="text" class="form-control" id="Description" placeholder="Description"></textarea>
+            <textarea ng-model="model.website.description"
+                      type="text"
+                      class="form-control"
+                      id="Description"
+                      name="description"
+                      placeholder="Description"></textarea>
         </div>
     </form>
 

@@ -41,17 +41,23 @@
         }
 
         function updateWebsite(website){
-            
-            WebsiteService
-                .updateWebsite(websiteId, website)
-                .then(function (response) {
-                    var result = response.data;
-                    if(result){
-                        $location.url("/user/"+ vm.userId +"/website");
-                    } else{
-                        vm.error = "unable to modify website";
-                    }
-                });
+            if(vm.myform.$valid == false){
+                vm.error = "Enter the name of the website";
+                vm.alert = "* Enter the website name";
+            }else{
+                WebsiteService
+                    .updateWebsite(websiteId, website)
+                    .then(function (response) {
+                        var result = response.data;
+                        if(result){
+                            $location.url("/user/"+ vm.userId +"/website");
+                        } else{
+                            vm.error = "unable to modify website";
+                        }
+                    });
+            }
+
+
 
 
             // var result = WebsiteService.updateWebsite(websiteId, website);

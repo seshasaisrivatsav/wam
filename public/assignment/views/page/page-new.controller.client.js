@@ -13,15 +13,22 @@
         vm.createPage =createPage;
 
         function createPage(page){
-            PageService.createPage(vm.websiteId, page)
-                .then(function (response) {
-                    var newPage = response.data;
-                    if(newPage){
-                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
-                    }else{
-                        vm.error = "unable to create page";
-                    }
-                });
+            if(vm.myform.$valid == false){
+                vm.error = "Enter the name of the Page";
+                vm.alert = "* Enter the Page name";
+            }else{
+                PageService.createPage(vm.websiteId, page)
+                    .then(function (response) {
+                        var newPage = response.data;
+                        if(newPage){
+                            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                        }else{
+                            vm.error = "unable to create page";
+                        }
+                    });
+            }
+
+
         }
      }
 })();

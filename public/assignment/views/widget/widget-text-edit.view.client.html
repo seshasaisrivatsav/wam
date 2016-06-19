@@ -29,17 +29,27 @@
 
 <!--Body of the page -->
 <div class="container">
+    <div ng-show="model.error"
+         class="alert alert-danger">
+        {{model.error}}
+    </div>
 Text
 <input ng-model="model.widget.text" class="form-control"/>
 Rows
 <input ng-model="model.widget.rows" class="form-control" type="number"/>
     <div class="form-group">
         <label for="Name">Name</label>
+        <form  novalidate name="model.myform">
         <input ng-model="model.widget.name"
                type="text"
                class="form-control"
                id="Name"
-               placeholder="Name">
+               name="name"
+               placeholder="Name"
+        required>
+             <span class="alert-class"
+                   ng-show="model.myform.name.$invalid">{{model.alert}}</span>
+        </form>
     </div>
 
 Placeholder
@@ -69,7 +79,7 @@ Placeholder
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
             <p class="navbar-text pull-right">
-                <a href="#/user/{{model.userId}}">
+                <a href="#/user">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </p>

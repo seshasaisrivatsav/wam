@@ -40,3 +40,10 @@ body{
     height: 100%;
 }
 
+.alert-class{
+    color: red;
+    font-size: x-small;
+    font-style: italic
+;
+}
+

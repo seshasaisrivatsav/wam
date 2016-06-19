@@ -12,17 +12,23 @@
         
         /* we'd get website from ng-click in the controller*/
         function createWebsite(website){
-            WebsiteService
-                .createWebsite(vm.userId, website)
-                /* we'd get a promise from the service client */
-                .then(function (response) {
-                    var newWebsite = response.data;
-                    if(newWebsite){
-                        $location.url("/user/"+vm.userId+"/website");
-                    }else{
-                        vm.error = "unable to create website";
-                    }
-                });
+            if(vm.myform.$valid == false){
+                vm.error = "Enter the name of the website";
+                vm.alert = "* Enter the website name";
+            }else{
+                WebsiteService
+                    .createWebsite(vm.userId, website)
+                    /* we'd get a promise from the service client */
+                    .then(function (response) {
+                        var newWebsite = response.data;
+                        if(newWebsite){
+                            $location.url("/user/"+vm.userId+"/website");
+                        }else{
+                            vm.error = "unable to create website";
+                        }
+                    });
+
+            }
             
             // var newWebsite = WebsiteService.createWebsite(vm.userId, website);
             // if(newWebsite){

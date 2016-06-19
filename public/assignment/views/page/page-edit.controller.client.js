@@ -40,15 +40,21 @@
         }
 
         function updatePage(page){
-            PageService.updatePage(vm.pageId, page)
-                .then (function (response) {
-                    var result = response.data;
-                    if(result){
-                        $location.url("/user/"+ vm.userId+"/website/"+vm.websiteId+"/page");
-                    } else{
-                        vm.error = "unable to modify page";
-                    }
-                });
+            if(vm.myform.$valid == false){
+                vm.error = "Enter the name of the Page";
+                vm.alert = "* Enter the Page name";
+            }else{
+                PageService.updatePage(vm.pageId, page)
+                    .then (function (response) {
+                        var result = response.data;
+                        if(result){
+                            $location.url("/user/"+ vm.userId+"/website/"+vm.websiteId+"/page");
+                        } else{
+                            vm.error = "unable to modify page";
+                        }
+                    });
+
+            }
 
 
 

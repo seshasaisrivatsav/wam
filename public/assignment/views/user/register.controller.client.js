@@ -23,20 +23,28 @@
         // }
         
         function register(username, password) {
-
+            if(vm.myform.$valid == false){
+                vm.error = "Enter the username/password";
+                vm.alert = "* Enter the fields";
+                if(vm.myform.password !== vm.myform.vpassword){
+                    vm.pwmatch = "entered passwords do not match!";
+                }
+            }else {
             UserService
                 .register(username,password)
                 .then(function (response) {
-                    var user = response.data;
-                    if(user){
-                  
-                        $location.url("/user");
-                    }
+                        var user = response.data;
+                        if(user){
 
-                },
-                function (err) {
-                    vm.error = err;
-                });
+                            $location.url("/user");
+                        }
+
+                    },
+                    function (err) {
+                        vm.error = err;
+                    });
+        }
+
         }
         // function createUser(user) {
         //   UserService

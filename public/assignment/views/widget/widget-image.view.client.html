@@ -29,30 +29,35 @@
 
 
 <div class="container">
-    <form>
+    <div ng-show="model.error"
+         class="alert alert-danger">
+        {{model.error}}
+    </div>
+    <form novalidate name="model.myform">
         <div class="form-group">
             <label for="Name">Name</label>
             <input ng-model="model.widget.name"
                    type="text"
                    class="form-control"
                    id="Name"
-                   placeholder="Name">
+                   name="name"
+                   placeholder="Name"
+                    required>
+            <span class="alert-class"
+                  ng-show="model.myform.name.$invalid">{{model.alert}}</span>
         </div>
-    </form>
 
-    <form>
+        <p></p>
         <div class="form-group">
             <label for="Title">Text</label>
             <input ng-model="model.widget.text"
                    type="text"
                    class="form-control"
+
                    id="Title"
                    placeholder="Enter Text">
         </div>
-    </form>
-
-
-    <form>
+        <p></p>
         <div class="form-group">
             <label for="URL">URL</label>
             <input ng-model="model.widget.url"
@@ -61,10 +66,7 @@
                    id="URL"
                    placeholder="enter the image URL Here">
         </div>
-    </form>
-
-
-    <form>
+        <p></p>
         <div class="form-group">
             <label for="width">Width</label>
             <input ng-model="model.widget.width"
@@ -117,7 +119,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
             <p class="navbar-text pull-right">
-                <a href="#/user/{{model.userId}}">
+                <a href="#/user">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </p>
