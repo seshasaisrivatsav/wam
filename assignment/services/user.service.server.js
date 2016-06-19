@@ -35,12 +35,18 @@ module.exports= function(app, models){
      app.get("/api/user/:userId", findUserById);
      app.get("/api/user/:userId", findUserById);
      are the same URLs to Express!     */
-    var facebookConfig = {
-        clientID     : process.env.FACEBOOK_CLIENT_ID,
-        clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
-        callbackURL  : process.env.FACEBOOK_CALLBACK_URL
-    };
+    // var facebookConfig = {
+    //     clientID     : process.env.FACEBOOK_CLIENT_ID,
+    //     clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
+    //     callbackURL  : process.env.FACEBOOK_CALLBACK_URL
+    // };
 
+
+    var facebookConfig = {
+        clientID     : "1386708058009748",
+        clientSecret : "51f66c7e9b96b4b5461ae14842703d81",
+        callbackURL  : "http://127.0.0.1:3000/auth/facebook/callback"
+    };
     // instead of wam if you use local in passport.authenticate, then you dont need to provide it here
     passport.use('facebook', new FacebookStrategy(facebookConfig, facebookLogin));
     passport.use('wam', new LocalStrategy(localStrategy));
