@@ -147,7 +147,7 @@ module.exports= function(app, models){
                 if(user && bcrypt.compareSync(password, user.password)){
                     done(null, user);
                 }else {
-                     done(null, false);
+                     done(null, "Error in the login");
                   }
                 },
                 function(err) {

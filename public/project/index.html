@@ -1,10 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="FilmNerd">
 <head>
     <meta charset="UTF-8">
-    <title>Project Home Page</title>
+    <!-- Meta tags for making website for mobile-->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Making it Safari Friendly-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--Disabling user pinch and default to 25% size-->
+    <meta name="viewport" content="initial-scale=1.25, user-scalable=no">
+
+
+    <title>Film Nerd Home</title>
+
+    <!-- BootStrap style sheet-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"/>
+
+    <!--IMP-->
+    <!-- Load jQuery before Angular for DOM manipulation-->
+    <!-- jQuery CSS-->
+    <link href="../css/jquery-ui.css" rel="stylesheet"/>
+
+    <!-- STYLE sheet comes after all the libraries are loaded. Document style-->
+    <link href="css/style.css" rel="stylesheet"/>
+
+    <!--JQuery-->
+    <script src="../js/jquery.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+
+    <!--Angular Modules-->
+    <!--Angular Module. Deals with centralized routing mechanism-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <!--Routing Module-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
+
+
+    <!--App.js-->
+    <script src="app.js"></script>
+
+    <!--config.js. What do we wanna show when we click things. configure-->
+    <!-- this is the centralized single maintenance point-->
+    <script src="config.js"></script>
+
+    <!-- FROM THE HOME PAGE : START -->
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+
+    <!-- Custom Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css" type="text/css">
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/creative.css" type="text/css">
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="js/scrollreveal.min.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/jquery.fittext.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/creative.js"></script>
+    <![endif]-->
+    <!-- FROM THE HOME PAGE : END  -->
+
+    <!--Controllers-->
+    <!--Users Controllers -->
+        <script src="views/user/home.controller.client.js"></script>
+        <script src="views/user/login.controller.client.js"></script>
+        <script src="views/user/register.controller.client.js"></script>
+        <script src="views/user/profile.controller.client.js"></script>
+
+    <!--Main Controller / Movie Related -->
+        <script src="views/main/search.controller.client.js"></script>
+        <script src="views/main/movie-info.controller.client.js"></script>
+
+    <!-- Admin Controller-->
+        <script src="views/admin/create-admin.controller.client.js"></script>
+        <script src="views/admin/admin-stats.controller.client.js"></script>
+
 </head>
 <body>
-    <h1>Project Home Page</h1>
+  <div ng-view></div>
+
 </body>
 </html>

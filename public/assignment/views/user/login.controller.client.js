@@ -42,10 +42,10 @@
                         console.log(user);
 
 
-                        if (user){
+                        if (user._id){
                             $location.url("/user");
                         } else {
-                            vm.error = "Error in login";
+                            vm.error = response.data;
                            // $location.url("/login");
                         }
                     });

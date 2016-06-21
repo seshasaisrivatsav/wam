@@ -1,0 +1,19 @@
+.homepagetext{
+
+    position: fixed;
+    top: 45%;
+    left: 47%;
+    margin-top: -50px;
+    margin-left: -100px;
+}
+
+.paddedfromtop{
+    padding-top: 48px;
+}
+
+.poster{
+    max-width:100%;
+    max-height:100%;
+    margin:auto;
+    display:block;
+}

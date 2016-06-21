@@ -1,5 +1,9 @@
 (function () {
     angular
         .module("FilmNerd")
-        .controller()
+        .controller("adminStatsController",adminStatsController);
+    
+    function adminStatsController() {
+        
+    }
 })();

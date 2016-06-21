@@ -74,7 +74,7 @@
                 controllerAs: "model",
                 resolve: {
                     loggedIn: checkLoggedIn
-                }
+                }   
             })
             .when("/user/:userId/website/:websiteId/page/:pageId",{
                 templateUrl :"views/page/page-edit.view.client.html",
