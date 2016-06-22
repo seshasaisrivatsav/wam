@@ -39,7 +39,7 @@
 
                         /* this is NOT synchronous */
                         var user = response.data;
-                        console.log(user);
+
 
 
                         if (user._id){
@@ -52,15 +52,7 @@
             }
     }
 
-
-
 }
 
 })();
 
-// if(typeof user === 'string'){
-//     vm.error = user;
-//     return true;
-//
-// }else{
-//     $location.url("/user");

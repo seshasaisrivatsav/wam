@@ -1,5 +1,3 @@
-/* this makes it easier to maintain longterm rather than several */
-
 (function(){
     angular
         .module("WebAppMaker")
@@ -34,9 +32,6 @@
                 username: username,
                 password : password
             };
-
-
-            console.log(user);
             return $http.post("/api/register",user);
 
         }
@@ -94,43 +89,6 @@
             return $http.delete(url);
 
         }
-
-
-        /* Helper Functions */
-            /* Login Page Error Control */
-       
-
-            /*Register Page Error*/
-
-
-
-
-
-
-
         
-
-
-        // function createUser(user) {
-        //     for (var i in users){
-        //         if (users[i].username === user.username){
-        //             return null;
-        //         }
-        //     }
-        //
-        //     if(user.password === user.vpassword){
-        //         var newUser = {
-        //             _id: (new Date()).getTime() + "",
-        //             username: user.username,
-        //             password: user.password
-        //         };
-        //         users.push(newUser);
-        //         return newUser;
-        //     }
-        //     return null;
-        //
-        // }
-
-
     }
 })();

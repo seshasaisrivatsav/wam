@@ -5,7 +5,8 @@
 
     function Config($routeProvider) {
         $routeProvider
-            
+
+
             .when("/adminstats", {
                 templateUrl: "views/admin/admin-stats.view.client.html"
             })
@@ -19,6 +20,10 @@
             .when("/profile",{
                 templateUrl: "views/user/profile.view.client.html"
             })
+
+            .when("/profileedit",{
+                templateUrl: "views/user/profile-edit.view.client.html"
+            })
             .when("/register",{
                 templateUrl: "views/user/register.view.client.html"
             })
@@ -28,7 +33,9 @@
             })
 
             .when("/search",{
-                templateUrl: "views/main/search.view.client.html"
+                templateUrl: "views/main/search.view.client.html",
+                controller: "searchController",
+                controllerAs: "model"
             })
 
             .when("/home", {
