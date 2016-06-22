@@ -137,13 +137,10 @@
         function checkLoggedIn(UserService, $location, $q, $rootScope) {
             //deferred obj has promise
             var deferred = $q.defer();
-
-
             UserService
                 .loggedIn()
                 .then(function (response) {
                     var user = response.data;
-
                     if(user=='0'){
                         $rootScope.currentUser = null;
                         deferred.reject();

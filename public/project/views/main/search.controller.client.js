@@ -3,21 +3,33 @@
         .module("FilmNerd")
         .controller("searchController", searchController);
 
-    function searchController (TmdbApiService) {
+    function searchController (TmdbApiService, $routeParams, $location) {
 
         var vm = this;
+        vm.searchMoviesfromSearchPage =searchMoviesfromSearchPage;
         
-        vm.searchMovies = searchMovies;
+
         vm.genreName = genreName;
 
+        vm.movieName = $routeParams.movieName;
+        var searchText = $routeParams.movieName;
+
+        function init() {
+            searchMovies(searchText);
+            getGenres();
+        }
+        init();
+
+        function searchMoviesfromSearchPage(searchText) {
+            $location.url("/search/"+ searchText);
+        }
 
 
         function searchMovies(searchText) {
             TmdbApiService
                 .searchMovies(searchText)
                 .then(function(response){
- 
-                    vm.movies = response.data.results;
+                        vm.movies = response.data.results;
                 });
         }
 

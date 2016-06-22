@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" rel="home" >
+            <a  href="#/moviedefault" class="navbar-brand" rel="home" >
                 <img class="logo_film"
                      src="./img/film_nerd_logo.jpg">
             </a>
@@ -19,15 +19,20 @@
 
             <form class="navbar-form navbar-left" role="search">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Enter a movie name">
+                    <input ng-model = "model.movieName"
+                           type="text"
+                           class="form-control"
+                           placeholder="Enter a movie name">
                 </div>
-                <a href ="#/search"
+
+                <a href ="#/search/{{model.movieName}}"
                    type="submit" class="btn btn-default">Submit</a>
             </form>
 
         </div>
     </div>
 </nav>
+<!-- End Of Header -->
 
 
 <!--Body-->
@@ -86,7 +91,7 @@
         </div>
     </form>
     <a class="btn btn-primary btn-block"
-       href="#/user/{{model.user._id}}/website">Websites</a>
+       ng-click="model.updateUser(model.user)">Confirm Changes</a>
     <a ng-click = "model.logout()"class="btn btn-danger btn-block">Logout</a>
     <a class="btn btn-danger btn-block "
        ng-click = "model.deleteUser()">un-register</a>
@@ -94,17 +99,18 @@
 </div>
 <!-- End of Body-->
 
+
 <!-- Footer -->
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
     <div class="container-fluid">
         <p class="navbar-text pull-right">
-            <a href="#/register">
-                <span>Register</span>
+            <a href="#/profile">
+                <span>Profile</span>
             </a>
         </p>
-        <p class="navbar-text pull-left">
 
-            <span>New Here? Please </span>
+        <p class="navbar-text pull-left">
+            <a ng-click = "model.logout()">Logout</a>
             </a>
         </p>
 

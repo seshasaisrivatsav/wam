@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" rel="home" >
+            <a  href="#/moviedefault" class="navbar-brand" rel="home" >
                 <img class="logo_film"
                      src="./img/film_nerd_logo.jpg">
             </a>
@@ -19,9 +19,13 @@
 
             <form class="navbar-form navbar-left" role="search">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Enter a movie name">
+                    <input ng-model = "model.movieName"
+                           type="text"
+                           class="form-control"
+                           placeholder="Enter a movie name">
                 </div>
-                <a href ="#/search"
+
+                <a href ="#/search/{{model.movieName}}"
                         type="submit" class="btn btn-default">Submit</a>
             </form>
 
@@ -46,8 +50,8 @@
 
 
     <h1>Login</h1>
-    <p></p>
 
+    <!-- Username-->
     <form novalidate name="model.myform">
         <input ng-model="username"
                placeholder="username"
@@ -57,35 +61,41 @@
                required/>
         <span class="alert-class"
               ng-show="model.myform.username.$invalid">{{model.alert}}</span>
-        <p></p>
 
+        <!-- Password-->
+        <p></p>
         <input ng-model="password"
                placeholder="password"
                name="password"
                type="password"
                class="form-control"
                required/>
- <span class="alert-class"
-       ng-show="model.myform.password.$invalid">{{model.alert}}</span>
-        <p></p>
+         <span class="alert-class"
+               ng-show="model.myform.password.$invalid">{{model.alert}}</span>
 
-        <!-- ng-click="model.login(username,password)"-->
-        <a href="#/profile"
-                class="btn btn-primary btn-block" type="submit">Login</a>
+        <!-- Login Button-->
+
+        <p></p>
+        <button ng-click="model.login(username,password)"
+                class="btn btn-primary btn-block" type="submit">Login</button>
     </form>
 
-
+    <!-- Register Button-->
     <p></p>
     <a class="btn btn-success btn-block"
-       href="#/register" >Register</a>
+       href="#/register">Register</a>
+
     <p></p>
+
+    <!-- Google Login Button-->
 
     <a href="/auth/google" class="btn btn-primary btn-block">
         <span class="fa fa-google-plus"></span>
-        Google Login
+            Google Login
     </a>
 
 </div>
+
 <!-- End of Body-->
 
 <!-- Footer -->
@@ -97,8 +107,7 @@
             </a>
         </p>
         <p class="navbar-text pull-left">
-
-                <span>New Here? Please </span>
+                <span>New Here? Please</span>
             </a>
         </p>
 

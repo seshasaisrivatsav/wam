@@ -1,6 +1,5 @@
 
-
 (function () {
-    angular.module ("FilmNerd",["ngRoute"]);
+    angular.module ("FilmNerd", ["ngRoute"]);
 })();
 

@@ -15,13 +15,13 @@
         var userId = $rootScope.currentUser._id;
         /*it is good practice to declare initialization ina function. say init*/
         function init(){
-           UserService
-               .findUserById(userId)
-               .then(function (response) {
-                   vm.user = response.data;
-               });
+            UserService
+                .findUserById(userId)
+                .then(function (response) {
+                    vm.user = response.data;
+                });
         }
-       init();
+        init();
 
         function logout() {
             UserService
@@ -60,8 +60,8 @@
                    }
                });
         }
-        
-        
+
+
 
    }
 

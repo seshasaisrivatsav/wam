@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" rel="home" >
+            <a  href="#/moviedefault" class="navbar-brand" rel="home" >
                 <img class="logo_film"
                      src="./img/film_nerd_logo.jpg">
             </a>
@@ -19,19 +19,23 @@
 
             <form class="navbar-form navbar-left" role="search">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Enter a movie name">
+                    <input ng-model = "model.movieName"
+                           type="text"
+                           class="form-control"
+                           placeholder="Enter a movie name">
                 </div>
-                <a href ="#/search"
-                        type="submit" class="btn btn-default">Submit</a>
+
+                <a href ="#/search/{{model.movieName}}"
+                   type="submit" class="btn btn-default">Submit</a>
             </form>
 
         </div>
     </div>
 </nav>
+<!-- End Of Header -->
 
 
 <!--Body-->
-
 <div class="container">
     <h1>Register</h1>
 
@@ -51,6 +55,25 @@
                required/>
        <span class="alert-class"
              ng-show="model.myform.username.$invalid">{{model.alert}}</span>
+
+        <p></p>
+
+        <input ng-model="firstName"
+               placeholder="firstName"
+               name="firstName"
+               type="firstName"
+               class="form-control"
+               required/>
+
+        <p></p>
+
+        <input ng-model="lastName"
+               placeholder="lastName"
+               name="lastName"
+               type="lastName"
+               class="form-control"
+               required/>
+
         <p></p>
 
         <input ng-model="password"
@@ -62,6 +85,8 @@
     <span class="alert-class"
           ng-show="model.myform.password.$invalid">{{model.alert}}</span>
         <p></p>
+
+
         <input ng-model="vpassword"
                name="vpassword"
                placeholder="verify password"
@@ -70,11 +95,13 @@
                required/>
     <span class="alert-class"
           ng-show="model.myform.vpassword.$invalid">{{model.pwmatch}}</span>
-<p></p>
-        <a class="btn btn-primary btn-block"
-              href="#/profile"
-                type="submit">Register</a>
-        <!--ng-click="model.createUser(model.user)">Register</a>-->
+
+        <p></p>
+
+        <button class="btn btn-primary btn-block"
+                ng-click="model.register(username, password, firstName, lastName)"
+                type="submit">Register</button>
+
     </form>
 
     <p> </p>
@@ -82,7 +109,6 @@
        href="#/login">Cancel</a>
 
 </div>
-
 
 
 <!-- Footer -->

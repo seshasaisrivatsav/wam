@@ -6,7 +6,9 @@
     function TmdbApiService($http, $q) {
         var api ={
             searchMovies: searchMovies,
-            getGenres: getGenres
+            getGenres: getGenres,
+            getNowPlaying: getNowPlaying,
+            getUpcomingMovies: getUpcomingMovies
         };
 
         /* API Info */
@@ -26,6 +28,17 @@
             return $http.get(moviesSearchUrl);
         }
 
+        function getNowPlaying() {
+            var url = baseUrl + '/movie/now_playing?api_key=' + apikey;
+            return $http.get(url);
+        }
+
+        function getUpcomingMovies() {
+            var url = baseUrl + '/movie/upcoming?api_key=' + apikey;
+            return $http.get(url);
+        }
+
+        
 
     }
     

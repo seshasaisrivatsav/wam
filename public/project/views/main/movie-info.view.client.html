@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" rel="home" >
+            <a  href="#/moviedefault" class="navbar-brand" rel="home" >
                 <img class="logo_film"
                      src="./img/film_nerd_logo.jpg">
             </a>
@@ -19,18 +19,23 @@
 
             <form class="navbar-form navbar-left" role="search">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Enter a movie name">
+                    <input ng-model = "model.movieName"
+                           type="text"
+                           class="form-control"
+                           placeholder="Enter a movie name">
                 </div>
-                <button href ="#/search"
-                        type="submit" class="btn btn-default">Submit</button>
+
+                <a href ="#/search/{{model.movieName}}"
+                   type="submit" class="btn btn-default">Submit</a>
             </form>
 
         </div>
     </div>
 </nav>
-
+<!-- End of Header-->
 
 <!--Body-->
+
 
 <div class="container">
     <h2>Here we get metadata of the movie that was clicked earlier</h2>

@@ -17,22 +17,42 @@
             .when("/movieinfo",{
                 templateUrl: "views/main/movie-info.view.client.html"
             })
+
+            .when("/moviedefault",{
+                templateUrl : "views/main/movie-default.view.client.html",
+                controller: "movieDefaultController",
+                controllerAs: "model"
+            })
             .when("/profile",{
-                templateUrl: "views/user/profile.view.client.html"
+                templateUrl: "views/user/profile.view.client.html",
+                controller : "ProfileController",
+                controllerAs: "model" ,
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
             })
 
-            .when("/profileedit",{
-                templateUrl: "views/user/profile-edit.view.client.html"
+            .when("/editprofile",{
+                templateUrl: "views/user/profile-edit.view.client.html",
+                controller : "ProfileEditController",
+                controllerAs: "model" ,
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
             })
             .when("/register",{
-                templateUrl: "views/user/register.view.client.html"
+                templateUrl: "views/user/register.view.client.html",
+                controller : "RegisterController",
+                controllerAs: "model"
             })
 
             .when("/login",{
-                templateUrl: "views/user/login.view.client.html"
+                templateUrl: "views/user/login.view.client.html",
+                controller: "LoginController",
+                controllerAs : "model"
             })
 
-            .when("/search",{
+            .when("/search/:movieName",{
                 templateUrl: "views/main/search.view.client.html",
                 controller: "searchController",
                 controllerAs: "model"
@@ -44,5 +64,27 @@
             .otherwise({
             templateUrl: "views/user/home.view.client.html"
         })
+
+        function checkLoggedIn(UserService, $location, $q, $rootScope) {
+            //deferred obj has promise
+            var deferred = $q.defer();
+            UserService
+                .loggedIn()
+                .then(function (response) {
+                    var user = response.data;
+                    if(user=='0'){
+                        $rootScope.currentUser = null;
+                        deferred.reject();
+                        $location.url("/login");
+                    }else{
+                        $rootScope.currentUser = user;
+                        deferred.resolve();
+                    }
+                },function (err) {
+                    $location.url("/login");
+                });
+
+            return deferred.promise;
+        }
     }
 })();
