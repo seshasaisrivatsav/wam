@@ -15,18 +15,16 @@ module.exports = function () {
                 value: Number
             }
         ],
-        // list of users who rated this movie
-        ratedByUsers: [String],
-        // list of reviews for this movie
+
         reviews: [
             {
                 userId: String,
                 username: String,
-                text: String
+                text: String,
+                visible: String,
+                flagged: String
             }
-        ],
-        // list of users who reviewed this movie
-        reviewedByUsers: [String]
+        ]
         // store movie documents in this collection
     }, {collection: 'project.movie'});
     return MovieSchema;

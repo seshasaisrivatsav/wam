@@ -3,17 +3,17 @@
         .module("FilmNerd")
         .controller("MovieInfoController",MovieInfoController);
     
-    function MovieInfoController($routeParams, TmdbApiService, $sce) {
+    function MovieInfoController($routeParams, TmdbApiService, $sce, $location) {
         var vm = this;
 
         vm.id = $routeParams.id;
 
+        vm.reviewPage = reviewPage;
 
         function init() {
 
             getMovieDetails();
         }
-
         return init();
 
 
@@ -49,6 +49,10 @@
                     //         }
                     //     })
                 });
+        }
+        
+        function reviewPage() {
+            $location.url("/movie/"+ vm.id +"/review");
         }
 
 

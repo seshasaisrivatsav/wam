@@ -15,7 +15,7 @@
                 templateUrl: "views/admin/create-admin.view.client.html"
             })
 
-            .when("/review",{
+            .when("/movie/:id/review",{
                 templateUrl: "views/main/movie-review.view.client.html",
                 controller: "MovieReviewController",
                 controllerAs: "model"
