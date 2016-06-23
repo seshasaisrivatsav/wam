@@ -8,7 +8,8 @@
             searchMovies: searchMovies,
             getGenres: getGenres,
             getNowPlaying: getNowPlaying,
-            getUpcomingMovies: getUpcomingMovies
+            getUpcomingMovies: getUpcomingMovies,
+            findMovieByID: findMovieByID
         };
 
         /* API Info */
@@ -38,7 +39,12 @@
             return $http.get(url);
         }
 
-        
+        function findMovieByID(id, callback) {
+            var appendTags = 'videos,credits,reviews';
+            $http.get(baseUrl + '/movie/' + id + '?api_key=' + apikey + '&append_to_response=' + appendTags)
+                .success(callback);
+        }
+
 
     }
     

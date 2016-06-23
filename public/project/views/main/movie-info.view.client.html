@@ -1,3 +1,4 @@
+<!--<img href="../../../project/img/film_info_background.jpg" height="100%">-->
 
 <!-- Header -->
 <nav class="navbar navbar-inverse">
@@ -38,21 +39,114 @@
 
 
 <div class="container">
-    <h2>Here we get metadata of the movie that was clicked earlier</h2>
+    <!-- Movie Name -->
+    <h1 >{{model.movie.title}} ({{model.movie.release_date  | date: 'yyyy'}})</h1>
 
-    <h4>Title </h4>
-    <h4>Genre </h4>
-    <h4>RunTime</h4>
-    <h4>Users Rating</h4>
-    <h4>Your Rating</h4>
-    <h4>Cast</h4>
-    <h4>User Review</h4>
-    <h5>Report Review Button for each review</h5>
+    <!-- Movie Genre and Release Date-->
+    <div class="row">
+        <div class="col-xs-6">
+            <h4  class="page-header">Genre</h4>
+            <h5 ng-repeat="genre in model.movie.genres | limitTo:2">
+                {{genre.name}}
+            </h5>
+        </div>
 
+        <div class="col-xs-6">
+            <h4  class="page-header">Release Date</h4>
+            <div ng-if="!model.released">
+                <br/><br/><br/>
+            </div>
+
+            <h5 ng-bind="model.movie.release_date | date: 'mediumDate'"></h5>
+        </div>
+    </div>
+
+    <p></p>
+
+    <!-- IMDB Rating and Film Nerd Rating -->
+
+    <div class="row">
+        <div class="col-xs-6">
+            <h4  class="page-header">IMDB Rating</h4>
+            <div ng-model="model.movie.criticsRating"
+                 class="meter">
+
+                <meter class="meter" min="0" max="5" value="{{model.movie.criticsRating}}"></meter>
+                <p> <h5 class="rating">{{model.movie.criticsRating}}</h5>
+                </p>
+            </div>
+        </div>
+
+        <div class="col-xs-6">
+            <h4  class="page-header">Film Nerd Rating</h4>
+            <div ng-model="model.movie.usersRating"
+                 class="meter">
+
+                <meter class="meter" min="0" max="5" value="{{model.movie.usersRating}}"></meter>
+                <p> <h5 class="rating">{{model.movie.usersRating}}</h5>
+                </p>
+            </div>
+
+        </div>
+    </div>
+    <p></p>
+    <div class="row">
+        <div class="col-sm-3">
+
+                <img class="img img-responsive profile" ng-src="https://image.tmdb.org/t/p/w300/{{model.movie.poster_path}}">
+
+        </div>
+
+        <p></p>
+
+        <div class="col-sm-9">
+            <div class="item active youtube-widget" ng-if="model.movie.video_path">
+                <iframe width = "100%" ng-src="{{model.movie.video_path}}" frameborder="0" allowfullscreen=""></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Movie Summary-->
+    <div class="row">
+        <div class="col-xs-12">
+            <h3 class="page-header">Summary</h3>
+            <p>{{model.movie.overview}}</p>
+        </div>
+    </div>
+
+    <!-- Cast of the Movie -->
+    <div class="row">
+        <div class="col-xs-12 ">
+            <h3 class="page-header">Cast</h3>
+            <h2></h2>
+            <ul class="list-inline">
+                <li class="w92"  ng-repeat="actor in model.movie.credits.cast"
+                    ng-if="actor.profile_path">
+                    <a href="#/cast/{{actor.id}}">
+                        <img ng-src="https://image.tmdb.org/t/p/w92{{actor.profile_path}}"></a>
+                    <p class="title" href="#/cast/{{actor.id}}">{{actor.name}}</p>
+                    <!-- REPLAC p with a to move to cast page -->
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <p></p>
+
+    <a class="btn btn-success btn-block"
+       href="#/review">Rate and Review this movie</a>
+
+    <p></p>
+    <h3 class="page-header">User Reviews</h3>
+
+    <h>end of page</h>
+
+    <p></p>
+
+
+    <p></p>
 
 </div>
-
-
 
 <!-- Footer -->
 <nav class="navbar navbar-inverse navbar-fixed-bottom">

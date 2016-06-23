@@ -14,8 +14,18 @@
             .when("/admin",{
                 templateUrl: "views/admin/create-admin.view.client.html"
             })
-            .when("/movieinfo",{
-                templateUrl: "views/main/movie-info.view.client.html"
+
+            .when("/review",{
+                templateUrl: "views/main/movie-review.view.client.html",
+                controller: "MovieReviewController",
+                controllerAs: "model"
+
+            })
+
+            .when("/movie/:id",{
+                templateUrl: "views/main/movie-info.view.client.html",
+                controller: "MovieInfoController",
+                controllerAs: "model"
             })
 
             .when("/moviedefault",{

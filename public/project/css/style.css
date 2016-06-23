@@ -37,3 +37,33 @@
     color: #0b0b0b;
 text-align: center;
 }
+
+.movieinfo{
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+
+.youtube-widget {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+}
+
+li.w92 {
+    margin: 0 12px 0 0;
+    width: 93px;
+    padding-bottom: 8px;
+    text-align: center;
+    height: auto;
+    line-height: normal;
+    display: inline-block;
+    vertical-align: top;
+}
+
+li.w92 img {
+    display: block;
+    margin-bottom: 8px;
+    width: 92px;
+    height: 138px;
+}
