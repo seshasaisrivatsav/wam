@@ -12,11 +12,29 @@ module.exports = function () {
         findUserByCredentials: findUserByCredentials,
         deleteUser: deleteUser,
         updateUser: updateUser,
-        findUserByUsername: findUserByUsername
+        findUserByUsername: findUserByUsername,
+        updateRatesandReviews: updateRatesandReviews,
+        findUserByGoogleId: findUserByGoogleId
 
     };
     return api;
     //findByID returns just one
+
+    function findUserByGoogleId(id) {
+        return User.findOne({"google.id": id});
+    }
+    
+    function updateRatesandReviews(id, rateandreview) {
+        var rate = rateandreview.rates;
+        var review = rateandreview.reviews;
+
+        return User
+            .update({_id: id},
+                {$push: {rates: rate},
+                        $push: {reviews : review }}
+            );
+    }
+
 
     function findUserById(userId) {
         return User.findById({_id: userId});

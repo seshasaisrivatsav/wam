@@ -18,9 +18,19 @@
             .when("/movie/:id/review",{
                 templateUrl: "views/main/movie-review.view.client.html",
                 controller: "MovieReviewController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    loggedIn: checkLoggedIn
+                }
 
             })
+
+            .when("/cast/:id", {
+                templateUrl: "views/main/cast-info.view.client.html",
+                controller: "CastController",
+                controllerAs: "model"
+            })
+
 
             .when("/movie/:id",{
                 templateUrl: "views/main/movie-info.view.client.html",

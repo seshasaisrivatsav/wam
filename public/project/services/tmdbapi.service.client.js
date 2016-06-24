@@ -9,7 +9,8 @@
             getGenres: getGenres,
             getNowPlaying: getNowPlaying,
             getUpcomingMovies: getUpcomingMovies,
-            findMovieByID: findMovieByID
+            findMovieByID: findMovieByID,
+            findCastByID: findCastByID
         };
 
         /* API Info */
@@ -42,6 +43,12 @@
         function findMovieByID(id, callback) {
             var appendTags = 'videos,credits,reviews';
             $http.get(baseUrl + '/movie/' + id + '?api_key=' + apikey + '&append_to_response=' + appendTags)
+                .success(callback);
+        }
+
+        function findCastByID(id, callback) {
+            var appendTags = 'movie_credits';
+            $http.get(baseUrl + '/person/' + id + '?api_key=' + apikey + '&append_to_response=' + appendTags)
                 .success(callback);
         }
 

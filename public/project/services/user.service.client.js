@@ -18,16 +18,21 @@
             deleteUser: deleteUser,
             login: login,
             logout: logout,
-            findUserByUsername: findUserByUsername
+            findUserByUsername: findUserByUsername,
+            submitRatingReview : submitRatingReview
 
         };
 
         return api;
         /*functions are implemented below*/
 
+        function submitRatingReview(userId,rateandreview) {
+            var url = "/api/project/"+userId+"/rateandreview";
+            return $http.put (url, rateandreview);
+        }
+
+
         function register(username,password, firstName, lastName, admin) {
-
-
             var user= {
                 username: username,
                 password : password,

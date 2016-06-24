@@ -15,9 +15,7 @@
             getMovieDetails();
         }
         return init();
-
-
-
+ 
         function getMovieDetails() {
             TmdbApiService.findMovieByID(vm.id,
                 function (response) {
@@ -28,6 +26,8 @@
                     }
                     response.credits.cast.splice(8, response.credits.cast.length - 8);
                     vm.movie = response;
+
+
                     vm.movie.criticsRating = response.vote_average / 2;
                     vm.movie.ratedByUsers = [];
                     vm.movie.reviewedByUsers = [];

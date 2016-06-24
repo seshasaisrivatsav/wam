@@ -18,7 +18,7 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
 
-            <form class="navbar-form navbar-left" role="search">
+            <form class="navbar-form navbar-left " role="search">
                 <div class="form-group">
                     <input ng-model = "model.movieName"
                            type="text"
@@ -92,17 +92,23 @@
     <p></p>
     <div class="row">
         <div class="col-sm-3">
-
-                <img class="img img-responsive profile" ng-src="https://image.tmdb.org/t/p/w300/{{model.movie.poster_path}}">
+            <!-- Movie Poster-->
+            <div class=fill>
+                <img class="img" ng-src="https://image.tmdb.org/t/p/w300/{{model.movie.poster_path}}">
+            </div>
+                <!--<img class="img img-responsive profile" ng-src="https://image.tmdb.org/t/p/w300/{{model.movie.poster_path}}">-->
 
         </div>
 
         <p></p>
-
+        <!-- Youtube Trailer-->
         <div class="col-sm-9">
-            <div class="item active youtube-widget" ng-if="model.movie.video_path">
-                <iframe width = "100%" ng-src="{{model.movie.video_path}}" frameborder="0" allowfullscreen=""></iframe>
+            <div class="video-container">
+                <iframe  width = "100%" ng-src="{{model.movie.video_path}}" frameborder="0" allowfullscreen=""></iframe>
             </div>
+            <!--<div class="item active youtube-widget" ng-if="model.movie.video_path">-->
+                <!--<iframe width = "100%" ng-src="{{model.movie.video_path}}" frameborder="0" allowfullscreen=""></iframe>-->
+            <!--</div>-->
         </div>
     </div>
 
@@ -110,7 +116,7 @@
     <div class="row">
         <div class="col-xs-12">
             <h3 class="page-header">Summary</h3>
-            <p>{{model.movie.overview}}</p>
+            <p class="justifytext">{{model.movie.overview}}</p>
         </div>
     </div>
 

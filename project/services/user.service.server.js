@@ -1,13 +1,23 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy; //added recently
 var bcrypt = require("bcrypt-nodejs");
+
+
+var googleConfig = {
+    clientID     : "19483974661-f0g4hn8mplkvlc9dm9kip4refl4k0u2i.apps.googleusercontent.com",
+    clientSecret : "jmupSkxQtUqRuuhAKTcOfddz",
+    callbackURL  : "http://127.0.0.1:3000/auth/google/callback"
+};
+
 
 
 
 module.exports= function(app, models){
 
     var userModel = models.userModel;
-
+    app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+    app.put("/api/project/:userId/rateandreview", rateandreview);
     app.get("/api/project/user", getUsers);
     app.post("/api/project/user", createUser);
     app.post("/api/project/register", register);
@@ -17,15 +27,78 @@ module.exports= function(app, models){
     app.get("/api/project/user/:userId", findUserById);
     app.delete("/api/project/user/:userId", deleteUser);
     app.put("/api/project/user/:userId", updateUser);
-
+    app.get('/auth/google/callback',
+        passport.authenticate('google', {
+            successRedirect: '/project/#/profile',
+            failureRedirect: '/project/#/login'
+        }));
     
   passport.use('FilmNerd', new LocalStrategy(localStrategy));
+
+    passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+    function googleStrategy(token, refreshToken, profile, done) {
+        userModel
+            .findUserByGoogleId(profile.id)
+            .then(
+                function(user) {
+                    if(user) {
+                        return done(null, user);
+                    } else {
+                        var email = profile.emails[0].value;
+                        var emailParts = email.split("@");
+                        var newGoogleUser = {
+                            username:  emailParts[0],
+                            firstName: profile.name.givenName,
+                            lastName:  profile.name.familyName,
+                            email:     email,
+                            google: {
+                                id:    profile.id,
+                                token: token
+                            }
+                        };
+                        return userModel.createUser(newGoogleUser);
+                    }
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            )
+            .then(
+                function(user){
+                    return done(null, user);
+                },
+                function(err){
+                    if (err) { return done(err); }
+                }
+            );
+    }
+
+
 
     //done - is to notify passport of success/failures
 
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
+
+    function rateandreview(req, res) {
+
+        var id = req.params.userId;
+        var rateandreview = req.body;
+
+        userModel
+            .updateRatesandReviews(id, rateandreview)
+            .then(
+                function (stats) {
+                    res.sendStatus(200);
+                },
+                function (error) {
+                    res.sendStatus(404);
+                }
+            );
+    }
+
+    
     function logout(req, res) {
         req.logout();
         res.sendStatus(200);
@@ -80,7 +153,7 @@ module.exports= function(app, models){
                       done(null,user);
 
                     }else {
-                        done(null, "Error in login!");
+                        done("Error in login!", null);
                     }
                 },
                 function(err) {
@@ -93,7 +166,6 @@ module.exports= function(app, models){
     }
 
     function deserializeUser(user, done) {
-
         userModel
             .findUserById(user._id)
             .then(

@@ -10,6 +10,10 @@ module.exports = function () {
         lastName: String,
         email: String,
         admin: String,
+        google: {
+            id:    String,
+            token: String
+        },
         // tmdb ids of movies this user rates
         rates: [
             {
@@ -19,9 +23,7 @@ module.exports = function () {
                 imageUrl: String
             }
         ],
-        // movies this user rates
-        // ratedMovies: [MovieSchema],
-        // tmdb ids of movies this user has reviewed
+
         reviews: [
             {
                 name: String,
@@ -38,23 +40,7 @@ module.exports = function () {
             {
                 userId: String,
                 username: String
-                //,
-                // rates: [
-                //     {
-                //         name: String,
-                //         tmdbId: String,
-                //         rating: Number,
-                //         imageUrl: String
-                //     }
-                // ],
-                // reviews: [
-                //     {
-                //         name: String,
-                //         tmdbId: String,
-                //         review: String,
-                //         imageUrl: String
-                //     }
-                // ]
+
             }
         ]
     }, {collection: 'project.user'});
