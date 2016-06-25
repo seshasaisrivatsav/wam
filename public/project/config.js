@@ -41,6 +41,7 @@
                 }
             })
 
+       
             .when("/moviedefault",{
                 templateUrl : "views/main/movie-default.view.client.html",
                 controller: "movieDefaultController",
@@ -50,6 +51,15 @@
                 }
             })
 
+            .when("/user/profile/:username",{
+                templateUrl : "views/user/user-profile.view.client.html",
+                controller: "UserProfileController",
+                controllerAs: "model",
+                resolve:{
+                    freeView : freeView
+                }
+            })
+            
             .when("/profile",{
                 templateUrl: "views/user/profile.view.client.html",
                 controller : "ProfileController",

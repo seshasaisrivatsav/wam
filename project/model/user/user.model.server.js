@@ -12,6 +12,7 @@ module.exports = function () {
         findUserByCredentials: findUserByCredentials,
         deleteUser: deleteUser,
         updateUser: updateUser,
+        followUser: followUser,
         findUserByUsername: findUserByUsername,
         updateRatesandReviews: updateRatesandReviews,
         findUserByGoogleId: findUserByGoogleId
@@ -27,7 +28,7 @@ module.exports = function () {
     function updateRatesandReviews(id, rateandreview) {
         var rate = rateandreview.rates;
         var review = rateandreview.reviews;
- 
+
         return User
             .update({_id: id},
                 {$push: {rates: rate,
@@ -51,6 +52,13 @@ module.exports = function () {
                 $set: {firstName : user.firstName,
                     lastName : user.lastName,
                     email: user.email}}
+            );
+    }
+
+    function followUser(id, follows) {
+        return User
+            .update({_id: id},
+                {$push: {follows: follows}}
             );
     }
 

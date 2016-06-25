@@ -3,12 +3,7 @@
         .module("FilmNerd")
         .controller("CastController", CastController);
 
-    function CastController(UserService, $routeParams,$rootScope, TmdbApiService) {
-        // UserService
-        //     .getCurrentUser()
-        //     .then(function (response) {
-        //         vm.currentUser = response.data;
-        //     })
+    function CastController(UserService, $routeParams,$rootScope, $location, TmdbApiService) {
 
         var vm = this;
         vm.id = $routeParams.id;

@@ -3,22 +3,47 @@
         .module("FilmNerd")
         .controller("searchController", searchController);
 
-    function searchController (TmdbApiService, $routeParams, $location) {
+    function searchController (TmdbApiService, $rootScope, $routeParams, $location, UserService) {
 
         var vm = this;
         vm.searchMoviesfromSearchPage =searchMoviesfromSearchPage;
         
 
         vm.genreName = genreName;
-
+        vm.logout = logout;
         vm.movieName = $routeParams.movieName;
         var searchText = $routeParams.movieName;
 
         function init() {
             searchMovies(searchText);
             getGenres();
+            getLoggedInUser();
         }
         init();
+
+        function getLoggedInUser() {
+            if($rootScope.currentUser){
+                vm.loggedIn = "true";
+                loggedInUserId = $rootScope.currentUser._id;
+
+            } else {
+                vm.notloggedIn = "true";
+
+            }
+        }
+
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (response) {
+                        $location.url("/login");
+                    },
+                    function () {
+                        $location.url("/login");
+                    }
+                );
+        }
 
         function searchMoviesfromSearchPage(searchText) {
             $location.url("/search/"+ searchText);

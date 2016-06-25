@@ -15,6 +15,7 @@
             findUserByCredentials: findUserByCredentials,
             findUserById: findUserById,
             updateUser: updateUser,
+            followUser: followUser,
             deleteUser: deleteUser,
             login: login,
             logout: logout,
@@ -87,8 +88,11 @@
         function updateUser(userId, user){
             var url="/api/project/user/"+userId;
             return $http.put(url, user);
-
-
+         }
+        
+        function followUser(userId, follows) {
+            var url = "/api/project/user/follows/"+ userId;
+            return $http.put(url, follows);
         }
 
 

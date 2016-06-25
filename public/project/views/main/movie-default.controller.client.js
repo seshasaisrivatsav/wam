@@ -3,7 +3,7 @@
         .module("FilmNerd")
         .controller("movieDefaultController",movieDefaultController);
 
-    function movieDefaultController(TmdbApiService, $rootScope, $sce, UserService) {
+    function movieDefaultController(TmdbApiService, $rootScope, $location, $sce, UserService) {
         var vm = this;
         vm.genreName = genreName;
         vm.logout = logout;

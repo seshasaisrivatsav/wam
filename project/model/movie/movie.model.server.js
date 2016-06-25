@@ -22,11 +22,9 @@ module.exports = function() {
     return api;
 
     // function reportReview(reviewId, tmdbId) {
-    //     console.log(tmdbId);
-    //     console.log(reviewId);
-    //
+
     //     var trueth = "true";
-    //     //return Movie.update({tmdbId : tmdbId, reviews.username :  reviewId}, {$set:{reviews.$.flagged: trueth} });
+   // return Movie.update({tmdbId : tmdbId, 'reviews.username' :  reviewId}, {$set:{reviews.$.flagged: trueth} });
     //
     //
     // }

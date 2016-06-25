@@ -10,13 +10,38 @@
         var userId = $rootScope.currentUser._id;
         var tmdbId = $routeParams.id;
         vm.submitRatingReview = submitRatingReview;
+        vm.logout = logout;
 
         function init() {
             getMovieDetails();
             getUserName();
+            getLoggedInUser();
         }
         return init();
 
+        function getLoggedInUser() {
+            if($rootScope.currentUser){
+                vm.loggedIn = "true";
+                loggedInUserId = $rootScope.currentUser._id;
+
+            } else {
+                vm.notloggedIn = "true";
+
+            }
+        }
+
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (response) {
+                        $location.url("/login");
+                    },
+                    function () {
+                        $location.url("/login");
+                    }
+                );
+        }
 
 
 

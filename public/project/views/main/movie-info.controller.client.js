@@ -12,6 +12,8 @@
         var submitted = false;
         vm.logout = logout;
         vm.reportReview = reportReview;
+        vm.needtoLoginforProfile = needtoLoginforProfile;
+       
 
         function reportReview(_id) {
 
@@ -59,6 +61,10 @@
            getLoggedInUser();
         }
         return init();
+
+        function  needtoLoginforProfile() {
+            vm.givecheckoutusererror ="need to login to check out user's profiles";
+        }
 
         function giveError() {
             vm.notLoggedInError = "You must login to leave ratings and reviews!";
@@ -125,8 +131,11 @@
         //
         //
         // }
+        
+      
 
         function reviewPage() {
+             
             UserService
                     .findUserById(loggedInUserId)
                     .then(function (response) {
@@ -134,6 +143,7 @@
                         for(var i in usersReviews){
                             if(usersReviews[i].tmdbId == vm.id){
                                 vm.error = "Dear user, you have already submitted review!";
+
                                 return;
                             }
                         }

@@ -27,6 +27,7 @@ module.exports= function(app, models){
     app.get("/api/project/user/:userId", findUserById);
     app.delete("/api/project/user/:userId", deleteUser);
     app.put("/api/project/user/:userId", updateUser);
+    app.put("/api/project/user/follows/:userId", followUser);
     app.get('/auth/google/callback',
         passport.authenticate('google', {
             successRedirect: '/project/#/profile',
@@ -85,9 +86,7 @@ module.exports= function(app, models){
 
         var id = req.params.userId;
         var rateandreview = req.body;
-
-        console.log(rateandreview);
-
+ 
         userModel
             .updateRatesandReviews(id, rateandreview)
             .then(
@@ -202,6 +201,22 @@ module.exports= function(app, models){
 
         userModel
             .updateUser(id, user)
+            .then(
+                function (stats) {
+                    res.sendStatus(200);
+                },
+                function (error) {
+                    res.sendStatus(404);
+                }
+            );
+    }
+    
+    function followUser(req, res) {
+        var id = req.params.userId;
+        var follows = req.body;
+
+        userModel
+            .followUser(id, follows)
             .then(
                 function (stats) {
                     res.sendStatus(200);

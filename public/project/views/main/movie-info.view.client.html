@@ -18,7 +18,7 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
 
-            <form class="navbar-form navbar-left " role="search">
+            <form class="navbar-form navbar-left" role="search">
                 <div class="form-group">
                     <input ng-model = "model.movieName"
                            type="text"
@@ -78,7 +78,7 @@
         </div>
 
         <div class="col-xs-6">
-            <h4  class="page-header">Film Nerd Rating</h4>
+            <h4  class="page-header">FilmNerd Rating</h4>
             <div ng-model="model.movie.usersRating"
                  class="meter">
 
@@ -164,22 +164,34 @@
 
     <!-- User Reviews Section -->
     <p></p>
+    <div ng-if="model.givecheckoutusererror"
+         class="alert alert-danger">
+        {{model.givecheckoutusererror}}
+    </div>
     <h3 class="page-header">User Reviews</h3>
 
         <div   ng-repeat = "rev in model.movieInfo.reviews" >
             <div ng-if = "rev.visible=='true'">
             <div class="row">
-
                 <!-- Username -->
-                <div  class="col-xs-9">
-                    <a href="#">
+                <div  ng-if="model.loggedIn" class="col-xs-9">
+                    <a href="#/user/profile/{{rev.username}}">
                         <h3 class="glyphicon glyphicon-user makeblack"> {{rev.username}}
                         </h3>
                      </a>
                 </div>
+                <div  ng-if="model.notloggedIn" class="col-xs-9">
+                    <a ng-click="model.needtoLoginforProfile()">
+                        <h3 class="glyphicon glyphicon-user makeblack"> {{rev.username}}
+                        </h3>
+                    </a>
+                </div>
+
+
 
               <!-- Report Button-->
-                <a  type="button " ng-click="model.reportReview(rev._id)" class=" reportbutton btn btn-default btn-sm">
+                <a  type="button " ng-click="model.reportReview(rev._id)"
+                    class=" reportbutton btn btn-default btn-sm">
                     <span class="glyphicon glyphicon-exclamation-sign  "></span> Report
                 </a>
 

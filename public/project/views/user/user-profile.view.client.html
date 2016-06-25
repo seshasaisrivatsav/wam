@@ -38,12 +38,49 @@
 <!--Body -->
 
 <div class="container">
+    <div class="row">
+        <div class="col-xs-8">
+            <h2 class="page-header">{{model.user.firstName}}'s Profile </h2>
 
-    <h2 class="page-header">Welcome {{model.user.firstName}}  </h2>
 
+            <a ng-if="model.notfollowing"
+               ng-click="model.followUser()"
+                    class="btn btn-primary btn-sm" type="submit">
+                <span class="glyphicon glyphicon glyphicon-heart"></span>
+                Follow</a>
+
+
+
+            <a ng-if="model.following"
+               ng-click="model.followUser()"
+               class="btn btn-primary btn-sm" type="submit">
+                <span class="glyphicon glyphicon glyphicon-heart"></span>
+                Following {{model.user.firstName}} </a>
+
+
+            <p></p>
+            <div ng-if="model.error"
+                 class="alert alert-danger">
+                {{model.error}}
+            </div>
+            <p></p>
+            <div ng-if="model.success"
+                 class="alert alert-success">
+                {{model.success}}
+            </div>
+
+
+
+
+
+
+            </a>
+        </div>
+
+    </div>
     <!-- Users Reviews -->
     <div class="container-fluid">
-    <h3>Your Reviews</h3>
+    <h3>{{model.user.firstName}}'s Reviews</h3>
 
         <div ng-repeat="reviews in model.user.reviews" class="row">
             <a class="makeblack" href="#/movie/{{reviews.tmdbId}}">
@@ -64,7 +101,7 @@
 
    <!-- Users Ratings -->
     <div class="container-fluid">
-        <h3>Your Ratings</h3>
+        <h3>{{model.user.firstName}}'s Ratings</h3>
 
         <div ng-repeat="rates in model.user.rates" class="row">
             <a class="makeblack" href="#/movie/{{rates.tmdbId}}">
@@ -76,7 +113,7 @@
                        <!--width ="70"-->
                        <!--value="{{rates.rating}}">-->
                 <!--</meter>-->
-                <h5>You rated: {{rates.rating}}/5</h5>
+                <h5>{{model.user.firstName}} rated: {{rates.rating}}/5</h5>
             </div>
             </a>
             <p></p>
@@ -87,7 +124,7 @@
 
 
     <div class="container">
-        <h3>Your Followers</h3>
+        <h3>{{model.user.firstName}} Followers</h3>
     </div>
 
 </div>
