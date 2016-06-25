@@ -30,8 +30,8 @@ module.exports = function () {
 
         return User
             .update({_id: id},
-                {$push: {rates: rate},
-                        $push: {reviews : review }}
+                {$push: {rates: rate,
+                        reviews : review }}
             );
     }
 

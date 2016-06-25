@@ -7,7 +7,10 @@ module.exports = function() {
 
     var api = {
         
-        
+        findMovieById : findMovieById,
+        updateRatingAndReview : updateRatingAndReview,
+        createMovie: createMovie
+
         // createMovie: createMovie,
         // findMovieByTmdbID: findMovieByTmdbID,
         // findMoviesByTmdbIDs: findMoviesByTmdbIDs,
@@ -15,11 +18,27 @@ module.exports = function() {
         // userReviewsMovie: userReviewsMovie
     };
     return api;
+ 
+    function findMovieById(id) {
+   
+        return Movie.find({tmdbId: id});
+    }
 
-    
-    
-    
-    
+    function updateRatingAndReview(id, ratingsandreviews) {
+        var ratings = ratingsandreviews.ratings;
+        var reviews = ratingsandreviews.reviews;
+        
+
+        return Movie
+            .update({tmdbId: id},
+                {$push: {ratings: ratings,
+                    reviews: reviews}}
+            );
+    }
+
+    function createMovie(movie) {
+        return Movie.create(movie);
+    }
     
     
     

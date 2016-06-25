@@ -1,5 +1,3 @@
-
-
 /*entry gate in to the database connection */
 // we create a node JS module
 module.exports  = function () {

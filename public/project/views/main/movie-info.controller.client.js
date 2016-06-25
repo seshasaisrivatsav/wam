@@ -3,7 +3,7 @@
         .module("FilmNerd")
         .controller("MovieInfoController",MovieInfoController);
     
-    function MovieInfoController($routeParams, TmdbApiService, $sce, $location) {
+    function MovieInfoController($routeParams, TmdbApiService, $sce, $location, MovieService) {
         var vm = this;
 
         vm.id = $routeParams.id;
@@ -13,9 +13,28 @@
         function init() {
 
             getMovieDetails();
+            getMovieReviewsandRatings();
+
         }
         return init();
- 
+
+
+        function getMovieReviewsandRatings() {
+            MovieService
+                .findMovieById(vm.id)
+                .then(function (response) {
+                    vm.movieInfo = response.data;
+                    var noOfRatings = vm.movieInfo.ratings.length;
+                    var sumOfRatings = 0;
+                    for (var i in vm.movieInfo.ratings){
+                         var sumOfRatings = sumOfRatings + vm.movieInfo.ratings[i].value;
+                    }
+                    var avgRating = sumOfRatings/noOfRatings;
+                    vm.avgRating = avgRating.toFixed(1);
+                });
+        }
+
+
         function getMovieDetails() {
             TmdbApiService.findMovieByID(vm.id,
                 function (response) {
@@ -36,18 +55,7 @@
                     if(now > releaseDate) {
                         vm.released = true;
                     }
-                    // MovieService
-                    //     .getMovieDetails(vm.movie.id)
-                    //     .then(function (response) {
-                    //         if (response.data) {
-                    //             vm.movie.usersRating = parseFloat(response.data.totalRatings);
-                    //             vm.movie.tempUserReviews = response.data.reviews;
-                    //             vm.movie.ratings = response.data.ratings;
-                    //             vm.movie.ratedByUsers = response.data.ratedByUsers;
-                    //             vm.movie.reviewedByUsers = response.data.reviewedByUsers;
-                    //             populateCriticReviews();
-                    //         }
-                    //     })
+                    
                 });
         }
         

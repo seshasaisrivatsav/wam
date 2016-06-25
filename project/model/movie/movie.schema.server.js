@@ -6,7 +6,7 @@ module.exports = function () {
         tmdbId: String,
         title: String,
         imageUrl: String,
-        videoUrl: [String],
+      
         // ids of ratings for this movie
         ratings: [
             {

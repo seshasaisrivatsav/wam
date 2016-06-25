@@ -42,7 +42,7 @@
             <img class="img img-responsive profile"
                  ng-src="https://image.tmdb.org/t/p/w300{{model.actor.profile_path}}">
         </div>
-        <div class="col-xs-12 col-sm-6 myplaceholder">
+        <div class="col-xs-12 col-sm-8 myplaceholder">
             <h1 class="page-header">{{model.actor.name}}</h1>
             <h2>Actor</h2>
             <h2></h2>
@@ -51,12 +51,16 @@
             <h4>Place of Birth: {{model.actor.place_of_birth}}</h4>
         </div>
     </div>
+
+    <!-- Biography-->
     <div class="container-fluid">
         <div class="col-xs-12">
             <h2 class="page-header">Biography</h2>
             <p class="justifytext">{{model.actor.biography}}</p>
         </div>
     </div>
+
+    <!-- Noted Movies -->
     <div class="container-fluid">
         <div class="col-xs-12">
             <h2 class="page-header">Noted for roles in</h2>

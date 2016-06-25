@@ -13,28 +13,20 @@
 
         function init() {
             getMovieDetails();
+            getUserName();
         }
         return init();
 
+        function submitRatingReview(review, movie, userName) {
+            
 
-
-
-        // console.log(movie.title);
-        // console.log("-----");
-        // console.log("https://image.tmdb.org/t/p/w130/"+ movie.poster_path);
-        // console.log(review.rating);
-        // console.log(review.reviewtext);
-        // console.log(userId);
-        // console.log(tmdbId);
-
-
-
-        function submitRatingReview(review, movie) {
             var imageUrl = "https://image.tmdb.org/t/p/w130/"+ movie.poster_path;
+
+            /* USER */
             var rates = {
                name : movie.title,
                tmdbid : tmdbId,
-               rating : review.rating,
+               rating : parseInt(review.rating),
                imageUrl : imageUrl
             };
             var reviews = {
@@ -48,13 +40,16 @@
                 reviews : reviews
             };
 
+            /* MOVIE */
             var ratings = {
                 userId :userId,
-                value : review.rating
+                username: userName,
+                value : parseInt(review.rating)
             };
 
             var reviews = {
                 userId : userId,
+                username: userName,
                 text : review.reviewtext,
                 visible : "true",
                 flagged : "false"
@@ -65,33 +60,73 @@
                 ratings : ratings,
                 reviews : reviews
             };
-                UserService
-                     .submitRatingReview(userId,rateandreview)
-                     .then(function (response) {
-                         var addedReview = response.data;
-                         if(addedReview){
-                             $location.url("/movie/"+ tmdbId);
-                         }else{
-                             vm.error = "unable to add review";
-                         }
-                     });
-                MovieService
-                    .submitMovieRatingReview(tmdbId,ratingsandreviews)
-                    .then(function (response) {
-                        var addedReview = response.data;
-                        if(addedReview){
-                            $location.url("/movie/"+ tmdbId);
-                        }else{
-                            vm.error = "unable to add review";
-                        }
+
+            var movie ={
+                tmdbId : tmdbId,
+                title: movie.title,
+                imageUrl : imageUrl,
+                ratings : [ratings],
+                reviews : [reviews]
+
+            };
+            
+            UserService
+                .submitRatingReview(userId,rateandreview)
+                .then(function (response) {
+                    var i = 1;
                 });
+ 
+   
+                MovieService
+                    .findMovieById(tmdbId)
+                    .then(function (response) {
+                        var returnedmovie = response.data;
+                        if(returnedmovie.tmdbId){
+                            MovieService
+                                .updateRatingAndReview(tmdbId, ratingsandreviews)
+                                .then(function (response) {
+                                    var addedObject = response.data;
+                                    if(addedObject){
+                                        $location.url("/movie/"+ tmdbId);
+                                    }else{
+                                        vm.error = "unable to add review";
+                                    }
+                                });
+                        }else{
+                            MovieService
+                                .createMovie(movie)
+                                .then(function (response) {
+                                    var addedObject = response.data;
+                                    if(addedObject){
+                                        $location.url("/movie/"+ tmdbId);
+                                    }else{
+                                        vm.error = "unable to add new Movie Object";
+                                    }
+                                });
+                        }
+                    });
+
+
 
 
         }
 
 
 
-
+        function getUserName() {
+            UserService
+                .findUserById(userId)
+                .then(function (response) {
+                    var returnedUser = response.data;
+                    if(returnedUser._id){
+                        vm.userName = returnedUser.username;
+                    }else{
+                        vm.error = "unable to add review";
+                    }
+                });
+           
+                 
+        }
 
 
 
