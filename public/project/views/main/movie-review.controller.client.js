@@ -18,7 +18,7 @@
         return init();
 
 
-    
+
 
         function submitRatingReview(review, movie, userName) {
             

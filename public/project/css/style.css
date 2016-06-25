@@ -11,6 +11,10 @@
     background-color: gainsboro;
 }
 
+body{
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
 
 .paddedfromtop{
     padding-top: 48px;

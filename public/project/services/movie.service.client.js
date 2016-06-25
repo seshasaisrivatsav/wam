@@ -9,10 +9,18 @@
         var api = {
             findMovieById: findMovieById,
             updateRatingAndReview: updateRatingAndReview,
-            createMovie : createMovie
+            createMovie : createMovie,
+            reportReview: reportReview
         };
         
         return api;
+
+        function reportReview(twoIds) {
+
+            var url = "/api/project/reportreview"
+        
+            return $http.put(url, twoIds);
+        }
         
         
         function findMovieById(tmdbId) {

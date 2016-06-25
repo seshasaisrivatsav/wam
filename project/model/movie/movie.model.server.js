@@ -10,6 +10,8 @@ module.exports = function() {
         findMovieById : findMovieById,
         updateRatingAndReview : updateRatingAndReview,
         createMovie: createMovie
+        //reportReview: reportReview
+
 
         // createMovie: createMovie,
         // findMovieByTmdbID: findMovieByTmdbID,
@@ -18,11 +20,22 @@ module.exports = function() {
         // userReviewsMovie: userReviewsMovie
     };
     return api;
- 
+
+    // function reportReview(reviewId, tmdbId) {
+    //     console.log(tmdbId);
+    //     console.log(reviewId);
+    //
+    //     var trueth = "true";
+    //     //return Movie.update({tmdbId : tmdbId, reviews.username :  reviewId}, {$set:{reviews.$.flagged: trueth} });
+    //
+    //
+    // }
+
     function findMovieById(id) {
-   
         return Movie.find({tmdbId: id});
     }
+
+
 
     function updateRatingAndReview(id, ratingsandreviews) {
         var ratings = ratingsandreviews.ratings;

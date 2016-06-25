@@ -3,17 +3,43 @@
         .module("FilmNerd")
         .controller("movieDefaultController",movieDefaultController);
 
-    function movieDefaultController(TmdbApiService, $sce) {
+    function movieDefaultController(TmdbApiService, $rootScope, $sce, UserService) {
         var vm = this;
         vm.genreName = genreName;
+        vm.logout = logout;
 
         function init() {
             getGenres();
             getNowplayingMovies();
             getUpcomingMovies();
+            getLoggedInUser();
         }
 
         return init();
+
+         function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (response) {
+                        $location.url("/login");
+                    },
+                    function () {
+                        $location.url("/login");
+                    }
+                );
+        }
+        function getLoggedInUser() {
+            if($rootScope.currentUser){
+                vm.loggedIn = "true";
+                loggedInUserId = $rootScope.currentUser._id;
+
+            } else {
+                vm.notloggedIn = "true";
+
+            }
+        }
+
 
 
         function getGenres() {

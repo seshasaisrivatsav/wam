@@ -8,46 +8,74 @@
 
         vm.id = $routeParams.id;
         vm.reviewPage = reviewPage;
+        vm.giveError = giveError;
         var submitted = false;
-        var loggedInUserId = $rootScope.currentUser._id;
+        vm.logout = logout;
+        vm.reportReview = reportReview;
 
+        function reportReview(_id) {
+
+            var reviewId = _id;
+            var tmdbId = vm.id;
+            
+            var twoIds = {
+                reviewId : reviewId,
+                tmdbId : tmdbId
+            }
+            // console.log(reviewId);
+            // console.log(tmdbId);
+            MovieService
+                .reportReview(twoIds)
+                .then(function (response) {
+                    vm.reportReviewMessage = "reported this review. Our admin will look into this and make a decision to remove"
+                    },
+                    function () {
+                        vm.reportReviewErrorMessage = "Something went wrong. Couldn't report this";
+                    }
+                );
+
+        }
+
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (response) {
+                        $location.url("/login");
+                    },
+                    function () {
+                        $location.url("/login");
+                    }
+                );
+        }
+
+
+        var loggedInUserId = null;
 
         function init() {
             getMovieDetails();
             getMovieReviewsandRatings();
-            checkAlreadySubmitted(loggedInUserId, vm.id);
-            getLoggedInUser();
+            //checkAlreadySubmitted(loggedInUserId, vm.id);
+           getLoggedInUser();
         }
         return init();
+
+        function giveError() {
+            vm.notLoggedInError = "You must login to leave ratings and reviews!";
+        }
         
         function getLoggedInUser() {
             if($rootScope.currentUser){
                 vm.loggedIn = "true";
                 loggedInUserId = $rootScope.currentUser._id;
-                console.log(loggedInUserId + " from inside");
+
             } else {
-                vm.notLoggedIn = "true";
+                vm.notloggedIn = "true";
+
             }
         }
 
-
-        console.log(loggedInUserId + "from outside");
-
-        function checkAlreadySubmitted(userId, tmdbId) {
-            UserService
-                .findUserById(loggedInUserId)
-                .then(function (response) {
-                     var usersReviews = response.data.reviews;
-                        for(var i in usersReviews){
-                        if(usersReviews[i].tmdbId == tmdbId){
-                              submitted = true ;
-                        }
-                    }
-                });
-        }
-
-
-        function getMovieReviewsandRatings() {
+     function getMovieReviewsandRatings() {
             MovieService
                 .findMovieById(vm.id)
                 .then(function (response) {
@@ -88,17 +116,33 @@
         }
 
 
-        
+        // function reviewPage() {
+        //         if(submitted) {
+        //             vm.error = "You have already submitted a review!!";
+        //         }
+        //         else{
+        //         $location.url("/movie/"+ vm.id +"/review");}
+        //
+        //
+        // }
+
         function reviewPage() {
-            console.log(submitted);
-                if(submitted) {
-                    vm.error = "already submitted";
-                }
-                else{
-                $location.url("/movie/"+ vm.id +"/review");}
+            UserService
+                    .findUserById(loggedInUserId)
+                    .then(function (response) {
+                        var usersReviews = response.data.reviews;
+                        for(var i in usersReviews){
+                            if(usersReviews[i].tmdbId == vm.id){
+                                vm.error = "Dear user, you have already submitted review!";
+                                return;
+                            }
+                        }
 
+                            $location.url("/movie/"+ vm.id +"/review");
 
-        }
+                    });
+            }
+
 
 
     }

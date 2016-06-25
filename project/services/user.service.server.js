@@ -86,6 +86,8 @@ module.exports= function(app, models){
         var id = req.params.userId;
         var rateandreview = req.body;
 
+        console.log(rateandreview);
+
         userModel
             .updateRatesandReviews(id, rateandreview)
             .then(

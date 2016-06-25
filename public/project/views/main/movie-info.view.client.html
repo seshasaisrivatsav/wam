@@ -1,7 +1,7 @@
 <!--<img href="../../../project/img/film_info_background.jpg" height="100%">-->
 
 <!-- Header -->
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
@@ -131,7 +131,7 @@
                     <a href="#/cast/{{actor.id}}">
                         <img ng-src="https://image.tmdb.org/t/p/w92{{actor.profile_path}}"></a>
                     <p class="title" href="#/cast/{{actor.id}}">{{actor.name}}</p>
-                    <!-- REPLAC p with a to move to cast page -->
+                    <!-- replace p with a to move to cast page -->
                 </li>
             </ul>
         </div>
@@ -139,9 +139,30 @@
 
     <p></p>
 
-    <a class="btn btn-success btn-block"
+    <!-- Error pops up if user tries to sumbit review for the second time-->
+    <div ng-if="model.error"
+         class="alert alert-danger">
+        {{model.error}}
+    </div>
+
+    <!-- ALert pops up if a non Logged in user tries to post a review -->
+    <div ng-if="model.notLoggedInError"
+         class="alert alert-danger">
+        {{model.notLoggedInError}}
+    </div>
+
+    <!-- Logged Out User sees this -->
+    <a ng-if="model.notloggedIn" class="btn btn-success btn-block"
+       ng-click="model.giveError()">Rate and Review this movie</a>
+
+
+
+    <!-- Logged in User sees this -->
+    <a  ng-if="model.loggedIn" class="btn btn-success btn-block"
        ng-click="model.reviewPage()">Rate and Review this movie</a>
 
+
+    <!-- User Reviews Section -->
     <p></p>
     <h3 class="page-header">User Reviews</h3>
 
@@ -158,19 +179,21 @@
                 </div>
 
               <!-- Report Button-->
-                <a  type="button " class=" reportbutton btn btn-default btn-sm">
+                <a  type="button " ng-click="model.reportReview(rev._id)" class=" reportbutton btn btn-default btn-sm">
                     <span class="glyphicon glyphicon-exclamation-sign  "></span> Report
                 </a>
 
             </div>
 
-                {{model.error}}
+
                 <!--Review text-->
             <div  class="row">
                 <div class="col-xs-12">
                 <p>{{rev.text}}</p>
                 </div>
             </div>
+
+
         </div>
 
         </div>
@@ -181,13 +204,23 @@
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
     <div class="container-fluid">
         <p class="navbar-text pull-right">
-            <a href="#/login">
-                <span>Login/Username</span>
+            <a ng-if="model.loggedIn"
+               ng-click="model.logout()">
+                <span>Logout</span>
+            </a>
+            <a ng-if="model.notloggedIn"
+               href="#/login">
+                <span>Login</span>
             </a>
         </p>
         <p class="navbar-text pull-left">
-            <a href="#/register">
-                <span>Register/Logout</span>
+            <a ng-if="model.loggedIn"
+               href="#/profile">
+                <span>Profile</span>
+            </a>
+            <a ng-if="model.notloggedIn"
+               href="#/register">
+                <span>Register</span>
             </a>
         </p>
 

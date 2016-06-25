@@ -6,7 +6,33 @@ module.exports = function (app, models) {
     app.get('/api/project/moviecheck/:tmdbId',findMovieById);
     app.put('/api/project/:tmdbId/ratingsandreviews',updateRatingAndReview);
     app.post('/api/project/movie',createMovie);
+    app.put('/api/project/reportreview' ,reportReview);
+    
+    function reportReview(req,res) {
 
+        var tmdbId = req.body.tmdbId;
+        var reviewId = req.body.reviewId;
+
+            movieModel
+            .findMovieById(tmdbId)
+                .then(function (movie) {
+                        var foundMovie = movie[0];
+                        var reviews = foundMovie.reviews;
+                        
+                        for(var i in reviews){
+                            if(reviews[i]._id == reviewId){
+                                reviews[i].flagged = "true";
+                            }
+                        }
+
+                    return movie[0].save();
+
+
+                    },
+                    function (error) {
+                        res.statusCode(404).send(error);
+                    });
+    }
 
     function findMovieById(req, res){
         var id = req.params.tmdbId;

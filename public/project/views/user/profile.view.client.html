@@ -1,6 +1,6 @@
 
 <!-- Header -->
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
@@ -38,18 +38,41 @@
 <!--Body -->
 
 <div class="container">
-    <h2>Welcome {{model.user.firstName}}  </h2>
 
-    <div class="container">
-    <h3>{{model.user.firstName}}'s Ratings</h3>
+    <h2 class="page-header">Welcome {{model.user.firstName}}  </h2>
+
+    <div class="container-fluid">
+    <h3>Your Reviews</h3>
+
+        <div ng-repeat="reviews in model.user.reviews" class="row">
+
+            <div class="col-xs-4">
+                <img ng-src="{{reviews.imageUrl}}" width = 70>
+                <h5>{{reviews.name}}</h5>
+
+            </div>
+            <div class="col-xs-8">
+
+                <h4>{{reviews.review}}</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <h3>Your Ratings</h3>
+
+        <div ng-repeat="rates in model.user.rates" class="row">
+
+            <div href="/movie/{{rates.tmdbId}}" class="col-xs-12">
+                <img ng-src="{{rates.imageUrl}}" width = 70>
+                <h5>{{rates.rating}}</h5>
+            </div>
+
+        </div>
     </div>
 
     <div class="container">
-    <h3>{{model.user.firstName}}'s Reviews</h3>
-    </div>
-
-    <div class="container">
-        <h3>{{model.user.firstName}}'s Followers</h3>
+        <h3>Your Followers</h3>
     </div>
 
 </div>

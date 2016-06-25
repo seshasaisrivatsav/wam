@@ -70,19 +70,28 @@
             .when("/register",{
                 templateUrl: "views/user/register.view.client.html",
                 controller : "RegisterController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve : {
+                    freeView : freeView
+                }
             })
 
             .when("/login",{
                 templateUrl: "views/user/login.view.client.html",
                 controller: "LoginController",
-                controllerAs : "model"
+                controllerAs : "model",
+                resolve : {
+                    freeView : freeView
+                }
             })
 
             .when("/search/:movieName",{
                 templateUrl: "views/main/search.view.client.html",
                 controller: "searchController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve : {
+                    freeView : freeView
+                }
             })
 
             .when("/home", {
@@ -90,7 +99,7 @@
             })
             .otherwise({
             templateUrl: "views/user/home.view.client.html"
-        })
+        });
 
         function checkLoggedIn(UserService, $location, $q, $rootScope) {
             //deferred obj has promise
