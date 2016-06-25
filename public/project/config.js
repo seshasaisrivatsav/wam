@@ -35,14 +35,21 @@
             .when("/movie/:id",{
                 templateUrl: "views/main/movie-info.view.client.html",
                 controller: "MovieInfoController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve :{
+                    freeView : freeView
+                }
             })
 
             .when("/moviedefault",{
                 templateUrl : "views/main/movie-default.view.client.html",
                 controller: "movieDefaultController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve : {
+                    freeView: freeView
+                }
             })
+
             .when("/profile",{
                 templateUrl: "views/user/profile.view.client.html",
                 controller : "ProfileController",
@@ -104,6 +111,27 @@
                     $location.url("/login");
                 });
 
+            return deferred.promise;
+        }
+
+        function freeView (UserService, $location, $q, $rootScope) {
+            var deferred = $q.defer();
+            UserService
+                .loggedIn()
+                .then(
+                    function (response) {
+                        var user = response.data;
+                        if(user == '0'){
+                            deferred.resolve();
+                        } else {
+                            $rootScope.currentUser = user;
+                            deferred.resolve();
+                        }
+                    },
+                    function (err) {
+                        $location.url("/login");
+                    }
+                );
             return deferred.promise;
         }
     }

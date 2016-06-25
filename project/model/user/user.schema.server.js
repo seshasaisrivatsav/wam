@@ -42,7 +42,7 @@ module.exports = function () {
                 username: String
 
             }
-        ]
+    ]
     }, {collection: 'project.user'});
     return UserSchema;
 };

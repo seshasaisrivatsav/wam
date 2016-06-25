@@ -17,6 +17,9 @@
         }
         return init();
 
+
+    
+
         function submitRatingReview(review, movie, userName) {
             
 
@@ -25,13 +28,13 @@
             /* USER */
             var rates = {
                name : movie.title,
-               tmdbid : tmdbId,
+               tmdbId : tmdbId,
                rating : parseInt(review.rating),
                imageUrl : imageUrl
             };
             var reviews = {
                 name: movie.title,
-                tmdbid : tmdbId,
+                tmdbId : tmdbId,
                 review : review.reviewtext,
                 imageUrl : imageUrl
             };

@@ -3,20 +3,48 @@
         .module("FilmNerd")
         .controller("MovieInfoController",MovieInfoController);
     
-    function MovieInfoController($routeParams, TmdbApiService, $sce, $location, MovieService) {
+    function MovieInfoController($routeParams, $rootScope, TmdbApiService, $sce, $location, MovieService, UserService) {
         var vm = this;
 
         vm.id = $routeParams.id;
-
         vm.reviewPage = reviewPage;
+        var submitted = false;
+        var loggedInUserId = $rootScope.currentUser._id;
+
 
         function init() {
-
             getMovieDetails();
             getMovieReviewsandRatings();
-
+            checkAlreadySubmitted(loggedInUserId, vm.id);
+            getLoggedInUser();
         }
         return init();
+        
+        function getLoggedInUser() {
+            if($rootScope.currentUser){
+                vm.loggedIn = "true";
+                loggedInUserId = $rootScope.currentUser._id;
+                console.log(loggedInUserId + " from inside");
+            } else {
+                vm.notLoggedIn = "true";
+            }
+        }
+
+
+        console.log(loggedInUserId + "from outside");
+
+        function checkAlreadySubmitted(userId, tmdbId) {
+            UserService
+                .findUserById(loggedInUserId)
+                .then(function (response) {
+                     var usersReviews = response.data.reviews;
+                        for(var i in usersReviews){
+                        if(usersReviews[i].tmdbId == tmdbId){
+                              submitted = true ;
+                        }
+                    }
+                });
+        }
 
 
         function getMovieReviewsandRatings() {
@@ -58,9 +86,18 @@
                     
                 });
         }
+
+
         
         function reviewPage() {
-            $location.url("/movie/"+ vm.id +"/review");
+            console.log(submitted);
+                if(submitted) {
+                    vm.error = "already submitted";
+                }
+                else{
+                $location.url("/movie/"+ vm.id +"/review");}
+
+
         }
 
 

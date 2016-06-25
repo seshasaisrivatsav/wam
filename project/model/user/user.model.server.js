@@ -27,7 +27,7 @@ module.exports = function () {
     function updateRatesandReviews(id, rateandreview) {
         var rate = rateandreview.rates;
         var review = rateandreview.reviews;
-
+ 
         return User
             .update({_id: id},
                 {$push: {rates: rate,
