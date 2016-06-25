@@ -86,8 +86,16 @@
     </div>
 
 
-    <div class="container">
-        <h3>Your Followers</h3>
+    <div class="container ">
+        <h3>You are Following</h3>
+        <div ng-repeat ="follow in model.user.follows">
+            <li>
+                <a class="makeblack" href ="#/user/profile/{{follow.username}}">
+                    {{follow.username}}
+                </a>
+            </li>
+
+        </div>
     </div>
 
 </div>
