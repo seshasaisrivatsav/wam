@@ -4,9 +4,24 @@ module.exports = function (app, models) {
 
 
     app.get('/api/project/moviecheck/:tmdbId',findMovieById);
+    app.get('/api/project/findallmovies', findallmovies);
     app.put('/api/project/:tmdbId/ratingsandreviews',updateRatingAndReview);
     app.post('/api/project/movie',createMovie);
     app.put('/api/project/reportreview' ,reportReview);
+    
+    function findallmovies(req, res) {
+
+        movieModel
+            .findAllMovies()
+            .then(
+                function (movies) {
+                    res.json(movies);
+                },
+                function (error) {
+                    res.sendStatus(404);
+                }
+            );
+    }
     
     function reportReview(req,res) {
 
@@ -45,7 +60,7 @@ module.exports = function (app, models) {
                 },
                 function (error) {
                     res.statusCode(404).send(error);
-                });
+         });
     }
 
 

@@ -9,30 +9,20 @@ module.exports = function() {
         
         findMovieById : findMovieById,
         updateRatingAndReview : updateRatingAndReview,
-        createMovie: createMovie
-        //reportReview: reportReview
-
-
-        // createMovie: createMovie,
-        // findMovieByTmdbID: findMovieByTmdbID,
-        // findMoviesByTmdbIDs: findMoviesByTmdbIDs,
-        // userRatesMovie: userRatesMovie,
-        // userReviewsMovie: userReviewsMovie
+        createMovie: createMovie,
+        findAllMovies: findAllMovies
+        
     };
     return api;
-
-    // function reportReview(reviewId, tmdbId) {
-
-    //     var trueth = "true";
-   // return Movie.update({tmdbId : tmdbId, 'reviews.username' :  reviewId}, {$set:{reviews.$.flagged: trueth} });
-    //
-    //
-    // }
+ 
 
     function findMovieById(id) {
         return Movie.find({tmdbId: id});
     }
 
+    function findAllMovies() {
+        return Movie.find();
+    }
 
 
     function updateRatingAndReview(id, ratingsandreviews) {

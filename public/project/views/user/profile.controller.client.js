@@ -23,6 +23,14 @@
         }
         init();
 
+
+        if($rootScope.currentUser.admin === "true"){
+            vm.admin = "true";
+        }else {
+            vm.nonadmin = "false";
+        }
+        
+        
         function logout() {
             UserService
                 .logout()

@@ -7,13 +7,37 @@
         $routeProvider
 
 
-            .when("/adminstats", {
-                templateUrl: "views/admin/admin-stats.view.client.html"
-            })
+            // .when("/adminconsole", {
+            //     templateUrl: "views/admin/admin-console.view.client.html",
+            //     controller: "AdminConsoleController",
+            //     controllerAs: "model",
+            //     resolve: {
+            //         loggedIn: checkLoggedIn
+            //     }
+            // })
 
             .when("/admin",{
                 templateUrl: "views/admin/create-admin.view.client.html"
             })
+
+            .when("/manageflaggedreviews",{
+                templateUrl: "views/admin/admin-flaggedreviews.view.client.html",
+                controller: "AdminFlaggedReviewsController",
+                controllerAs: "model",
+                resolve :{
+                    freeView : freeView
+                }
+            })
+
+            .when("/adminconsole",{
+                templateUrl: "views/admin/admin-console.view.client.html",
+                controller: "AdminConsoleController",
+                controllerAs: "model",
+                resolve :{
+                    freeView : freeView
+                }
+            })
+
 
             .when("/movie/:id/review",{
                 templateUrl: "views/main/movie-review.view.client.html",

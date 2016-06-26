@@ -1,5 +1,3 @@
-<!--<img href="../../../project/img/film_info_background.jpg" height="100%">-->
-
 <!-- Header -->
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container-fluid">
@@ -33,71 +31,72 @@
         </div>
     </div>
 </nav>
-<!-- End of Header-->
+
 
 <!--Body-->
 
 <div class="container pushdown">
+    <h2>Flagged Reviews</h2>
 
-    <div class="form-group">
-        <p>
-        <label for="reviewtext">Entered Rating  :</label>
-        {{model.review.rating}}
-        </p>
-    <input ng-model="model.review.rating"
-            type="range"
-            min=0
-            max=5
-            step="0.1"/>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
 
+                <th>User</th>
+                <th>Review Text</th>
+                <th>Remove</th>
+
+            </tr>
+            </thead>
+
+            <!-- Table Body-->
+            <tbody ng-repeat="review in model.results">
+            <tr ng-if="review.visible='true'">
+                <td>{{review.username}}</td>
+                <td>{{review.text}}</td>
+                <td><a  type="button " ng-click="model.removeReview(review._id)"
+                        class=" reportbutton btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-remove "> Remove</span>
+                    </a>
+                    <a  type="button " ng-click="model.donotremoveReview(review._id)"
+                        class=" reportbutton btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-ok "> Keep </span>
+                    </a>
+                </td>
+
+            </tr>
+            </tbody>
+
+        </table>
     </div>
-
-
-<div class="form-group">
-    <label for="reviewtext">Review</label>
-    <textarea ng-model="model.review.reviewtext"
-           type="text"
-           class="form-control"
-           id="reviewtext"
-           name="title"
-              rows = 5
-           placeholder="enter the review"
-           required></textarea>
-
-
-    <a class="btn btn-success btn-block"
-       ng-click="model.submitRatingReview(model.review, model.movie, model.userName)">Submit</a>
 </div>
 
-</div>
-
-<!-- End of Body -->
 
 <!-- Footer -->
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
     <div class="container-fluid">
         <p class="navbar-text pull-right">
-            <a ng-if="model.loggedIn"
-               ng-click="model.logout()">
+            <a
+                    ng-click="model.logout()">
                 <span>Logout</span>
             </a>
-            <a ng-if="model.notloggedIn"
-               href="#/login">
-                <span>Login</span>
-            </a>
+
         </p>
         <p class="navbar-text pull-left">
-            <a ng-if="model.loggedIn"
-               href="#/profile">
-                <span>Profile</span>
-            </a>
-            <a ng-if="model.notloggedIn"
-               href="#/register">
-                <span>Register</span>
+
+            <a  href="#/adminconsole">
+                <span>Admin Console</span>
             </a>
         </p>
 
     </div>
 </nav>
+
+
+
+
+
+
 
 

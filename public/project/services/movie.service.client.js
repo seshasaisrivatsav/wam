@@ -10,21 +10,23 @@
             findMovieById: findMovieById,
             updateRatingAndReview: updateRatingAndReview,
             createMovie : createMovie,
-            reportReview: reportReview
+            reportReview: reportReview,
+            findAllMovies: findAllMovies
         };
         
         return api;
 
         function reportReview(twoIds) {
-
-            var url = "/api/project/reportreview"
-        
+            var url = "/api/project/reportreview";
             return $http.put(url, twoIds);
         }
-        
+
+        function findAllMovies() {
+            var url = "/api/project/findallmovies";
+            return $http.get(url);
+        }
         
         function findMovieById(tmdbId) {
-            
             var url = "/api/project/moviecheck/" + tmdbId;
             return $http.get(url);
         }

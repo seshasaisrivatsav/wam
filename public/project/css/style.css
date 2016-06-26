@@ -11,10 +11,13 @@
     background-color: gainsboro;
 }
 
-body{
-    padding-top: 30px;
-}
+/*body{*/
+    /*padding-top: 30px;*/
+/*}*/
 
+.pushdown{
+    padding-top: 80px;
+}
 .paddedfromtop{
     padding-top: 48px;
 }
@@ -22,6 +25,9 @@ body{
     padding-top: 20px;
 }
 
+.makewhite{
+    color: whitesmoke;
+}
 .makeblack{
     color: #1b6d85;
 }
