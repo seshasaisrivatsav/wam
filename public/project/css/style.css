@@ -1,3 +1,10 @@
+a.makegray{
+
+    background-color: darkgray;
+
+}
+
+
 .homepagetext{
 
     position: fixed;
@@ -11,13 +18,19 @@
     background-color: gainsboro;
 }
 
+
+
 a.makeblue{background-color: cadetblue;}
 /*body{*/
     /*padding-top: 30px;*/
 /*}*/
 
 .pushdown{
-    padding-top: 80px;
+    padding-top: 70px;
+}
+
+div.lesspaddingbotton{
+    padding-bottom: 6px;
 }
 .paddedfromtop{
     padding-top: 48px;

@@ -69,6 +69,7 @@
                     }
 
                     vm.results = resultset;
+                    vm.moviesCount= resultset.length;
 
                     return resultset;
 
