@@ -63,13 +63,14 @@
                 <th>Movie</th>
                 <th>Reviewed by</th>
                 <th>Visible</th>
+                <th>Flagged</th>
                 <th>Review</th>
 
 
                 <tr ng-repeat="movie in model.results">
 
                     <td><a class="glyphicon glyphicon-ok makeblack"
-                           ng-click="model.updateMovie(movie.tmdbId, movie.userId, movie.visible, movie.text)"></a>
+                           ng-click="model.updateMovie(movie.tmdbId, movie.userId, movie.visible, movie.flagged, movie.text)"></a>
                     </td>
                     <td><a class="glyphicon glyphicon-remove makeblack"
                            ng-click="model.deleteMovie(movie.tmdbId, movie.userId)"></a>
@@ -88,6 +89,10 @@
                     <!-- Visible -->
                     <td><input type="text"
                                ng-model="movie.visible"
+                               placeholder="true/false"/></td>
+                    <!-- Visible -->
+                    <td><input type="text"
+                               ng-model="movie.flagged"
                                placeholder="true/false"/></td>
                     <!-- Review-->
                     <td><textarea type="text"

@@ -13,6 +13,7 @@ module.exports = function () {
         deleteUser: deleteUser,
         updateUser: updateUser,
         followUser: followUser,
+        unfollowUser : unfollowUser,
         findUserByUsername: findUserByUsername,
         updateRatesandReviews: updateRatesandReviews,
         findUserByGoogleId: findUserByGoogleId,
@@ -62,6 +63,22 @@ module.exports = function () {
             );
     }
 
+
+    function unfollowUser(id, username) {
+        return User.update(
+            {_id: id},
+            {
+                $pull: {
+                    follows:
+                    {
+                        username: username
+                    }
+                }
+            }
+        );
+    }
+
+    
     function followUser(id, follows) {
         return User
             .update({_id: id},

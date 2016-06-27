@@ -16,6 +16,7 @@
             findUserById: findUserById,
             updateUser: updateUser,
             followUser: followUser,
+            unfollowUser : unfollowUser,
             deleteUser: deleteUser,
             login: login,
             logout: logout,
@@ -100,6 +101,10 @@
             return $http.put(url, follows);
         }
 
+        function unfollowUser(userId, username) {
+            var url = "/api/project/user/"+ userId+"/unfollows/" +username;
+            return $http.put(url);
+        }
 
         function deleteUser(userId){
             var url = "/api/project/user/"+userId;

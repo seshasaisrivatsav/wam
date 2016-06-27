@@ -34,6 +34,7 @@ module.exports= function(app, models){
     app.delete("/api/project/user/:userId", deleteUser);
     app.put("/api/project/user/:userId", updateUser);
     app.put("/api/project/user/follows/:userId", followUser);
+    app.put("/api/project/user/:userId/unfollows/:username", unfollowUser);
     app.get('/api/project/findallusers', findallusers);
     app.get('/auth/google/callback',
         passport.authenticate('google', {
@@ -250,6 +251,25 @@ module.exports= function(app, models){
                 }
             );
     }
+
+    function unfollowUser(req, res) {
+        var id = req.params.userId;
+        var username = req.params.username;
+
+        console.log(id +" "+username);
+
+        userModel
+            .unfollowUser(id, username)
+            .then(
+                function (stats) {
+                    res.sendStatus(200);
+                },
+                function (error) {
+                    res.sendStatus(404);
+                }
+            );
+    }
+
 
     // function createUser(req,res) {
     //     var user = req.body;

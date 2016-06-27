@@ -29,11 +29,13 @@
                 });
         }
 
-        function updateMovie(tmdbId, userId, visible, text) {
+        function updateMovie(tmdbId, userId, visible, flagged, text) {
             var reviews = {
                 userId: userId ,
                 visible : visible,
+                flagged: flagged,
                 text : text
+
             };
 
             MovieService

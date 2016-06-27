@@ -13,7 +13,8 @@
 
         var username = $routeParams.username;
         vm.followUser = followUser;
-
+        vm.unfollowUser = unfollowUser;
+        var loggedInUserId = $rootScope.currentUser._id;
 
         function init() {
             findUserByUsername();
@@ -26,7 +27,7 @@
 
         function alreadyFollowing() {
             UserService
-                .findUserById($rootScope.currentUser._id)
+                .findUserById(loggedInUserId)
                 .then(function (response) {
                     var userFollows = response.data.follows;
                     for (var i in userFollows) {
@@ -42,10 +43,24 @@
 
 
 
+        function unfollowUser() {
+            UserService
+              .unfollowUser(loggedInUserId, username)
+              .then(function (res) {
+                  var unfollow = res.data;
+                    if (unfollow){
+                      vm.unfollow= "you are now unfollowing the user";
+                      
+                  }else{
+                      vm.error = "Something is wrong! you can follow this user"
+                  }
+              });         
+    }
+
         function followUser() {
 
             UserService
-                .findUserById($rootScope.currentUser._id)
+                .findUserById(loggedInUserId)
                 .then(function (response) {
                     var userFollows = response.data.follows;
                     for(var i in userFollows){
@@ -66,12 +81,13 @@
                             };
 
                             UserService
-                                .followUser($rootScope.currentUser._id, follows)
+                                .followUser(loggedInUserId, follows)
                                 .then(function (res) {
                                     var newUser = res.data;
                                     
                                     if (newUser){
                                         vm.success= "you are now following the user";
+
                                     }else{
                                         vm.error = "Something is wrong! you can follow this user"
                                     }

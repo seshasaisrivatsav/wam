@@ -54,6 +54,7 @@ module.exports = function (app, models) {
         var userId = reviews.userId ;
         var text = reviews.text;
         var visible = reviews.visible;
+        var flagged = reviews.flagged;
         movieModel
             .findMovieById(tmdbId)
             .then(function (movie) {
@@ -65,6 +66,7 @@ module.exports = function (app, models) {
                         if(reviews[i].userId == userId){
                             reviews[i].visible= visible;
                             reviews[i].text = text;
+                            reviews[i].flagged = flagged;
 
                         }
                     }
