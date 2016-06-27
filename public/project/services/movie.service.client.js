@@ -13,11 +13,17 @@
             reportReview: reportReview,
             findAllMovies: findAllMovies,
             removeReview: removeReview,
-            donotremoveReview: donotremoveReview
+            donotremoveReview: donotremoveReview,
+            updateMovie: updateMovie,
+            deleteMovie : deleteMovie
         };
         
         return api;
 
+        function deleteMovie(tmdbId, userId) {
+            var url = "/api/project/movie/"+tmdbId+"/remove/"+userId;
+            return $http.delete(url);
+        }
         function donotremoveReview(twoIds) {
             var url = "/api/project/donotremoveReview";
             return $http.put(url, twoIds);
@@ -46,6 +52,11 @@
         function updateRatingAndReview(tmdbId, ratingsandreviews) {
             var url = "/api/project/"+tmdbId+"/ratingsandreviews";
             return $http.put (url, ratingsandreviews);
+        }
+
+        function updateMovie(tmdbId, reviews) {
+            var url = "/api/project/"+tmdbId+"/updatemovie";
+            return $http.put (url, reviews);
         }
 
         function createMovie(movie){

@@ -38,61 +38,115 @@
 
 <!--Body-->
 
-<div class="container pushdownless">
+<div class="container pushdown">
 
     <!-- Number of Movies Reviewed-->
     <div class="container">
-        <h4>Movies Reviewed: {{model.movieCount}}</h4>
+        <h4><b>Movies Reviewed:</b> {{model.moviesCount}}</h4>
     </div>
+
 
     <!-- Mangage Reviews -->
     <div class="container ">
-        <h4 class="page-header">Manage Reviews</h4>
+        <h4 ><b>Manage Movie Reviews</b></h4>
+        <div ng-if="model.warning" class="alert alert-warning">
+            {{model.warning}}
+        </div>
+        <div ng-if="model.updatedmessage" class="alert alert-success">
+            {{model.updatedmessage}}
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <th>Update Movie</th>
+                <th>Delete Movie</th>
+
+                <th>Movie</th>
+                <th>Reviewed by</th>
+                <th>Visible</th>
+                <th>Review</th>
+
+
+                <tr ng-repeat="movie in model.results">
+
+                    <td><a class="glyphicon glyphicon-ok makeblack"
+                           ng-click="model.updateMovie(movie.tmdbId, movie.userId, movie.visible, movie.text)"></a>
+                    </td>
+                    <td><a class="glyphicon glyphicon-remove makeblack"
+                           ng-click="model.deleteMovie(movie.tmdbId, movie.userId)"></a>
+                    </td>
+
+                    <!-- Movie-->
+                    <td>
+                        <a class="makeblack"
+                           href="#/movie/{{movie.tmdbId}}">{{movie.title}}</a>
+                    </td>
+                    <td>
+                        <a class="makeblack"
+                           href="#/user/profile/{{movie.username}}">{{movie.username}}</a>
+                    </td>
+
+                    <!-- Visible -->
+                    <td><input type="text"
+                               ng-model="movie.visible"
+                               placeholder="true/false"/></td>
+                    <!-- Review-->
+                    <td><textarea type="text"
+                                  ng-model="movie.text"
+                                  rows = "4"
+                                  placeholder="Review Text">
+                    </textarea></td>
+
+                </tr>
+            </table>
+        </div>
+
     </div>
+
+
 
 
     <!-- View Ratings and Reviews -->
-    <div class="container ">
-        <h4 class="page-header">Ratings and Reviews</h4>
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                <tr>
+    <!--<div class="container ">-->
+        <!--<h4 ><b>Ratings and Reviews</b></h4>-->
+        <!--<div class="table-responsive">-->
+            <!--<table class="table">-->
+                <!--<thead>-->
+                <!--<tr>-->
 
-                    <th>Movie</th>
-                    <th>Average Ratings</th>
-                    <th>Reviews</th>
+                    <!--<th>Movie</th>-->
+                    <!--<th>Average Ratings</th>-->
+                    <!--<th>Reviews</th>-->
 
-                </tr>
-                </thead>
+                <!--</tr>-->
+                <!--</thead>-->
 
-                <!-- Table Body-->
-                <tbody ng-repeat="movie in model.movies">
+                <!--&lt;!&ndash; Table Body&ndash;&gt;-->
+                <!--<tbody ng-repeat="movie in model.movies">-->
 
-                <tr>
-                    <!--Movie Name-->
-                    <td>
-                    <span class="fa fa-film" aria-hidden="true">
-                        <a class="makeblack"
-                           href="#/movie/{{movie.tmdbId}}">
-                         {{movie.title}}</a></span>
-                    </td>
+                <!--<tr>-->
+                    <!--&lt;!&ndash;Movie Name&ndash;&gt;-->
+                    <!--<td>-->
+                    <!--<span class="fa fa-film" aria-hidden="true">-->
+                        <!--<a class="makeblack"-->
+                           <!--href="#/movie/{{movie.tmdbId}}">-->
+                         <!--{{movie.title}}</a></span>-->
+                    <!--</td>-->
 
-                    <!--Average Ratings-->
-                    <td> {{movie.averageratings}}</td>
-
-
-                    <!-- Reviews -->
-                    <td> {{movie.reviews}}</td>
+                    <!--&lt;!&ndash;Average Ratings&ndash;&gt;-->
+                    <!--<td> {{movie.averageratings}}</td>-->
 
 
+                    <!--&lt;!&ndash; Reviews &ndash;&gt;-->
+                    <!--<td> {{movie.reviews}}</td>-->
 
-                </tr>
-                </tbody>
 
-            </table>
-        </div>
-    </div>
+
+                <!--</tr>-->
+                <!--</tbody>-->
+
+            <!--</table>-->
+        <!--</div>-->
+    <!--</div>-->
 </div>
 
 

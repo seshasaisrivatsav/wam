@@ -10,8 +10,77 @@ module.exports = function (app, models) {
     app.put('/api/project/reportreview' ,reportReview);
     app.put('/api/project/removereview' ,removeReview);
     app.put('/api/project/donotremovereview' ,donotremovereview);
+    app.put('/api/project/:tmdbId/updatemovie',updateMovie);
+
+    app.delete("/api/project/movie/:tmdbId/remove/:userId", deleteMovie);
 
 
+    function deleteMovie(req,res) {
+        var tmdbId = req.params.tmdbId;
+        var userId = req.params.userId;
+
+
+        movieModel
+            .findMovieById(tmdbId)
+            .then(function (movie) {
+                    var foundMovie = movie[0];
+
+                    for(var i in foundMovie.reviews){
+                        if(foundMovie.reviews[i].userId == userId){
+
+                            console.log(foundMovie.reviews[i].userId + ","+ userId);
+                            foundMovie.reviews.splice(i, 1);
+                            movie[0].save();
+                            res.sendStatus(200);
+                            return;
+
+
+                        }
+                    }
+
+
+
+                },
+                function (error) {
+                    res.statusCode(404).send(error);
+                });
+
+    }
+
+    function updateMovie(req, res) {
+        var tmdbId = req.params.tmdbId;
+        var reviews = req.body;
+
+        var userId = reviews.userId ;
+        var text = reviews.text;
+        var visible = reviews.visible;
+        movieModel
+            .findMovieById(tmdbId)
+            .then(function (movie) {
+                    var foundMovie = movie[0];
+                    var reviews = foundMovie.reviews;
+             
+
+                    for(var i in reviews){
+                        if(reviews[i].userId == userId){
+                            reviews[i].visible= visible;
+                            reviews[i].text = text;
+
+                        }
+                    }
+
+                    movie[0].save();
+                    res.sendStatus(200);
+
+
+                },
+                function (error) {
+                    res.statusCode(404).send(error);
+                });
+    }
+
+
+    
 
     function findallmovies(req, res) {
 
