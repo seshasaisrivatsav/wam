@@ -47,6 +47,14 @@
 
     <h2 class="page-header">Welcome {{model.user.firstName}}  </h2>
 
+    <!-- Admin Console-->
+    <p ng-if="model.admin" class="button ">
+        <a href="#/adminconsole" class="btn btn-default btn-block makeblue">
+            <span class="fa fa-cogs " aria-hidden="true"></span>
+          Admin Console
+        </a>
+    </p>
+
     <!-- Users Reviews -->
     <div class="container-fluid">
     <h3>Your Reviews</h3>
@@ -116,9 +124,9 @@
 <!-- Footer -->
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
     <div class="container-fluid">
-        <p ng-if="model.admin" class="navbar-text pull-right">
-            <a href="#/adminconsole">
-                <span>Admin Console</span>
+        <p class="navbar-text pull-right">
+            <a href="#/editprofile">
+                <span>Edit Profile</span>
             </a>
         </p>
 

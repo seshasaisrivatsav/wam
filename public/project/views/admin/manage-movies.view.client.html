@@ -12,6 +12,9 @@
                 <img class="logo_film"
                      src="./img/film_nerd_logo.jpg">
             </a>
+            <h3 class="makewhite">
+                Manage Movies
+            </h3>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
@@ -36,56 +39,59 @@
 <!--Body-->
 
 <div class="container pushdownless">
-    <div ng-if="model.reportReviewMessage" class="alert alert-success">{{model.reportReviewMessage}}</div>
-    <h2>Flagged Reviews</h2>
 
-    <div class="table-responsive">
-        <table class="table">
-            <thead>
-            <tr>
+    <!-- Number of Movies Reviewed-->
+    <div class="container">
+        <h4>Movies Reviewed: {{model.movieCount}}</h4>
+    </div>
 
-                <th>User</th>
-                <th>Title</th>
-                <th>Review Text</th>
-                <th>Remove</th>
+    <!-- Mangage Reviews -->
+    <div class="container ">
+        <h4 class="page-header">Manage Reviews</h4>
+    </div>
 
-            </tr>
-            </thead>
 
-            <!-- Table Body-->
-            <tbody ng-repeat="review in model.results">
-            <tr ng-if= "review.visible=='true' && review.flagged=='true'">
-                <td >
-                    <span class="glyphicon glyphicon-user ">
+    <!-- View Ratings and Reviews -->
+    <div class="container ">
+        <h4 class="page-header">Ratings and Reviews</h4>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+
+                    <th>Movie</th>
+                    <th>Average Ratings</th>
+                    <th>Reviews</th>
+
+                </tr>
+                </thead>
+
+                <!-- Table Body-->
+                <tbody ng-repeat="movie in model.movies">
+
+                <tr>
+                    <!--Movie Name-->
+                    <td>
+                    <span class="fa fa-film" aria-hidden="true">
                         <a class="makeblack"
-                        href="#/user/profile/{{review.username}}">
-                       {{review.username}}</a></span>
+                           href="#/movie/{{movie.tmdbId}}">
+                         {{movie.title}}</a></span>
+                    </td>
+
+                    <!--Average Ratings-->
+                    <td> {{movie.averageratings}}</td>
 
 
-                </td>
-                <td >
-                    <span  >
-                        <a class="makeblack"
-                           href="#/movie/{{review.tmdbId}}">
-                       {{review.title}}</a></span>
+                    <!-- Reviews -->
+                    <td> {{movie.reviews}}</td>
 
 
-                </td>
-                <td>{{review.text}}</td>
-                <td><a  type="button" ng-click="model.removeReview(review._id, review.tmdbId)"
-                        class=" reportbutton btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-remove "> Remove</span>
-                    </a>
-                    <a  type="button" ng-click="model.donotremoveReview(review._id, review.tmdbId)"
-                        class=" reportbutton btn btn-default btn-sm">
-                        <span class="glyphicon glyphicon-ok "> Keep </span>
-                    </a>
-                </td>
 
-            </tr>
-            </tbody>
+                </tr>
+                </tbody>
 
-        </table>
+            </table>
+        </div>
     </div>
 </div>
 
@@ -94,8 +100,8 @@
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
     <div class="container-fluid">
         <p class="navbar-text pull-right">
-            <a href="#/adminconsole">
-                <span>Profile</span>
+            <a  ng-click="model.logout()">
+                <span>Logout</span>
             </a>
 
         </p>

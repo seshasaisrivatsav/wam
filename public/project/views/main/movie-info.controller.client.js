@@ -23,7 +23,7 @@
             var twoIds = {
                 reviewId : reviewId,
                 tmdbId : tmdbId
-            }
+            };
             // console.log(reviewId);
             // console.log(tmdbId);
             MovieService

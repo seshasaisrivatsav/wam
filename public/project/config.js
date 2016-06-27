@@ -20,12 +20,28 @@
                 templateUrl: "views/admin/create-admin.view.client.html"
             })
 
+            .when("/managemovies",{
+                templateUrl: "views/admin/manage-movies.view.client.html",
+                controller: "ManageMoviesController",
+                controllerAs: "model",
+                resolve :{
+                    loggedIn: checkLoggedIn
+                }
+            })
+            .when("/manageusers",{
+                templateUrl: "views/admin/manage-users.view.client.html",
+                controller: "ManageUsersController",
+                controllerAs: "model",
+                resolve :{
+                    loggedIn: checkLoggedIn
+                }
+            })
             .when("/manageflaggedreviews",{
                 templateUrl: "views/admin/admin-flaggedreviews.view.client.html",
                 controller: "AdminFlaggedReviewsController",
                 controllerAs: "model",
                 resolve :{
-                    freeView : freeView
+                    loggedIn: checkLoggedIn
                 }
             })
 
@@ -34,7 +50,7 @@
                 controller: "AdminConsoleController",
                 controllerAs: "model",
                 resolve :{
-                    freeView : freeView
+                    loggedIn: checkLoggedIn
                 }
             })
 

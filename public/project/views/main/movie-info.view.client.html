@@ -93,7 +93,7 @@
     <div class="row">
         <div class="col-sm-3">
             <!-- Movie Poster-->
-            <div class=fill>
+            <div class="fill">
                 <img class="img paddingtop20" ng-src="https://image.tmdb.org/t/p/w300/{{model.movie.poster_path}}">
             </div>
                 <!--<img class="img img-responsive profile" ng-src="https://image.tmdb.org/t/p/w300/{{model.movie.poster_path}}">-->
@@ -104,11 +104,10 @@
         <!-- Youtube Trailer-->
         <div class="col-sm-9">
             <div class="video-container">
-                <iframe  width = "100%" ng-src="{{model.movie.video_path}}" frameborder="0" allowfullscreen=""></iframe>
+                <iframe  width = "100%"
+                         ng-src="{{model.movie.video_path}}"
+                         frameborder="0" allowfullscreen=""></iframe>
             </div>
-            <!--<div class="item active youtube-widget" ng-if="model.movie.video_path">-->
-                <!--<iframe width = "100%" ng-src="{{model.movie.video_path}}" frameborder="0" allowfullscreen=""></iframe>-->
-            <!--</div>-->
         </div>
     </div>
 
@@ -130,7 +129,7 @@
                     ng-if="actor.profile_path">
                     <a href="#/cast/{{actor.id}}">
                         <img ng-src="https://image.tmdb.org/t/p/w92{{actor.profile_path}}"></a>
-                    <p class="title" href="#/cast/{{actor.id}}">{{actor.name}}</p>
+                    <a class="title makeblack" href="#/cast/{{actor.id}}">{{actor.name}}</a>
                     <!-- replace p with a to move to cast page -->
                 </li>
             </ul>

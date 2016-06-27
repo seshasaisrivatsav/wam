@@ -8,7 +8,11 @@ module.exports = function (app, models) {
     app.put('/api/project/:tmdbId/ratingsandreviews',updateRatingAndReview);
     app.post('/api/project/movie',createMovie);
     app.put('/api/project/reportreview' ,reportReview);
-    
+    app.put('/api/project/removereview' ,removeReview);
+    app.put('/api/project/donotremovereview' ,donotremovereview);
+
+
+
     function findallmovies(req, res) {
 
         movieModel
@@ -22,7 +26,56 @@ module.exports = function (app, models) {
                 }
             );
     }
-    
+
+    function donotremovereview(req, res) {
+        var tmdbId = req.body.tmdbId;
+        var reviewId = req.body.reviewId;
+
+        movieModel
+            .findMovieById(tmdbId)
+            .then(function (movie) {
+                    var foundMovie = movie[0];
+                    var reviews = foundMovie.reviews;
+
+                    for(var i in reviews){
+                        if(reviews[i]._id == reviewId){
+                            reviews[i].flagged = "false";
+                        }
+                    }
+
+                    movie[0].save();
+                    res.sendStatus(200);
+
+
+                },
+                function (error) {
+                    res.statusCode(404).send(error);
+                });
+    }
+
+    function removeReview(req,res) {
+
+        var tmdbId = req.body.tmdbId;
+        var reviewId = req.body.reviewId;
+
+        movieModel
+            .findMovieById(tmdbId)
+            .then(function (movie) {
+                    var foundMovie = movie[0];
+                    var reviews = foundMovie.reviews;
+
+                    for(var i in reviews){
+                        if(reviews[i]._id == reviewId){
+                            reviews[i].visible = "false";
+                        }
+                    }
+
+                    movie[0].save();
+                    res.sendStatus(200);
+                });
+    }
+
+
     function reportReview(req,res) {
 
         var tmdbId = req.body.tmdbId;
@@ -40,7 +93,9 @@ module.exports = function (app, models) {
                             }
                         }
 
-                    return movie[0].save();
+                    //return movie[0].save();
+                    movie[0].save();
+                    res.send(200);
 
 
                     },

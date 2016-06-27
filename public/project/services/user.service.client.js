@@ -20,7 +20,8 @@
             login: login,
             logout: logout,
             findUserByUsername: findUserByUsername,
-            submitRatingReview : submitRatingReview
+            submitRatingReview : submitRatingReview,
+            findAllUsers: findAllUsers
 
         };
 
@@ -32,6 +33,10 @@
             return $http.put (url, rateandreview);
         }
 
+        function findAllUsers() {
+            var url = "/api/project/findallusers";
+            return $http.get(url);
+        }
 
         function register(username,password, firstName, lastName, admin) {
             var user= {

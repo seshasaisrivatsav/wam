@@ -28,6 +28,7 @@ module.exports= function(app, models){
     app.delete("/api/project/user/:userId", deleteUser);
     app.put("/api/project/user/:userId", updateUser);
     app.put("/api/project/user/follows/:userId", followUser);
+    app.get('/api/project/findallusers', findallusers);
     app.get('/auth/google/callback',
         passport.authenticate('google', {
             successRedirect: '/project/#/profile',
@@ -105,6 +106,22 @@ module.exports= function(app, models){
         res.sendStatus(200);
     }
 
+
+    function findallusers(req, res) {
+
+        userModel
+            .findAllUsers()
+            .then(
+                function (users) {
+                    res.json(users);
+                },
+                function (error) {
+                    res.sendStatus(404);
+                }
+            );
+    }
+    
+    
     function register(req,res) {
         var username = req.body.username;
         var password = req.body.password;
@@ -198,6 +215,7 @@ module.exports= function(app, models){
     function updateUser(req, res) {
         var id = req.params.userId;
         var user = req.body;
+     
 
         userModel
             .updateUser(id, user)
@@ -227,19 +245,53 @@ module.exports= function(app, models){
             );
     }
 
-    function createUser(req,res) {
-        var user = req.body;
-        userModel
-            .createUser(user)
-            .then(
-                function(user){
+    // function createUser(req,res) {
+    //     var user = req.body;
+    //     userModel
+    //         .createUser(user)
+    //         .then(
+    //             function(user){
+    //
+    //                 res.json(user);
+    //             },
+    //             function(error){
+    //                 res.statusCode(404).send(error);
+    //             }
+    //         )
+    //
+    // }
 
-                    res.json(user);
+    function createUser(req, res) {
+
+        var username = req.body.username;
+
+        userModel
+            .findUserByUsername(username)
+            .then(
+                function (user) {
+                    if(user){
+                        res.send("Username already in use");
+                        return;
+                    } else {
+                        req.body.password = bcrypt.hashSync(req.body.password);
+                        return userModel
+                            .createUser(req.body)
+                    }
                 },
-                function(error){
-                    res.statusCode(404).send(error);
+                function (err) {
+                    res.sendStatus(400).send(err);
                 }
             )
+            .then(
+                function (user) {
+                    if(user){
+                        res.sendStatus(200);
+                    }
+                },
+                function (err) {
+                    res.sendStatus(400).send(err);
+                }
+            );
 
     }
 

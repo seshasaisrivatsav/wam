@@ -11,6 +11,7 @@
     background-color: gainsboro;
 }
 
+a.makeblue{background-color: cadetblue;}
 /*body{*/
     /*padding-top: 30px;*/
 /*}*/
@@ -35,6 +36,14 @@
 
 .pushdown{
     padding-bottom : 80px
+}
+
+.paddedfromtop3{
+    padding-top: 5px;
+}
+
+.pushdownless{
+    padding-top : 55px
 }
 .poster{
     max-width:100%;

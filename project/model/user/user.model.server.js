@@ -15,7 +15,8 @@ module.exports = function () {
         followUser: followUser,
         findUserByUsername: findUserByUsername,
         updateRatesandReviews: updateRatesandReviews,
-        findUserByGoogleId: findUserByGoogleId
+        findUserByGoogleId: findUserByGoogleId,
+        findAllUsers: findAllUsers
 
     };
     return api;
@@ -24,7 +25,12 @@ module.exports = function () {
     function findUserByGoogleId(id) {
         return User.findOne({"google.id": id});
     }
-    
+
+    function findAllUsers() {
+        return User.find();
+    }
+
+
     function updateRatesandReviews(id, rateandreview) {
         var rate = rateandreview.rates;
         var review = rateandreview.reviews;
@@ -51,7 +57,8 @@ module.exports = function () {
             .update({_id: userId},{
                 $set: {firstName : user.firstName,
                     lastName : user.lastName,
-                    email: user.email}}
+                    email: user.email,
+                      admin : user.admin}}
             );
     }
 

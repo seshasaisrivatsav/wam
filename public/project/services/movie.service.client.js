@@ -11,10 +11,22 @@
             updateRatingAndReview: updateRatingAndReview,
             createMovie : createMovie,
             reportReview: reportReview,
-            findAllMovies: findAllMovies
+            findAllMovies: findAllMovies,
+            removeReview: removeReview,
+            donotremoveReview: donotremoveReview
         };
         
         return api;
+
+        function donotremoveReview(twoIds) {
+            var url = "/api/project/donotremoveReview";
+            return $http.put(url, twoIds);
+        }
+        
+        function removeReview(twoIds) {
+            var url = "/api/project/removereview";
+            return $http.put(url, twoIds);
+        }
 
         function reportReview(twoIds) {
             var url = "/api/project/reportreview";
