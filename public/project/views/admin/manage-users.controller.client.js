@@ -36,6 +36,7 @@
                             .then(
                                 function (response) {
                                     vm.users = response.data;
+                                    vm.userCount = vm.users.length;
                                 }
                             );
                     }
@@ -54,6 +55,7 @@
                             .then(
                                 function (response) {
                                     vm.users = response.data;
+                                    vm.userCount = vm.users.length;
                                 }
                             );
                     }
@@ -73,6 +75,7 @@
                             .then(
                                 function (response) {
                                     vm.users = response.data;
+                                    vm.userCount = vm.users.length;
                                 }
                             );
                     }
