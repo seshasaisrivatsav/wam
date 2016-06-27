@@ -6,14 +6,27 @@
     function AdminConsoleController(TmdbApiService, $rootScope, $location, $sce, UserService) {
         var vm = this;
 
-
+        vm.logout();
 
         function init() {
 
             getLoggedInUser();
         }
         return init();
-        
+
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function (response) {
+                        $location.url("/login");
+                    },
+                    function () {
+                        $location.url("/login");
+                    }
+                );
+        }
+
         function getLoggedInUser() {
             if($rootScope.currentUser){
                 vm.loggedIn = "true";
