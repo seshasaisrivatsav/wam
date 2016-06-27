@@ -4,12 +4,18 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy; //added re
 var bcrypt = require("bcrypt-nodejs");
 
 
-var googleConfig = {
-    clientID     : "19483974661-f0g4hn8mplkvlc9dm9kip4refl4k0u2i.apps.googleusercontent.com",
-    clientSecret : "jmupSkxQtUqRuuhAKTcOfddz",
-    callbackURL  : "http://127.0.0.1:3000/auth/google/callback"
-};
+// var googleConfig = {
+//     clientID     : "19483974661-f0g4hn8mplkvlc9dm9kip4refl4k0u2i.apps.googleusercontent.com",
+//     clientSecret : "jmupSkxQtUqRuuhAKTcOfddz",
+//     callbackURL  : "http://127.0.0.1:3000/auth/google/callback"
+// };
 
+
+var googleConfig = {
+    clientID     : process.env.GOOGLE_CLIENT_ID,
+    clientSecret : process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL  : process.env.GOOGLE_CALLBACK_URL
+};
 
 
 
@@ -215,7 +221,7 @@ module.exports= function(app, models){
     function updateUser(req, res) {
         var id = req.params.userId;
         var user = req.body;
-     
+
 
         userModel
             .updateUser(id, user)
