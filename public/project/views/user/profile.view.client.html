@@ -59,6 +59,9 @@
     <div class="container-fluid">
     <h3>Your Reviews</h3>
 
+        <div ng-if="model.norates">
+            You have not rated any movie so far
+        </div>
         <div ng-repeat="reviews in model.user.reviews" class="row">
             <a class="makeblack" href="#/movie/{{reviews.tmdbId}}">
             <div class="col-xs-4">
@@ -67,6 +70,7 @@
 
             </div>
             </a>
+
 
             <div class="col-xs-8">
                 <h4>{{reviews.review}}</h4>
@@ -79,7 +83,9 @@
    <!-- Users Ratings -->
     <div class="container-fluid">
         <h3>Your Ratings</h3>
-
+        <div ng-if="model.norates">
+            You have not reviewed any movie so far!
+        </div>
         <div ng-repeat="rates in model.user.rates" class="row">
             <a class="makeblack" href="#/movie/{{rates.tmdbId}}">
             <div class="col-xs-5">
@@ -102,6 +108,9 @@
 
     <div class="container ">
         <h3>You are Following</h3>
+        <div ng-if="model.nofollowers">
+            You have not followed anyone so far!
+        </div>
         <div ng-repeat ="follow in model.user.follows">
             <li>
                 <a class="makeblack" href ="#/user/profile/{{follow.username}}">

@@ -19,6 +19,15 @@
                 .findUserById(userId)
                 .then(function (response) {
                     vm.user = response.data;
+                    if(vm.user.rates.length == 0){
+                        vm.norates= true;
+                    }
+                    if(vm.user.reviews.length == 0){
+                        vm.noreviews= true;
+                    }
+                    if(vm.user.follows.length == 0){
+                        vm.nofollowers= true;
+                    }
                 });
         }
         init();

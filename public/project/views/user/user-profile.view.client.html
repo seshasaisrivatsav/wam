@@ -83,6 +83,7 @@
     <h3>{{model.user.firstName}}'s Reviews</h3>
 
         <div ng-repeat="reviews in model.user.reviews" class="row">
+
             <a class="makeblack" href="#/movie/{{reviews.tmdbId}}">
             <div class="col-xs-4">
                 <img ng-src="{{reviews.imageUrl}}" width = 70>
@@ -107,12 +108,7 @@
             <a class="makeblack" href="#/movie/{{rates.tmdbId}}">
             <div class="col-xs-5">
                 <img ng-src="{{rates.imageUrl}}" width = 70>
-                <!--<meter class="meter"-->
-                       <!--min="0"-->
-                       <!--max="5"-->
-                       <!--width ="70"-->
-                       <!--value="{{rates.rating}}">-->
-                <!--</meter>-->
+
                 <h5>{{model.user.firstName}} rated: {{rates.rating}}/5</h5>
             </div>
             </a>
