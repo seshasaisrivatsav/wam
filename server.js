@@ -52,7 +52,7 @@ var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 // /* we passed instance of app from app.js */
 // assignment(app);
 
-var project = require("./assignment/app.js");
+var project = require("./project/app.js");
 project(app);
 
 
