@@ -29,8 +29,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 /* VVVIP : session has to be initialized AFTER Cookie Parser */
 app.use(cookieParser());
-app.use(session({secret: process.env.SESSION_SECRET}));
-//app.use(session({secret: "aasdasd"}));
+// app.use(session({secret: process.env.SESSION_SECRET}));
+app.use(session({secret: "aasdasd"}));
 
 
 // First initialize passport and then tell it to use the express    session
@@ -48,12 +48,11 @@ var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
 /**/
 
-// var assignment = require("./assignment/app.js");
-// /* we passed instance of app from app.js */
-// assignment(app);
+var assignment = require("./assignment/app.js");
+assignment(app);
 
-var project = require("./project/app.js");
-project(app);
+// var project = require("./project/app.js");
+// project(app);
 
 
 
