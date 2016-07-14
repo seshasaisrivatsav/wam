@@ -43,7 +43,7 @@ app.use(express.static(__dirname + '/public'));
 //require ("./test/app.js")(app);
 
 var ipaddress = process.env.OPENSHIFT_NODEJS_IP;
-var port      = process.env.OPENSHIFT_NODEJS_PORT || 3007;
+var port      = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
 
 /**/
@@ -52,7 +52,7 @@ var port      = process.env.OPENSHIFT_NODEJS_PORT || 3007;
 // /* we passed instance of app from app.js */
 // assignment(app);
 
-var project = require("./project/app.js");
+var project = require("./assignment/app.js");
 project(app);
 
 
