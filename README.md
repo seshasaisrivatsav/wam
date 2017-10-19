@@ -1,9 +1,8 @@
 <h1>WebAppMaker</h1>
 
 
-<p>Web App Maker is a MEAN Stack project. I built it during my Web Development class at Northeastern University.</p>
+<p>Web App Maker is a MEAN Stack project. I built it during my Web Development class at Northeastern University. Using WebAppMaker, users can create websites in seconds. It is a bare bone MEAN Stack app intended to help users create websites easily. Users can login using facebook or by registering. They can create several websites. Each Website is made of pages. Each page is made up of widgets. HTML, YouTube, Header, Text make up widgets. Users have flexibility to edit everything.</p>
 
-<img src="https://excellentwebworld.com/wp-content/uploads/2017/09/images-3.jpg" height=190px>
 
 <h2>Live instance of the project
 </h2>
@@ -11,6 +10,8 @@
 
  
 <h2>Required Installations on local machine</h2>
+
+<img src="https://excellentwebworld.com/wp-content/uploads/2017/09/images-3.jpg" height=190px>
 <ol>
   <li>nodeJs</li>
   <li>MongoDB</li>
